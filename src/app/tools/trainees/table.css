@@ -1,0 +1,87 @@
+/* table.scrolldown {
+  width: 100%;
+
+  border-spacing: 0;
+}
+
+table.scrolldown tbody,
+table.scrolldown thead {
+  display: block;
+}
+
+thead tr th {
+  height: 40px;
+  line-height: 40px;
+}
+
+table.scrolldown tbody {
+  height: 37rem;
+
+  overflow-y: auto;
+
+  overflow-x: hidden;
+}
+
+tbody td,
+thead th {
+  width: 230px;
+}
+
+td {
+  text-align: center;
+} */
+/* .table-spacing td, */
+
+/* .table-spacing th {
+  padding: 3rem;
+}
+.table-spacing td {
+  padding: 0.5rem;
+}
+
+.tbody-scrollable {
+  height: 100px;
+  overflow-y: auto;
+}
+.table-container {
+  max-height: 200px;
+  overflow-y: auto;
+} */
+
+table.scrolldown {
+  width: 100%;
+
+  border-spacing: 0;
+  /* border: 2px solid black; */
+}
+
+table.scrolldown tbody,
+table.scrolldown thead {
+  display: block;
+}
+
+thead tr th {
+  height: 40px;
+  line-height: 40px;
+}
+
+table.scrolldown tbody {
+  height: 37rem;
+
+  overflow-y: auto;
+
+  overflow-x: hidden;
+}
+
+tbody td,
+thead th {
+  width: 190px;
+  /* padding: 2rem; */
+}
+tbody td {
+  width: 190px;
+  padding: 0.5rem;
+}
+td {
+  text-align: center;
+}

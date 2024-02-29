@@ -1,0 +1,12 @@
+.parent {
+  background: linear-gradient(
+    to bottom,
+    #cceaea,
+    #a3bfc0,
+    #ffffff,
+    #e3f3ed
+  ); /* Red, Green, Blue */
+}
+.title {
+  font-size: 4rem;
+}

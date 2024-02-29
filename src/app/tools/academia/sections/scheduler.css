@@ -1,0 +1,43 @@
+.events {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .events .ant-badge-status {
+    width: 100%;
+    overflow: hidden;
+    font-size: 12px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  .notes-month {
+    font-size: 28px;
+    text-align: center;
+  }
+  .notes-month section {
+    font-size: 28px;
+  }
+
+  .transparent-modal .ant-modal-content {
+    background-color: transparent !important; /* Make the modal content transparent */
+  }
+  
+  .transparent-modal .ant-modal-header,
+  .transparent-modal .ant-modal-body,
+  .transparent-modal .ant-modal-footer {
+    /* border: none !important; */
+  }
+  
+  .transparent-modal .ant-modal {
+    display: flex !important;
+    align-items: center; /* Center the modal vertically */
+  }
+  
+  .transparent-modal .ant-modal-wrap {
+    background-color: red !important; /* Make the modal wrap transparent */
+  }
+  
+  .transparent-modal .ant-modal-mask {
+    background-color: rgba(219, 185, 185, 0.5) !important; /* Make the mask transparent */
+  }
+  
