@@ -10,39 +10,39 @@ import React, { useState } from "react";
 import Calendar from "react-calendar";
 import { AreaChart, Sparkline } from "@mantine/charts";
 // import Calendar from "react-calendar";
-// export const data = [
-//   {
-//     date: "Mar 22",
-//     Apples: 2890,
-//     Oranges: 2338,
-//     Tomatoes: 2452,
-//   },
-//   {
-//     date: "Mar 23",
-//     Apples: 2756,
-//     Oranges: 2103,
-//     Tomatoes: 2402,
-//   },
-//   {
-//     date: "Mar 24",
-//     Apples: 3322,
-//     Oranges: 986,
-//     Tomatoes: 1821,
-//   },
-//   {
-//     date: "Mar 25",
-//     Apples: 3470,
-//     Oranges: 2108,
-//     Tomatoes: 2809,
-//   },
-//   {
-//     date: "Mar 26",
-//     Apples: 3129,
-//     Oranges: 1726,
-//     Tomatoes: 2290,
-//   },
-// ];
 const ProfileDashboard = () => {
+  // export const data = [
+  //   {
+  //     date: "Mar 22",
+  //     Apples: 2890,
+  //     Oranges: 2338,
+  //     Tomatoes: 2452,
+  //   },
+  //   {
+  //     date: "Mar 23",
+  //     Apples: 2756,
+  //     Oranges: 2103,
+  //     Tomatoes: 2402,
+  //   },
+  //   {
+  //     date: "Mar 24",
+  //     Apples: 3322,
+  //     Oranges: 986,
+  //     Tomatoes: 1821,
+  //   },
+  //   {
+  //     date: "Mar 25",
+  //     Apples: 3470,
+  //     Oranges: 2108,
+  //     Tomatoes: 2809,
+  //   },
+  //   {
+  //     date: "Mar 26",
+  //     Apples: 3129,
+  //     Oranges: 1726,
+  //     Tomatoes: 2290,
+  //   },
+  // ];
   const [isModalVisible, setModalVisible] = useState(false);
   const [status, setStatus] = useState("");
   const [selectedDate, setSelectedDate] = useState(null);
@@ -117,7 +117,7 @@ const ProfileDashboard = () => {
                                 className='cursor-pointer '
                                 onClick={() => setStatus("leave")}
                               >
-                                ask for leave
+                                ask for leavee
                               </span>
                               <span
                                 className='cursor-pointer text-sm'
