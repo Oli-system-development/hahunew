@@ -114,6 +114,14 @@ const Dashboard = () => {
       label: "Settings",
       color: "text-blue-500",
     },
+    {
+      id: "14",
+      icon: <i class='fa fa-comment text-2xl font-bold'></i>,
+      link: "../tools/chat/",
+      label: "Chat",
+      color: "text-slate-300",
+    },
+
     //<i class="fa fa-university" aria-hidden="true"></i>
   ];
   //     name: "trianes",

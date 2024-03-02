@@ -1,0 +1,24 @@
+.chatt {
+  background: linear-gradient(
+    to bottom,
+    #000c0c,
+    #000c0c,
+    #000c0c,
+    hsl(137, 81%, 16%),
+    #550b57,
+    #093382,
+    #000c0c,
+    #000c0c
+  );
+  width: 100%;
+  height: 100vh;
+}
+
+.custom-popover .bs-popover-top .arrow::after,
+.custom-popover .bs-popover-auto .arrow::after {
+  border-top-color: black !important; /* Change arrow color to black */
+}
+
+.custom-popover .popover {
+  background-color: black !important; /* Change background color to black */
+}
