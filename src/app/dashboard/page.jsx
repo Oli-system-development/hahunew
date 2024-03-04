@@ -122,7 +122,6 @@ const Dashboard = () => {
       color: "text-slate-300",
     },
 
-    //<i class="fa fa-university" aria-hidden="true"></i>
   ];
   //     name: "trianes",
   //     icon: <UserAddOutlined />,
