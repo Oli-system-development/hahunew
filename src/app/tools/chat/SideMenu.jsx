@@ -1,25 +1,34 @@
 import Image from "next/image";
 import React from "react";
 
-const SideMenu = () => {
+const SideMenu = ({ handleContactClick, endToEndHandler, showCalls }) => {
   return (
     <div className='menu mt-3'>
       <div className='flex flex-col h-full justify-between  gap-5'>
-        <span className='block py-1 px-10  text-slate-300 hover:border-l-2 hover:border-green-500'>
+        <span
+          className='block py-1 px-10  text-slate-300 hover:border-l-2 hover:border-green-500'
+          onClick={handleContactClick}
+        >
           <i
             className='fa fa-commenting text-3xl font-bold '
             aria-hidden='true'
           ></i>
           {/* Home */}
         </span>
-        <span className='block py-1 px-10  text-slate-300 hover:border-l-2 hover:border-green-500'>
+        <span
+          className='block py-1 px-10  text-slate-300 hover:border-l-2 hover:border-green-500'
+          onClick={endToEndHandler}
+        >
           <i
             className='fa fa-podcast text-3xl font-bold'
             aria-hidden='true'
           ></i>
           {/* Home */}
         </span>{" "}
-        <span className='block py-1 px-10 mb-9 text-slate-300 hover:border-l-2 hover:border-green-500'>
+        <span
+          className='block py-1 px-10 mb-9 text-slate-300 hover:border-l-2 hover:border-green-500'
+          onClick={showCalls}
+        >
           <i className='fa fa-phone text-3xl font-bold' aria-hidden='true'></i>
           {/* Home */}
         </span>

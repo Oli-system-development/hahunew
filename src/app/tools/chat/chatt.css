@@ -3,10 +3,16 @@
     to bottom,
     #000c0c,
     #000c0c,
+    #031f1f,
     #000c0c,
-    hsl(137, 81%, 16%),
-    #550b57,
+    hsl(136, 80%, 26%),
+    #000c0c,
+    #790c1d,
+    #738d8f,
+    #000c0c,
     #093382,
+    #073d3d,
+    #054040,
     #000c0c,
     #000c0c
   );
@@ -16,9 +22,78 @@
 
 .custom-popover .bs-popover-top .arrow::after,
 .custom-popover .bs-popover-auto .arrow::after {
-  border-top-color: black !important; /* Change arrow color to black */
+  border-top-color: black !important;
 }
 
 .custom-popover .popover {
-  background-color: black !important; /* Change background color to black */
+  background-color: black !important;
 }
+/* 
+.gradient {
+  margin: 50px;
+  --size: 25px;
+  --easing: cubic-bezier(0.8, 0.2, 0.2, 0.8);
+  width: var(--size);
+  height: var(--size);
+  filter: blur(calc(var(--size) / 5));
+  background-image: linear-gradient(rgba(55, 235, 70, 0.85), #3aeb37);
+  animation: rotate var(--speed) var(--easing) alternate infinite;
+  border-radius: 30% 70% 70% 30%/30% 30% 70% 70%;
+}
+.gradient2 {
+  margin: 50px;
+  --size: 25px;
+  --easing: cubic-bezier(0.8, 0.2, 0.2, 0.8);
+  width: var(--size);
+  height: var(--size);
+  filter: blur(calc(var(--size) / 5));
+  background-image: linear-gradient(rgba(55, 97, 235, 0.85), #5b37eb);
+  animation: rotate var(--speed) var(--easing) alternate infinite;
+  border-radius: 30% 70% 70% 30%/30% 30% 70% 70%;
+}
+.gradient3 {
+  margin: 50px;
+  --size: 25px;
+  --easing: cubic-bezier(0.8, 0.2, 0.2, 0.8);
+  width: var(--size);
+  height: var(--size);
+  filter: blur(calc(var(--size) / 5));
+  background-image: linear-gradient(rgba(221, 29, 106, 0.85), #eb37a9);
+  animation: rotate var(--speed) var(--easing) alternate infinite;
+  border-radius: 30% 70% 70% 30%/30% 30% 70% 70%;
+}
+.gradient4 {
+  margin: 50px;
+  --size: 25px;
+  --easing: cubic-bezier(0.8, 0.2, 0.2, 0.8);
+  width: var(--size);
+  height: var(--size);
+  filter: blur(calc(var(--size) / 5));
+  background-image: linear-gradient(rgba(221, 29, 29, 0.85), #eb3737);
+  animation: rotate var(--speed) var(--easing) alternate infinite;
+  border-radius: 30% 70% 70% 30%/30% 30% 70% 70%;
+}
+
+@media (min-width: 720px) {
+  .gradient,
+  .gradient2,
+  .gradient3,
+  .gradient4 {
+    --size: 150px;
+  }
+}
+.chatt {
+  background-color: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container,
+.container2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+} */
