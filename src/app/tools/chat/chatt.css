@@ -1,4 +1,4 @@
-.chatt {
+/* .chatt {
   background: linear-gradient(
     to bottom,
     #000c0c,
@@ -17,7 +17,7 @@
     #000c0c
   );
   width: 100%;
-  height: 100vh;
+  height: 100vh !important;
 }
 
 .custom-popover .bs-popover-top .arrow::after,
@@ -27,7 +27,13 @@
 
 .custom-popover .popover {
   background-color: black !important;
-}
+} */
+/* .chatt {
+  background-image: url("/bg.jpg");
+  width: 100%;
+  height: 100% !important;
+  background-color: #0f0909;
+} */
 /* 
 .gradient {
   margin: 50px;

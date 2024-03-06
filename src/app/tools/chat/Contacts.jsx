@@ -11,12 +11,12 @@ const Contacts = ({ handleContactClick }) => {
   };
 
   return (
-    <div className='sidebar pb-32 hidden lg:flex w-1/3 bg-black bg-opacity-50  flex-2 flex-col pr-6 '>
+    <div className='sidebar pb-10 hidden lg:flex w-1/3 bg-black bg-opacity-40 pt-5  flex-2 flex-col pr-6 '>
       <div className='hidden  lg:block heading flex-2 px-3'>
         <div className='flex flex-row justify-between font-bold text-2xl px-3 mb-3 mx-4'>
           <span>Chat</span>
           <div className='flex flex-row gap-5'>
-            <i class='fa fa-edit' aria-hidden='true'></i>
+            <i className='fa fa-edit' aria-hidden='true'></i>
             <div>
               <button
                 data-popover-target='popover-company-profile'
@@ -25,7 +25,7 @@ const Contacts = ({ handleContactClick }) => {
                 className='text-white  focus:outline-none font-medium rounded-lg text-2xl  text-center'
               >
                 <i
-                  class={`fa ${
+                  className={`fa ${
                     isPopoverOpen ? "fa-close text-red-400" : "fa-ellipsis-v"
                   }`}
                   aria-hidden='true'
@@ -44,8 +44,8 @@ const Contacts = ({ handleContactClick }) => {
         />
         <i className='fa fa-search mt-2 text-xl'></i>
       </div>
-      <div className=' h-[calc(50vh-1vh)] overflow-y-scroll px-2'>
-        {[1, 2, 3, 4, 5].map((contact) => (
+      <div className=' h-[calc(60vh-1vh)] overflow-y-scroll px-2'>
+        {[1, 2, 3, 4, 5, 6, 7, 8].map((contact) => (
           <div
             key={contact}
             className='entry cursor-pointer transform hover:scale-105 duration-300 transition-transform mb-4 rounded p-4 flex shadow-md'

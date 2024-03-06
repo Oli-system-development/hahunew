@@ -3,36 +3,42 @@ import React from "react";
 
 const SideMenu = ({ handleContactClick, endToEndHandler, showCalls }) => {
   return (
-    <div className='menu mt-3'>
-      <div className='flex flex-col h-full justify-between  gap-5'>
-        <span
-          className='block py-1 px-10  text-slate-300 hover:border-l-2 hover:border-green-500'
-          onClick={handleContactClick}
-        >
-          <i
-            className='fa fa-commenting text-3xl font-bold '
-            aria-hidden='true'
-          ></i>
-          {/* Home */}
-        </span>
-        <span
-          className='block py-1 px-10  text-slate-300 hover:border-l-2 hover:border-green-500'
-          onClick={endToEndHandler}
-        >
-          <i
-            className='fa fa-podcast text-3xl font-bold'
-            aria-hidden='true'
-          ></i>
-          {/* Home */}
-        </span>{" "}
-        <span
-          className='block py-1 px-10 mb-9 text-slate-300 hover:border-l-2 hover:border-green-500'
-          onClick={showCalls}
-        >
-          <i className='fa fa-phone text-3xl font-bold' aria-hidden='true'></i>
-          {/* Home */}
-        </span>
-        <div className='flex flex-col gap-5 mt-80'>
+    <div className='flex menu mt-3'>
+      <div className='flex h-[calc(80vh-1vh)] flex-col  justify-between'>
+        <div className='flex flex-col gap-5'>
+          <span
+            className='block py-1 px-10  text-slate-300 hover:border-l-2 hover:border-green-500'
+            onClick={handleContactClick}
+          >
+            <i
+              className='fa fa-commenting text-3xl font-bold '
+              aria-hidden='true'
+            ></i>
+            {/* Home */}
+          </span>
+          <span
+            className='block py-1 px-10  text-slate-300 hover:border-l-2 hover:border-green-500'
+            onClick={endToEndHandler}
+          >
+            <i
+              className='fa fa-podcast text-3xl font-bold'
+              aria-hidden='true'
+            ></i>
+            {/* Home */}
+          </span>{" "}
+          <span
+            className='block py-1 px-10 mb-9 text-slate-300 hover:border-l-2 hover:border-green-500'
+            onClick={showCalls}
+          >
+            <i
+              className='fa fa-phone text-3xl font-bold'
+              aria-hidden='true'
+            ></i>
+            {/* Home */}
+          </span>
+        </div>
+
+        <div className='flex flex-col gap-5 '>
           <span className='block py-1 px-10  text-slate-300 hover:border-l-2 hover:border-green-500'>
             <i className='fa fa-cog text-3xl font-bold' aria-hidden='true'></i>
             {/* Home */}
@@ -59,9 +65,9 @@ const SideMenu = ({ handleContactClick, endToEndHandler, showCalls }) => {
           <svg
             fill='none'
             stroke='currentColor'
-            stroke-linecap='round'
+            strokeLinecap='round'
             stroke-linejoin='round'
-            stroke-width='2'
+            strokeLinejoin='2'
             viewBox='0 0 24 24'
             className='w-4 h-4'
           >
@@ -78,9 +84,9 @@ const SideMenu = ({ handleContactClick, endToEndHandler, showCalls }) => {
           <svg
             fill='none'
             stroke='currentColor'
-            stroke-linecap='round'
+            strokeLinecap='round'
             stroke-linejoin='round'
-            stroke-width='2'
+            strokeLinejoin='2'
             viewBox='0 0 24 24'
             className='w-4 h-4'
           >
@@ -97,9 +103,9 @@ const SideMenu = ({ handleContactClick, endToEndHandler, showCalls }) => {
           <svg
             fill='none'
             stroke='currentColor'
-            stroke-linecap='round'
+            strokeLinecap='round'
             stroke-linejoin='round'
-            stroke-width='2'
+            strokeLinejoin='2'
             viewBox='0 0 24 24'
             className='w-4 h-4'
           >
