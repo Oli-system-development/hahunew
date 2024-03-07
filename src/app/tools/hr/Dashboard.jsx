@@ -32,60 +32,60 @@ const Dashboard = () => {
   };
 
   return (
-    <div className='flex w-full  p-7 mx-32 flex-col gap-8 shadow-xl rounded-xl'>
-      <div className='flex flex-row justify-between'>
-        <div className='flex text-slate-500 text-xl font-bold'>
-          <i className='fa fa-home px-3 pt-1 text-xl'></i> Dashboard
+    <div className='flex w-full  p-2 md:p-7 mx-10 md:mx-32 flex-col gap-2 md:gap-8 shadow-xl rounded-xl'>
+      <div className='flex w-full flex-row justify-around md:justify-between '>
+        <div className='flex text-slate-500 text-md md:text-xl font-bold'>
+          <i className='fa fa-home px-3 pt-1 text-md md:text-xl'></i> Dashboard
         </div>
         <div className='flex justify-end'>
-          <i className='fa-solid fa-earth-africa text-slate-500 font-bold text-3xl '></i>
+          <i className='fa-solid fa-earth-africa text-slate-500 font-bold text-md md:text-3xl '></i>
         </div>
       </div>
 
-      <div className='flex flex-row mx-8 justify-between'>
-        <div className='flex flex-row gap-11 text-slate-700 shadow-md p-5  rounded-xl w-full justify-around '>
+      <div className='flex flex-row mx-1 md:mx-8 justify-between'>
+        <div className='flex flex-row gap-2 md:gap-11 text-slate-700 shadow-md p-1 md:p-5  rounded-xl w-full justify-around '>
           <span className='flex gap-3 text-green-400'>
             <span>
-              <i className='fa fa-user rounded-full bg-slate-200 p-4'></i>
+              <i className='fa fa-user rounded-full bg-slate-200 p-1 text-sm md:text-lg md:p-4'></i>
             </span>
-            <span className='flex flex-col'>
-              <span className='text-sm text-slate-400 '>Total trains</span>
+            <span className='flex flex-col text-xs'>
+              <span className='text-xs text-slate-400 '>Total trains</span>
               120
             </span>
           </span>{" "}
           <span className='flex gap-3 text-pink-600'>
             <span>
-              <i className='fa fa-home rounded-full bg-slate-200 p-4'></i>
+              <i className='fa fa-home rounded-full bg-slate-200 p-1 text-sm md:text-lg md:p-4'></i>
             </span>
-            <span className='flex flex-col'>
-              <span className='text-sm text-slate-400 '>Total trains</span>
+            <span className='flex flex-col text-xs'>
+              <span className='text-xs text-slate-400 '>Total trains</span>
               120
             </span>
           </span>{" "}
           <span className='flex gap-3 text-cyan-600'>
             <span>
-              <i className='fa fa-shop rounded-full bg-slate-200 p-4'></i>
+              <i className='fa fa-shop rounded-full bg-slate-200 p-1 text-sm md:text-lg md:p-4'></i>
             </span>
-            <span className='flex flex-col'>
-              <span className='text-sm text-slate-400 '>Total trains</span>
+            <span className='flex flex-col text-xs'>
+              <span className='text-xs text-slate-400 '>Total trains</span>
               11
             </span>
           </span>{" "}
           <span className='flex gap-3 text-yellow-500'>
             <span>
-              <i className='fa fa-add rounded-full bg-slate-200 p-4'></i>
+              <i className='fa fa-add rounded-full bg-slate-200 p-1 text-sm md:text-lg md:p-4'></i>
             </span>
-            <span className='flex flex-col'>
-              <span className='text-sm text-slate-400 '>Total trains</span>
+            <span className='flex flex-col text-xs'>
+              <span className='text-xs text-slate-400 '>Total trains</span>
               19
             </span>
           </span>
         </div>
       </div>
 
-      <div className='flex flex-row mx-8 justify-between'>
-        <div className='flex justify-around flex-row gap-10 text-slate-700    rounded-xl w-full  '>
-          <div className='h-[calc(50vh-5rem)] w-96 bg-blue-500 text-white text-xl font-bold p-6 rounded-2xl '>
+      <div className='flex flex-row mx-1 md:mx-8 justify-between'>
+        <div className='flex justify-around flex-col md:flex-row gap-2 md:gap-10 text-slate-700  md:w-full w-[calc(40vh-4vh)] sm:w-[calc(50vh-4vh)] rounded-xl   '>
+          <div className=' sm:w-80 md:w-96 bg-blue-500 text-white text-xl font-bold p-6 rounded-2xl '>
             <span className='text-white font-bold text-xl '>
               Attendance summery
             </span>
@@ -102,28 +102,26 @@ const Dashboard = () => {
             />
           </div>
 
-          <span className='flex flex-col gap-3 p-5 w-96 shadow-lg rounded-xl text-xl font-bold text-slate-500'>
+          <div className='flex flex-col gap-3 p-1 md:p-6 sm:w-80 md:w-96  shadow-lg rounded-xl text-xl font-bold text-slate-500'>
             <span>Financial summery</span>
             <BarChart
               h={300}
-              w={350}
               data={data}
               dataKey='month'
               series={[
                 { name: "Smartphones", color: "black" },
                 { name: "Laptops", color: "blue.6" },
-                // { name: "Tablets", color: "teal.6" },
               ]}
               tickLine='y'
             />
-          </span>
-          <div className='flex gap-3 flex-col'>
+          </div>
+          <div className='flex gap-3 flex-col text-xl sm:w-80 md:w-96 font-bold text-slate-500'>
             <span>Calander</span>
             <div
-              className='w-96 h-96 pt-9'
+              className='md:w-96 h-64 md:h-96 pt-9'
               style={{ border: "  ", borderRadius: 4 }}
             >
-              <div className='flex w-full h-96'>
+              <div className='flex w-full text-sm font-thin md:font-normal h-96'>
                 <Calendar
                   onChange={handleDateClick}
                   value={selectedDate}
@@ -134,20 +132,21 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <div className='flex flex-row mx-8 justify-between'>
-        <div className='flex flex-row gap-6 text-slate-700  p-5  rounded-xl w-full justify-around '>
-          <span className='flex gap-3 px-11 py-2 w-96 rounded-lg shadow-md text-slate-800 '>
+
+      <div className='flex flex-row mx-1 md:mx-8 justify-between'>
+        <div className='flex flex-row gap-2 md:gap-6 text-slate-700  p-1 md:p-5  rounded-xl md:w-full justify-around '>
+          <span className='flex flex-col md:flex-row gap-0 px-2 md:px-11 py-0 md:py-2 md:w-96 rounded-lg shadow-md text-slate-800 '>
             <span>
               <i
-                className='fa fa-graduation-cap rounded-full bg-slate-200 text-xl p-4 font-bold'
+                className='fa fa-graduation-cap rounded-full bg-slate-200 text-md md:text-xl p-2 md:p-4 font-bold'
                 aria-hidden='true'
               ></i>
             </span>
             <span className='flex flex-col'>
-              <span className='text-slate-500 text-lg font-bold'>
+              <span className='text-slate-500 text-sm md:text-lg font-bold'>
                 AT OFFICE
               </span>{" "}
-              <span className='text-sm flex flex-row gap-4 p-2 text-slate-400 '>
+              <span className='text-sm flex flex-row gap-0 md:gap-4 p-0 md:p-2 text-slate-400 '>
                 <span>
                   <i className='fa fa-male'></i>male
                 </span>
@@ -158,16 +157,18 @@ const Dashboard = () => {
               380
             </span>
           </span>{" "}
-          <span className='flex gap-3 px-11 py-2 w-96 rounded-lg text-slate-900 shadow-md'>
+          <span className='flex flex-col md:flex-row gap-0 px-2 md:px-11 py-0 md:py-2 md:w-96 rounded-lg text-slate-900 shadow-md'>
             <span>
               <i
-                className='fa fa-desktop rounded-full bg-slate-200 text-xl p-4 font-bold'
+                className='fa fa-desktop rounded-full bg-slate-200 text-md md:text-xl p-2 md:p-4 font-bold'
                 aria-hidden='true'
               ></i>{" "}
             </span>
             <span className='flex flex-col'>
-              <span className='text-slate-500 text-lg font-bold'>ON LEAVE</span>{" "}
-              <span className='text-sm flex flex-row gap-4 p-2 text-slate-400 '>
+              <span className='text-slate-500 text-sm md:text-lg font-bold'>
+                ON LEAVE
+              </span>{" "}
+              <span className='text-sm flex flex-row gap-0 md:gap-4 p-0 md:p-2 text-slate-400 '>
                 <span>
                   <i className='fa fa-male'></i>male
                 </span>
@@ -178,18 +179,18 @@ const Dashboard = () => {
               100
             </span>
           </span>{" "}
-          <span className='flex gap-3 px-11 py-2 w-96 rounded-lg text-black shadow-md'>
+          <span className='flex flex-col md:flex-row gap-0 px-2 md:px-11 py-0 md:py-2 md:w-96 rounded-lg text-black shadow-md'>
             <span>
               <i
-                className='fa fa-desktop rounded-full bg-slate-200 text-xl p-4 font-bold'
+                className='fa fa-desktop rounded-full bg-slate-200 text-md md:text-xl p-2 md:p-4 font-bold'
                 aria-hidden='true'
               ></i>{" "}
             </span>
             <span className='flex flex-col'>
-              <span className='text-slate-500 text-lg font-bold'>
+              <span className='text-slate-500 text-sm md:text-lg font-bold'>
                 SICK LEAVE
               </span>{" "}
-              <span className='text-sm flex flex-row gap-4 p-2 text-slate-400 '>
+              <span className='text-sm flex flex-row gap-0 md:gap-4 p-0 md:p-2 text-slate-400 '>
                 <span>
                   <i className='fa fa-male'></i>male
                 </span>
@@ -202,12 +203,13 @@ const Dashboard = () => {
           </span>{" "}
         </div>
       </div>
-      <div className='flex flex-col shadow-xl rounded-md ring-1 ring-slate-200 px-7'>
-        <span className='text-lg mx-9 m-5 text-slate-500 font-bold'>
+
+      <div className='flex flex-col shadow-xl rounded-md ring-1 ring-slate-200 px-1 md:px-7'>
+        <span className='text-lg mx-3 md:mx-9 md:m-5 text-slate-500 font-bold'>
           Todays Log
         </span>
-        <div className='flex flex-row flex-wrap gap-24 text-sm font-thin overflow-x-scroll justify-between'>
-          {["employe name", "age", "tasks", "postion", "date", "status"].map(
+        <div className='flex  flex-row flex-wrap gap-0 md:gap-24 text-sm font-thin overflow-x-scroll justify-around'>
+          {["Employe name", "age", "tasks", "postion", "date", "status"].map(
             (tab) => (
               <span key={tab} className=' text-slate-500 gap-0  '>
                 {tab}
@@ -216,15 +218,14 @@ const Dashboard = () => {
           )}
         </div>
 
-        <span className='h-1 bg-slate-100 w-full my-3' />
-        <div className='flex flex-row flex-wrap gap-4 w-full overflow-y-scroll h-96 justify-between'>
+        <span className='h-1 bg-slate-100 md:w-full my-3' />
+        <div className='flex flex-row flex-wrap gap-1 md:gap-4 w-full overflow-y-scroll h-96 justify-between'>
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 19].map((item) => (
             <div
               key={item}
-              className='flex  text-slate-500 flex-row gap-20 w-full justify-between'
+              className='flex  text-slate-500 flex-row  gap-3 w-72 md:gap-20 md:w-full justify-between'
             >
               <span htmlFor='' className='flex flex-row'>
-                {/* {item}.Melak */}
                 <span>
                   <Image
                     src='/elsabet.jpeg'

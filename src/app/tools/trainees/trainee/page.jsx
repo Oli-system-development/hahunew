@@ -240,8 +240,8 @@ const Trainees = () => {
                 </div>
               </div>
             </div> */}
-            <div class='  flex w-full p-1 gap-2 justify-center  flex-wrap flex-row bg-white rounded-md'>
-              <table class='scrolldown '>
+            <div className='  flex w-full p-1 gap-2 justify-center  flex-wrap flex-row bg-white rounded-md'>
+              <table className='scrolldown '>
                 <thead className=' flex flex-row flex-wrap gap-6 w-full justify-around  text-slate-500  cursor-pointer '>
                   <tr>
                     <th className='text-sm font-thin text-slate-500 py-3'>

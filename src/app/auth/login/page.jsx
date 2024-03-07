@@ -12,9 +12,9 @@ const LoginPage = () => {
 
   return (
     <>
-      <span className='p-9 texts'>Created by HAHU</span>
+      <span className='p-9 texts '>Created by HAHU</span>
 
-      <div className='p-1 h-[calc(100vh-2rem)] md:h-[calc(100vh-0rem)] flex flex-col items-center justify-center'>
+      <div className='pt-8 md:p-1 h-[calc(100vh-2rem)] md:h-[calc(100vh-0rem)] flex flex-col items-center justify-center'>
         <div className=' h-full  justify-around rounded-md flex flex-col md:flex-row md:h-[80%] md:w-full gap-40  2xl:w-2/3'>
           <div className='px-10 flex flex-col gap-8 md:w-1/2'>
             <span className='w-11 h-11 bg-teal-400'></span>

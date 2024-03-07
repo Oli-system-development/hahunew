@@ -444,7 +444,7 @@ const PayrollProfile = ({ payrolStatus }) => {
                   <div className='flex flex-col w-full '>
                     <div className='flex flex-wrap  flex-row   px-10 gap-20   bg-white rounded-lg '>
                       <div className='flex flex-row  mb-2 gap-3 '>
-                        <i class='fa-solid fa-hourglass-start text-2xl mt-3 text-emerald-500'></i>
+                        <i className='fa-solid fa-hourglass-start text-2xl mt-3 text-emerald-500'></i>
                         {/* <i className='fa fa-plus mt-3 mb-0 py-0 h-8 px-2  rounded-full bg-slate-400  text-xl'></i> */}
                         <span className='text-md p-0 mt-3 font-bold text-slate-500'>
                           handled by
@@ -462,7 +462,7 @@ const PayrollProfile = ({ payrolStatus }) => {
                       </div>
 
                       <div className='flex flex-row  mb-2 gap-3 '>
-                        <i class='fa-solid fa-hourglass-start text-2xl mt-3 text-emerald-500'></i>
+                        <i className='fa-solid fa-hourglass-start text-2xl mt-3 text-emerald-500'></i>
                         <span className='text-md mt-3  font-bold text-slate-500'>
                           tutution update
                         </span>

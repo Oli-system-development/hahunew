@@ -20,10 +20,10 @@ const Ucs = () => {
 
   return (
     <div className='p-6 '>
-      <div class=''>
-        {/* <table class='w-full'>
+      <div className=''>
+        {/* <table className='w-full'>
           <thead className=' text-start text-slate-500  cursor-pointer '>
-            <tr class='   text-slate-500 flex-row   cursor-pointer'>
+            <tr className='   text-slate-500 flex-row   cursor-pointer'>
               <th>COURSE</th>
               <th>DATE CREATEDDATEDATE CREATEDDATE</th>
               <th>PREQUISITES</th>
@@ -34,20 +34,20 @@ const Ucs = () => {
             </tr>
           </thead>
           <tbody
-          //  class='all_items flex flex-row flex-wrap gap-2 w-full overflow-y-scroll  justify-around mt-8'
+          //  className='all_items flex flex-row flex-wrap gap-2 w-full overflow-y-scroll  justify-around mt-8'
           >
             {[1, 2, 3, 4, 5].map((item) => (
               <tr
                 key={item}
-                class={` text-slate-500 flex-row  w-full justify-around cursor-pointer ${
+                className={` text-slate-500 flex-row  w-full justify-around cursor-pointer ${
                   item === selectedItem ? "bg-blue-500 text-white" : ""
                 }`}
                 onClick={() => handleItemClick(item)}
               >
-                <td class='flex flex-col font-bold'>
+                <td className='flex flex-col font-bold'>
                   {item}. computational breach test
                   <span
-                    class={`text-sm font-thin ${
+                    className={`text-sm font-thin ${
                       item === selectedItem ? "text-white" : "text-slate-600"
                     }`}
                   >
@@ -192,32 +192,32 @@ const Ucs = () => {
                       </div>
                     </div>
                   ) : (
-                    // <div class=' tableFixHead flex w-full p-1 gap-2 justify-center  flex-wrap flex-row bg-white rounded-md'>
-                    //   <table class='w-full'>
+                    // <div className=' tableFixHead flex w-full p-1 gap-2 justify-center  flex-wrap flex-row bg-white rounded-md'>
+                    //   <table className='w-full'>
                     //     <thead className='all_items flex flex-row flex-wrap gap-6 w-full justify-around  text-slate-500  cursor-pointer '>
-                    //       <tr class=' flex w-full  text-slate-500 flex-row gap-10  justify-around cursor-pointer'>
+                    //       <tr className=' flex w-full  text-slate-500 flex-row gap-10  justify-around cursor-pointer'>
                     //         <th>COURSE</th>
                     //         <th>DATE CREATED</th>
                     //         <th>PREQUISITES</th>
                     //         <th>ADMIN</th>
                     //       </tr>
                     //     </thead>
-                    //     <tbody class='all_items flex flex-row flex-wrap gap-2 w-full overflow-y-scroll  justify-around mt-8'>
+                    //     <tbody className='all_items flex flex-row flex-wrap gap-2 w-full overflow-y-scroll  justify-around mt-8'>
                     //       {[1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 19].map(
                     //         (item) => (
                     //           <tr
                     //             key={item}
-                    //             class={`flex text-slate-500 flex-row gap-10 w-full justify-around cursor-pointer ${
+                    //             className={`flex text-slate-500 flex-row gap-10 w-full justify-around cursor-pointer ${
                     //               item === selectedItem
                     //                 ? "bg-blue-500 text-white"
                     //                 : ""
                     //             }`}
                     //             onClick={() => handleItemClick(item)}
                     //           >
-                    //             <td class='flex flex-col font-bold'>
+                    //             <td className='flex flex-col font-bold'>
                     //               {item}. computational breach test
                     //               <span
-                    //                 class={`text-sm font-thin ${
+                    //                 className={`text-sm font-thin ${
                     //                   item === selectedItem
                     //                     ? "text-white"
                     //                     : "text-slate-600"
@@ -269,8 +269,8 @@ const Ucs = () => {
 
                     //!3
 
-                    <div class='  flex w-full p-1 gap-2 justify-center  flex-wrap flex-row bg-white rounded-md'>
-                      <table class='scrolldown '>
+                    <div className='  flex w-full p-1 gap-2 justify-center  flex-wrap flex-row bg-white rounded-md'>
+                      <table className='scrolldown '>
                         <thead className=' flex flex-row flex-wrap gap-6 w-full justify-around  text-slate-500  cursor-pointer '>
                           <tr>
                             <th className='w-64'>COURSE</th>
@@ -284,17 +284,17 @@ const Ucs = () => {
                             (item) => (
                               <tr
                                 key={item}
-                                class={` text-slate-500 flex-row gap-10 w-full justify-around cursor-pointer ${
+                                className={` text-slate-500 flex-row gap-10 w-full justify-around cursor-pointer ${
                                   item === selectedItem
                                     ? "bg-blue-500 text-white"
                                     : ""
                                 }`}
                                 onClick={() => handleItemClick(item)}
                               >
-                                <td class='flex flex-col w-64 font-bold justify-start text-start'>
+                                <td className='flex flex-col w-64 font-bold justify-start text-start'>
                                   <span>{item}. computational breach test</span>
                                   <span
-                                    class={`text-sm font-thin ${
+                                    className={`text-sm font-thin ${
                                       item === selectedItem
                                         ? "text-white"
                                         : "text-slate-600"
@@ -312,48 +312,48 @@ const Ucs = () => {
                         </tbody>
                       </table>
                     </div>
-                    // <div class='container w-full'>
-                    //   <table class='text-left w-full'>
-                    //     <thead class='bg-black flex text-white w-full'>
-                    //       <tr class='flex w-full mb-4'>
-                    //       <td class='p-4 w-1/4'>Dogs</td>
+                    // <div className='container w-full'>
+                    //   <table className='text-left w-full'>
+                    //     <thead className='bg-black flex text-white w-full'>
+                    //       <tr className='flex w-full mb-4'>
+                    //       <td className='p-4 w-1/4'>Dogs</td>
 
                     //       </tr>
                     //     </thead>
                     //     <tbody
-                    //       class='bg-grey-light flex flex-col items-center justify-between overflow-y-scroll w-full'
+                    //       className='bg-grey-light flex flex-col items-center justify-between overflow-y-scroll w-full'
                     //       style={{ height: "30vh" }}
                     //     >
-                    //       <tr class='flex w-full mb-4'>
-                    //         <td class='p-4 w-1/4'>Dogs</td>
-                    //         <td class='p-4 w-1/4'>Cats</td>
-                    //         <td class='p-4 w-1/4'>Birds</td>
-                    //         <td class='p-4 w-1/4'>Fish</td>
+                    //       <tr className='flex w-full mb-4'>
+                    //         <td className='p-4 w-1/4'>Dogs</td>
+                    //         <td className='p-4 w-1/4'>Cats</td>
+                    //         <td className='p-4 w-1/4'>Birds</td>
+                    //         <td className='p-4 w-1/4'>Fish</td>
                     //       </tr>
-                    //       <tr class='flex w-full mb-4'>
-                    //         <td class='p-4 w-1/4'>Dogs</td>
-                    //         <td class='p-4 w-1/4'>Cats</td>
-                    //         <td class='p-4 w-1/4'>Birds</td>
-                    //         <td class='p-4 w-1/4'>Fish</td>
+                    //       <tr className='flex w-full mb-4'>
+                    //         <td className='p-4 w-1/4'>Dogs</td>
+                    //         <td className='p-4 w-1/4'>Cats</td>
+                    //         <td className='p-4 w-1/4'>Birds</td>
+                    //         <td className='p-4 w-1/4'>Fish</td>
                     //       </tr>
-                    //       <tr class='flex w-full mb-4'>
-                    //         <td class='p-4 w-1/4'>Dogs</td>
-                    //         <td class='p-4 w-1/4'>Cats</td>
-                    //         <td class='p-4 w-1/4'>Birds</td>
-                    //         <td class='p-4 w-1/4'>Fish</td>
+                    //       <tr className='flex w-full mb-4'>
+                    //         <td className='p-4 w-1/4'>Dogs</td>
+                    //         <td className='p-4 w-1/4'>Cats</td>
+                    //         <td className='p-4 w-1/4'>Birds</td>
+                    //         <td className='p-4 w-1/4'>Fish</td>
                     //       </tr>
 
-                    //       <tr class='flex w-full mb-4'>
-                    //         <td class='p-4 w-1/4'>Dogs</td>
-                    //         <td class='p-4 w-1/4'>Cats</td>
-                    //         <td class='p-4 w-1/4'>Birds</td>
-                    //         <td class='p-4 w-1/4'>Fish</td>
+                    //       <tr className='flex w-full mb-4'>
+                    //         <td className='p-4 w-1/4'>Dogs</td>
+                    //         <td className='p-4 w-1/4'>Cats</td>
+                    //         <td className='p-4 w-1/4'>Birds</td>
+                    //         <td className='p-4 w-1/4'>Fish</td>
                     //       </tr>
-                    //       <tr class='flex w-full mb-4'>
-                    //         <td class='p-4 w-1/4'>Dogs</td>
-                    //         <td class='p-4 w-1/4'>Cats</td>
-                    //         <td class='p-4 w-1/4'>Birds</td>
-                    //         <td class='p-4 w-1/4'>Fish</td>
+                    //       <tr className='flex w-full mb-4'>
+                    //         <td className='p-4 w-1/4'>Dogs</td>
+                    //         <td className='p-4 w-1/4'>Cats</td>
+                    //         <td className='p-4 w-1/4'>Birds</td>
+                    //         <td className='p-4 w-1/4'>Fish</td>
                     //       </tr>
                     //     </tbody>
                     //   </table>

@@ -79,7 +79,7 @@ const Dashboard = () => {
     // },
     {
       id: "9",
-      icon: <i class='fa fa-university text-2xl font-bold'></i>,
+      icon: <i className='fa fa-university text-2xl font-bold'></i>,
       link: "../tools/finance/",
       label: "Finance",
       color: "text-green-500",
@@ -87,7 +87,7 @@ const Dashboard = () => {
 
     {
       id: "10",
-      icon: <i class='fa fa-cart-plus text-2xl font-bold'></i>,
+      icon: <i className='fa fa-cart-plus text-2xl font-bold'></i>,
       link: "../tools/btob/",
       label: "B2B",
       color: "text-pink-400",
@@ -109,14 +109,14 @@ const Dashboard = () => {
     },
     {
       id: "13",
-      icon: <i class='fa fa-cog text-2xl font-bold'></i>,
+      icon: <i className='fa fa-cog text-2xl font-bold'></i>,
       link: "../tools/finance/",
       label: "Settings",
       color: "text-blue-500",
     },
     {
       id: "14",
-      icon: <i class='fa fa-comment text-2xl font-bold'></i>,
+      icon: <i className='fa fa-comment text-2xl font-bold'></i>,
       link: "../tools/chat/",
       label: "Chat",
       color: "text-slate-300",
@@ -361,9 +361,9 @@ const Dashboard = () => {
                               >
                                 <path
                                   stroke='currentColor'
-                                  stroke-linecap='round'
-                                  stroke-linejoin='round'
-                                  stroke-width='2'
+                                  strokeLinecap='round'
+                                  strokeLinejoin='round'
+                                  strokeWidth='2'
                                   d='m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6'
                                 />
                               </svg>
@@ -503,7 +503,7 @@ const Dashboard = () => {
                 <div className='bg-slate-200 w-72 rounded-r-lg '>
                   <span className='text-blue-400 p-4 pt-2'>HaHu updates</span>
                 </div>
-                {/* <i class="fa fa-user-circle-o" aria-hidden="true"></i> */}
+                {/* <i className="fa fa-user-circle-o" aria-hidden="true"></i> */}
               </div>
             </div>
           </div>

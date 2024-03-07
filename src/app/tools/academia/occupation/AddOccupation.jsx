@@ -149,9 +149,9 @@ const AddOccupation = ({ addOccupation }) => {
                         >
                           <path
                             stroke='currentColor'
-                            stroke-linecap='round'
-                            stroke-linejoin='round'
-                            stroke-width='2'
+                            strokeLinecap='round'
+                            strokeLinejoin='round'
+                            strokeWidth='2'
                             d='m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6'
                           />
                         </svg>
@@ -159,7 +159,9 @@ const AddOccupation = ({ addOccupation }) => {
                       </button>
                     </div>
                     <div className='flex flex-col  mb-9  h-[calc(74vh-0rem)] w-2/3 bg-white rounded-xl shadow-md'>
-                      <span className='text-xl p-7 font-bold '>level Content</span>
+                      <span className='text-xl p-7 font-bold '>
+                        level Content
+                      </span>
                       <div className='flex flex-col '>
                         <div className='flex flex-wrap  flex-col   p-10 gap-4    mb-9 bg-white rounded-lg '>
                           <div className='flex flex-col  mb-9 '>

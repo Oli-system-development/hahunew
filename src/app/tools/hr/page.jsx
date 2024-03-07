@@ -50,8 +50,8 @@ const Hr = () => {
             </Link>
           </span>
         </div>
-        <div className='flex flex-row w-full mx-10 gap-3'>
-          <div className='flex fixed  flex-col w-16 shadow-lg ring-1 ring-slate-200  overflow-y-scroll gap-7 rounded-2xl'>
+        <div className='flex flex-row w-full mx-2 md:mx-10 gap-3'>
+          <div className='flex fixed  flex-col w-8 md:w-16 shadow-lg ring-1 ring-slate-200   gap-3 md:gap-7 rounded-2xl'>
             {[
               "fa fa-home",
               "fa fa-user",
@@ -118,7 +118,6 @@ const Hr = () => {
           }
         </div>
       </div>
-      <div className='flex flex-row'>test</div>
     </>
   );
 };
