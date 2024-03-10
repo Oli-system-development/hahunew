@@ -14,9 +14,6 @@ const RegisterPage = () => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({});
   const router = useRouter();
-  // const goDashboard = () => {
-  //   router.push("/dashboard");
-  // };
 
   const nextStep = () => {
     setStep((prevStep) => prevStep + 1);
@@ -29,16 +26,11 @@ const RegisterPage = () => {
   const handleFinish = () => {
     router.push("/tools/hr");
 
-
     console.log("Form data submitted:", formData);
-    // Example: You can reset the form data
     setFormData({});
-    // You can also navigate to another page after submission
-    // router.push("/dashboard");
   };
 
   const handleFormData = (data) => {
-    // Merge form data from each step
     setFormData((prevData) => ({ ...prevData, ...data }));
   };
 
@@ -47,23 +39,22 @@ const RegisterPage = () => {
   return (
     <div className='parent w-full'>
       <span
-        className={` flex  flex-col justify-center w-full text-center text-2xl  text-bold text-blue-700 p-6 texts`}
+        className={`flex flex-col justify-center w-full text-center text-2xl text-bold text-blue-700 p-6 texts`}
       >
-        HAHU
-        <span className='text-black'>Technologies</span>
+        HAHU <span className='text-black'>Technologies</span>
       </span>
-      <div className='bg-white shadow-sm h-[calc(90vh-2rem)] md:h-[calc(80vh-0rem)] flex flex-col items-center justify-center mx-10 rounded-xl '>
-        <div className=' h-full  justify-around rounded-md flex flex-col md:flex-row md:h-[80%] md:w-full  '>
-          <div className="relative h-1/3 w-full md:h-full md:w-1/2 bg-[url('/bg.jpeg')]">
-            <div className='flex flex-col mx-20'>
-              <span className='title  font-bold text-black'>
-                Wellcome to Tegbarer Id
+      <div className='p-6  flex flex-wrap bg-white shadow-sm  md:h-[calc(80vh-0rem)]  flex-col items-center justify-center mx-2 rounded-xl'>
+        <div className=' justify-around rounded-md flex flex-col md:flex-row md:h-[80%] md:w-full'>
+          <div className="relative w-full md:h-full md:w-1/2 bg-[url('/bg.jpeg')]">
+            <div className='flex w-full flex-row md:flex-col  justify-around mx-2 md:mx-20'>
+              <span className='text-xl md:text-3xl font-bold   text-black'>
+                Welcome to Tegbarer Id
               </span>
               <div className="relative h-1/3 w-full md:h-full md:w-1/4 bg-[url('/bg.jpeg')]">
                 <Image
                   src='/logo.png'
                   alt=''
-                  width={570}
+                  width={70}
                   height={70}
                   className='object-cover'
                 />
@@ -80,11 +71,11 @@ const RegisterPage = () => {
       </div>
 
       <div className='flex flex-col p-4 gap-0'>
-        <div className='flex items-center justify-center mt-2 pb-6 '>
+        <div className='flex items-center justify-center mt-2 pb-6'>
           {step !== 1 && (
             <button
               onClick={prevStep}
-              className='bg-blue-500 mx-4 rounded-xl w-32 text-white font-bold px-8 py-3 focus:outline-none focus:shadow-outline'
+              className='bg-blue-500 mx-4 rounded-xl w-20 md:w-32 text-white font-bold px-4 md:px-8 py-2 md:py-3 focus:outline-none focus:shadow-outline'
             >
               Back
             </button>
@@ -92,63 +83,68 @@ const RegisterPage = () => {
           {step === 4 ? (
             <button
               onClick={handleFinish}
-              className='bg-green-500 rounded-xl w-32 text-white font-bold px-8 py-3 focus:outline-none focus:shadow-outline'
+              className='bg-green-500 rounded-xl w-20 md:w-32 text-white font-bold px-4 md:px-8 py-2 md:py-3 focus:outline-none focus:shadow-outline'
             >
               Finish
             </button>
           ) : (
             <button
               onClick={nextStep}
-              className='bg-blue-500 rounded-xl w-32 text-white font-bold px-8 py-3 focus:outline-none focus:shadow-outline'
+              className='bg-blue-500 rounded-xl w-20 md:w-32 text-white font-bold px-4 md:px-8 py-2 md:py-3 focus:outline-none focus:shadow-outline'
             >
               Next
             </button>
           )}
         </div>
 
-        <Steps current={step - 1} className='px-6 pb-5 mr-7'>
+        <Steps
+          current={step - 1}
+          className='px-2 md:px-6 pb-2 md:pb-5 mr-2 md:mr-7'
+        >
           <Step
             title=''
             description={
-              <div className='mt-8 -mx-10 flex flex-col text-md font-bold '>
+              <div className='mt-4 md:mt-8 -mx-2 md:-mx-10 flex flex-col text-xs md:text-md font-bold'>
                 Personal details
-                <span className='text-slate-500 text-sm'>name and email</span>
+                <span className='text-slate-500 text-xs md:text-sm'>
+                  name and email
+                </span>
               </div>
             }
-          />{" "}
+          />
           <Step
             title=''
             description={
-              <div className='mt-8 -mx-10 flex flex-col text-md font-bold '>
-                academic
-                <span className='text-slate-500 text-sm'>
+              <div className='mt-4 md:mt-8 -mx-2 md:-mx-10 flex flex-col text-xs md:text-md font-bold'>
+                Academic
+                <span className='text-slate-500 text-xs md:text-sm'>
                   fill in academic history and choice
                 </span>
               </div>
             }
-          />{" "}
+          />
           <Step
             title=''
             description={
-              <div className='mt-8 -mx-10 flex flex-col text-md font-bold '>
-                emergency contact
-                <span className='text-slate-500 text-sm'>
+              <div className='mt-4 md:mt-8 -mx-2 md:-mx-10 flex flex-col text-xs md:text-md font-bold'>
+                Emergency contact
+                <span className='text-slate-500 text-xs md:text-sm'>
                   provide emergency contact details
                 </span>
               </div>
             }
-          />{" "}
+          />
           <Step
             title=''
             description={
-              <div className='mt-8 -mx-10 flex flex-col text-md font-bold '>
-                finalization
-                <span className='text-slate-500 text-sm'>
+              <div className='mt-4 md:mt-8 -mx-2 md:-mx-10 flex flex-col text-xs md:text-md font-bold'>
+                Finalization
+                <span className='text-slate-500 text-xs md:text-sm'>
                   for account verification
                 </span>
               </div>
             }
-          />{" "}
+          />
         </Steps>
       </div>
     </div>

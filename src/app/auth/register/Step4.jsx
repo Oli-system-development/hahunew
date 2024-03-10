@@ -2,20 +2,24 @@ import React from "react";
 
 const Step4 = () => {
   return (
-    <div className='px-10 flex flex-col gap-8 md:w-full '>
-      <span className='w-11 h-19 bg-teal-400 text-teal-400'>fsd</span>
-      <div className='flex flex-row justify-between w-full'>
-        <span className='font-bold text-2xl   text-black '>
+    <div className='px-2 md:px-10 flex flex-col gap-4 w-full'>
+      <span className='w-5 h-5 md:w-11 md:h-19 bg-teal-400 text-teal-400'>
+        fsd
+      </span>
+      <div className='flex flex-row gap-4 md:gap-10 justify-between w-full'>
+        <span className='font-bold text-xl md:text-2xl text-black'>
           Registration page
         </span>
-        <span className='text-blue-400'>application Id :ATP3256643</span>
+        <span className='text-blue-400 text-xs font-bold md:text-base'>
+          application Id: ATP3256643
+        </span>
       </div>
       <div className='flex flex-col '>
         <form action=''>
           <span>
-            <span className='text-md font-bold'>final section</span>{" "}
+            <span className='text-sm md:text-md font-bold'>final section</span>{" "}
           </span>
-          <div className='flex flex-col text-blue-500 gap-5  w-full'>
+          <div className='flex flex-col text-blue-500 gap-1 md:gap-5  w-full'>
             <div className='flex flex-row gap-3'>
               <div className='mt-6'>
                 <i className='fa fa-user text-2xl '></i>
@@ -25,7 +29,7 @@ const Step4 = () => {
                   <label htmlFor=''>user name</label>
                   <input
                     name=''
-                    className='shadow h-12 appearance-none ring-1 ring-slate-400 border rounded w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+                    className='shadow appearance-none border rounded w-full py-2 md:py-4 px-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                     id='username'
                     type='text'
                     placeholder='choose username'
@@ -38,12 +42,12 @@ const Step4 = () => {
               <div className='mt-6'>
                 <i className='fa fa-lock text-2xl '></i>
               </div>
-              <div className='flex flex-row mt-4 gap-28 flex-wrap pb-5'>
+              <div className='flex flex-row mt-4 gap-2 md:gap-28 flex-wrap pb-5'>
                 <div className='flex flex-col gap-1'>
                   <label htmlFor=''>select password </label>
                   <input
                     name=''
-                    className='shadow h-12 appearance-none ring-1 ring-slate-400 border rounded w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+                    className='shadow appearance-none border rounded w-full py-2 md:py-4 px-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                     id=''
                     type='password'
                     placeholder='enter password '
@@ -53,7 +57,7 @@ const Step4 = () => {
                   <label htmlFor=''>confirm password</label>
                   <input
                     name=''
-                    className='shadow h-12 appearance-none ring-1 ring-slate-400 border rounded w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+                    className='shadow appearance-none border rounded w-full py-2 md:py-4 px-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                     id=''
                     type='password'
                     placeholder='retype password'

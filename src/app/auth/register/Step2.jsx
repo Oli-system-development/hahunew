@@ -2,35 +2,39 @@ import React from "react";
 
 const Step2 = () => {
   return (
-    <div className='px-10 flex flex-col gap-8 md:w-full'>
-      <span className='w-11 h-19 bg-teal-400 text-teal-400'>fsd</span>
-      <div className='flex flex-row justify-between w-full'>
-        <span className='font-bold text-2xl   text-black '>
+    <div className='px-2 md:px-10 flex flex-col gap-4 w-full'>
+      <span className='w-5 h-5 md:w-11 md:h-19 bg-teal-400 text-teal-400'>fsd</span>
+      <div className='flex flex-row gap-4 md:gap-10 justify-between w-full'>
+        <span className='font-bold text-xl md:text-2xl text-black'>
           Registration page
         </span>
-        <span className='text-blue-400'>application Id :ATP3256643</span>
+        <span className='text-blue-400 text-xs font-bold md:text-base'>
+          application Id: ATP3256643
+        </span>
       </div>
       <div className='flex flex-col'>
         <form action=''>
           <span>
-            <span className='text-md font-bold'>academic section</span>{" "}
-            <p>
+            <span className='text-sm md:text-md font-bold'>
+              academic section
+            </span>{" "}
+            <p className='text-xs md:text-base'>
               provide accurate background information for your academic history.
               also please double check your preferred occupation choice made are
               irreversible.
             </p>
           </span>
-          <div className='flex flex-col text-blue-500 gap-5 '>
-            <div className='flex flex-row gap-3'>
-              <div className='mt-6'>
-                <i className='fa fa-home text-2xl '></i>
+          <div className='flex flex-col text-blue-500 gap-4 md:mt-3 '>
+            <div className='flex flex-row gap-3 md:gap-6'>
+              <div className='mt-6  md:mt-6'>
+                <i className='fa fa-home text-xl md:text-2xl'></i>
               </div>
-              <div className='flex flex-row mt-4 gap-10'>
+              <div className='flex flex-col md:flex-row mt-4 gap-3'>
                 <div className='flex flex-col gap-1'>
                   <label htmlFor=''>school (form)</label>
                   <input
                     name=''
-                    className='shadow h-12 appearance-none ring-1 ring-slate-400 border rounded w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+                    className='shadow h-8 md:h-12 appearance-none ring-1 ring-slate-400 border rounded w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                     id=''
                     type='text'
                     placeholder='previous school'
@@ -40,7 +44,7 @@ const Step2 = () => {
                   <label htmlFor=''>entrance exam results</label>
                   <input
                     name=''
-                    className='shadow h-12 appearance-none ring-1 ring-slate-400 border rounded w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+                    className='shadow h-8 md:h-12 appearance-none ring-1 ring-slate-400 border rounded w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                     id=''
                     type='number'
                     placeholder='average entrance results'
@@ -50,7 +54,7 @@ const Step2 = () => {
                   <label htmlFor=''>average highschool</label>
                   <input
                     name=''
-                    className='shadow h-12 appearance-none ring-1 ring-slate-400 border rounded w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+                    className='shadow h-8 md:h-12 appearance-none ring-1 ring-slate-400 border rounded w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                     id=''
                     type='text'
                     placeholder='highschool average'
@@ -58,38 +62,38 @@ const Step2 = () => {
                 </div>
               </div>
             </div>
-            <div className='flex flex-row gap-3'>
+            <div className='flex flex-row gap-3 md:gap-6'>
               <div className=''>
-                <i className='fa fa-area-chart text-2xl '></i>
+                <i className='fa fa-area-chart text-2xl'></i>
               </div>
               <div className='flex flex-col  gap-2'>
                 <span>top entrance results </span>
-                <div className='flex flex-row gap-6'>
-                  <div className='flex flex-col gap-3'>
+                <div className='flex flex-col md:flex-row gap-6'>
+                  <div className='flex flex-row md:flex-col gap-3'>
                     <label htmlFor='' className='  text-slate-600'>
                       1.English
                     </label>
                     <input
                       name='email'
-                      className='shadow h-12 w-32 appearance-none ring-1 ring-slate-400 border rounded  py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+                      className='shadow h-8 md:h-12 w-32 appearance-none ring-1 ring-slate-400 border rounded  py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                       id='username'
                       type='text'
                       placeholder='results'
                     />
                   </div>
-                  <div className='flex flex-col gap-3'>
+                  <div className='flex flex-row md:flex-col gap-3'>
                     <label htmlFor='' className=' text-slate-600'>
                       2.maths{" "}
                     </label>
                     <input
                       name='email'
-                      className='shadow h-12 w-32 appearance-none ring-1 ring-slate-400 border rounded  py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+                      className='shadow h-8 md:h-12 w-32 appearance-none ring-1 ring-slate-400 border rounded  py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                       id='username'
                       type='text'
                       placeholder='results'
                     />
                   </div>{" "}
-                  <div className='flex flex-col gap-3'>
+                  <div className=' w-full flex flex-row md:flex-col gap-1 md:gap-3'>
                     <label
                       htmlFor=''
                       className='ring-1 rounded-sm w-24 text-center'
@@ -98,13 +102,13 @@ const Step2 = () => {
                     </label>
                     <input
                       name='email'
-                      className='shadow h-12 w-32 appearance-none ring-1 ring-slate-400 border rounded  py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+                      className='shadow h-8 md:h-12 w-32 appearance-none ring-1 ring-slate-400 border rounded  py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                       id='username'
                       type='text'
                       placeholder='results'
                     />
                   </div>
-                  <div className='flex flex-col gap-3'>
+                  <div className=' w-full flex flex-row md:flex-col gap-1 md:gap-3'>
                     <label
                       htmlFor=''
                       className='ring-1 rounded-sm w-24 text-center'
@@ -113,13 +117,13 @@ const Step2 = () => {
                     </label>
                     <input
                       name='email'
-                      className='shadow h-12 w-32 appearance-none ring-1 ring-slate-400 border rounded  py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+                      className='shadow h-8 md:h-12 w-32 appearance-none ring-1 ring-slate-400 border rounded  py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                       id='username'
                       type='text'
                       placeholder='results'
                     />
                   </div>
-                  <div className='flex flex-col gap-3'>
+                  <div className=' w-full flex flex-row md:flex-col gap-1 md:gap-3'>
                     <label
                       htmlFor=''
                       className='ring-1 rounded-sm w-24 text-center'
@@ -128,7 +132,7 @@ const Step2 = () => {
                     </label>
                     <input
                       name='email'
-                      className='shadow h-12 w-32 appearance-none ring-1 ring-slate-400 border rounded  py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+                      className='shadow h-8 md:h-12 w-32 appearance-none ring-1 ring-slate-400 border rounded  py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                       id='username'
                       type='text'
                       placeholder='results'
@@ -137,12 +141,12 @@ const Step2 = () => {
                 </div>
               </div>
             </div>{" "}
-            <div className='flex flex-row gap-3'>
+            <div className='flex flex-row gap-3 md:gap-6'>
               <div className='mt-6'>
                 <i className='fa fa-bank text-2xl '></i>
               </div>
-              <div className='flex flex-row gap-6 mt-4'>
-                <div className='flex flex-col gap-3'>
+              <div className='flex flex-col md:flex-row gap-6 mt-4'>
+                <div className='flex flex-row md:flex-col gap-5 md:gap-3'>
                   <label htmlFor='' className=''>
                     department
                   </label>
@@ -156,7 +160,7 @@ const Step2 = () => {
                     <option value='saab'>3</option>
                   </select>
                 </div>
-                <div className='flex flex-col gap-3'>
+                <div className='flex flex-row md:flex-col gap-5 md:gap-3'>
                   <label htmlFor='' className=''>
                     occupation
                   </label>
@@ -170,7 +174,7 @@ const Step2 = () => {
                     <option value='saab'>3</option>
                   </select>
                 </div>{" "}
-                <div className='flex flex-col gap-3'>
+                <div className='flex flex-row md:flex-col gap-5 md:gap-3'>
                   <label htmlFor='' className=''>
                     current level
                   </label>
@@ -184,7 +188,7 @@ const Step2 = () => {
                     <option value='saab'>3</option>
                   </select>
                 </div>
-                <div className='flex flex-col gap-3'>
+                <div className='flex flex-row md:flex-col gap-5 md:gap-3'>
                   <label htmlFor='' className=''>
                     level{" "}
                   </label>
@@ -198,7 +202,7 @@ const Step2 = () => {
                     <option value='saab'>3</option>
                   </select>
                 </div>
-                <div className='flex flex-col gap-3'>
+                <div className='flex flex-row md:flex-col gap-5 md:gap-3'>
                   <label htmlFor='' className=''>
                     section{" "}
                   </label>
@@ -212,7 +216,7 @@ const Step2 = () => {
                     <option value='saab'>3</option>
                   </select>
                 </div>
-                <div className='flex flex-col gap-3'>
+                <div className='flex flex-row md:flex-col gap-5 md:gap-3'>
                   <label htmlFor='' className=''>
                     entry level{" "}
                   </label>
