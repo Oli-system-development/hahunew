@@ -17,7 +17,9 @@ const LoginPage = () => {
       <div className='pt-8 md:p-1 h-[calc(100vh-2rem)] md:h-[calc(100vh-0rem)] flex flex-col items-center justify-center'>
         <div className=' h-full  justify-around rounded-md flex flex-col md:flex-row md:h-[80%] md:w-full gap-40  2xl:w-2/3'>
           <div className='px-10 flex flex-col gap-8 md:w-1/2'>
-          <span className='w-5 h-5 md:w-11 md:h-19 bg-teal-400 text-teal-400'>{"  "}</span>
+            <span className='w-5 mt-2 h-5 md:w-11 md:h-19 bg-teal-400 text-teal-400'>
+              {"  "}
+            </span>
             <h1 className='font-bold text-2xl xl:text-sm  text-black '>
               Login
             </h1>
