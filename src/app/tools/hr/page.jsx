@@ -19,8 +19,7 @@ const Hr = () => {
       i === index ? !state : false
     );
     setIconClickStates(updatedClickStates);
-    // Remove the following line as it doesn't seem to be necessary
-    // ReactDOM.findDOMNode
+    // remove the following line as it doesn't seem to be necessary
   };
 
   const changeTabs = (icon) => {
@@ -50,8 +49,8 @@ const Hr = () => {
             </Link>
           </span>
         </div>
-        <div className='flex flex-row w-full mx-2 md:mx-10 gap-3'>
-          <div className='flex fixed  flex-col w-8 md:w-16 shadow-lg ring-1 ring-slate-200   gap-3 md:gap-7 rounded-2xl'>
+        <div className='flex flex-row  mx-1 md:mx-10 gap-3'>
+          <div className='flex fixed mt-[calc(78vh-1vh)] justify-between md:mt-0 bg-slate-50 z-50 flex-row md:flex-col w-full  md:w-16 shadow-lg ring-1 ring-slate-200   md:gap-7 rounded-2xl'>
             {[
               "fa fa-home",
               "fa fa-user",
@@ -64,13 +63,15 @@ const Hr = () => {
             ].map((icon, index) => (
               <div
                 key={icon}
+                // flex
+                // text-center
                 className='flex text-center  justify-center text-slate-500'
                 onClick={() => changeTabs(icon)}
               >
                 <span>
                   <i
                     className={`${icon} p-3 ${
-                      icon === "fa-solid fa-glasses" && "mt-10"
+                      icon === "fa-solid fa-glasses" && "md:mt-10"
                     } text-xl ${
                       iconClickStates[index]
                         ? "bg-blue-500 text-blue-100  rounded-xl"
@@ -78,26 +79,6 @@ const Hr = () => {
                     }`}
                     onClick={() => handleIconClick(index)}
                   ></i>
-
-                  {/* {icon === "fa fa-home" ? (
-                    <i
-                      className={`${icon} p-3 text-xl ${
-                        iconClickStates[index]
-                          ? "bg-blue-500 text-blue-100  rounded-xl"
-                          : ""
-                      }`}
-                      onClick={() => handleIconClick(index)}
-                    ></i>
-                  ) : (
-                    <i
-                      className={`${icon} p-3 text-3xl ${
-                        iconClickStates[index]
-                          ? "bg-blue-500 text-blue-100  rounded-xl"
-                          : ""
-                      }`}
-                      onClick={() => handleIconClick(index)}
-                    ></i>
-                  )} */}
                 </span>
               </div>
             ))}
@@ -107,14 +88,14 @@ const Hr = () => {
             tab === "fa fa-home" ? (
               <Dashboard />
             ) : (
-              (tab === "fa fa-user" && <Staff />) /* Missing colon here */ ||
+              (tab === "fa fa-user" && <Staff />) ||
               (tab === "fa-solid fa-user-plus" && <Candidate />) ||
               (tab === "fa-solid fa-money-bill" && <Payroll />) ||
               (tab === "fa-solid fa-notes-medical" && <Position />) ||
               (tab === "fa-solid fa-book" && <Payroll />) ||
               (tab === "fa-solid fa-rotate-right" && <Log />) ||
               (tab === "fa-solid fa-glasses" && <Requests />)
-            ) /* Missing colon here */
+            )
           }
         </div>
       </div>

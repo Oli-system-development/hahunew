@@ -51,8 +51,8 @@ const SuperTrainees = () => {
             </Link>
           </span>
         </div>
-        <div className='flex flex-row w-full mx-10 gap-3'>
-          <div className='flex fixed  flex-col w-16 shadow-lg ring-1 ring-slate-200  overflow-y-scroll gap-7 rounded-2xl'>
+        <div className='flex flex-row  mx-1 md:mx-10 gap-3'>
+          <div className='flex fixed mt-[calc(78vh-1vh)] justify-between md:mt-0 bg-slate-50 z-50 flex-row md:flex-col w-full  md:w-16 shadow-lg ring-1 ring-slate-200   md:gap-7 rounded-2xl'>
             {[
               "fa fa-home",
               "fa-solid fa-users-viewfinder",
@@ -69,7 +69,7 @@ const SuperTrainees = () => {
                 <span>
                   <i
                     className={`${icon} p-3 ${
-                      icon === "fa-solid fa-glasses" && "mt-10"
+                      icon === "fa-solid fa-glasses" && "md:mt-10"
                     } text-xl ${
                       iconClickStates[index]
                         ? "bg-blue-500 text-blue-100  rounded-xl"
@@ -77,26 +77,6 @@ const SuperTrainees = () => {
                     }`}
                     onClick={() => handleIconClick(index)}
                   ></i>
-
-                  {/* {icon === "fa fa-home" ? (
-                    <i
-                      className={`${icon} p-3 text-xl ${
-                        iconClickStates[index]
-                          ? "bg-blue-500 text-blue-100  rounded-xl"
-                          : ""
-                      }`}
-                      onClick={() => handleIconClick(index)}
-                    ></i>
-                  ) : (
-                    <i
-                      className={`${icon} p-3 text-3xl ${
-                        iconClickStates[index]
-                          ? "bg-blue-500 text-blue-100  rounded-xl"
-                          : ""
-                      }`}
-                      onClick={() => handleIconClick(index)}
-                    ></i>
-                  )} */}
                 </span>
               </div>
             ))}
@@ -115,7 +95,7 @@ const SuperTrainees = () => {
           }
         </div>
       </div>
-      <div className='flex flex-row'>wait for it! </div>
+      {/* <div className='flex flex-row'>wait for it! </div> */}
     </>
   );
 };

@@ -3,11 +3,11 @@ import React from "react";
 
 const FilterModal = ({ visibleModal }) => {
   return (
-    <div className='flex ring-1 backdrop-blur-sm shadow-2xl fixed  -top-10 right-0 left-0 z-100 justify-center  items-center  md:inset-0 h-[calc(140%-1rem)] max-h-full'>
-      <div className=' p-4 w-[44%] h-[80%]  max-h-full'>
-        <div className='flex flex-wrap  flex-row     mb-9 '>
-          <div className='flex flex-col  mb-9   bg-white rounded-xl w-full shadow-xl ring-1 ring-slate-200'>
-            <span className='flex flex-row justify-between text-xl p-7 font-bold text-blue-500 '>
+    <div className='flex  ring-1 backdrop-blur-sm shadow-2xl fixed  z-50 -top-20 md:-top-10 right-0 left-0 z-100 justify-center  items-center  md:inset-0 h-[calc(140%-1rem)] max-h-full'>
+      <div className=' p-2 md:p-4 w-full  md:w-[44%] h-[72%] md:h-[80%]  max-h-full'>
+        <div className='flex flex-wrap  flex-row   px-2  mb-9 '>
+          <div className='flex flex-col  md:mb-9   bg-white rounded-xl w-full shadow-xl ring-1 ring-slate-200'>
+            <span className='flex flex-row justify-between text-sm md:text-xl p-1 md:p-7 font-bold text-blue-500 '>
               <span>Filter</span>
               <Popover className='relative'>
                 {({ open }) => (
@@ -39,9 +39,9 @@ const FilterModal = ({ visibleModal }) => {
                 )}
               </Popover>
             </span>
-            <hr className='w-full h-2 mt-2 mb-3' />
-            <span className='flex flex-row justify-between text-xl p-7 font-bold text-blue-500 '>
-              <span className=' flex flex-col text-black font-bold text-md '>
+            <hr className='w-full h-2 mt-0 md:mt-2 mb-0 md:mb-3' />
+            <span className='flex flex-row justify-between text-sm md:text-xl p-2 md:p-7 font-bold text-blue-500 '>
+              <span className=' flex flex-col text-black font-bold text-xs md:text-md '>
                 <span className='text-black font-bold text-sm '>Type</span>
                 <div className='flex flex-row gap-3 mt-2'>
                   <button
@@ -77,16 +77,16 @@ const FilterModal = ({ visibleModal }) => {
               </span>
             </span>
             <hr className='w-full h-2 mt-2 mb-2' />
-            <span className='flex flex-row justify-between text-xl px-7 font-bold text-blue-500 '>
+            <span className='flex flex-row justify-between text-xl px-2 md:px-7 font-bold text-blue-500 '>
               <span className=' flex flex-col text-black font-bold text-md '>
                 <span className='text-black font-bold text-sm '>
                   Department
                 </span>
-                <div className='flex flex-row gap-3 mt-2   flex-wrap'>
+                <div className='flex md:flex-row gap-2 md:gap-3 mt-1 md:mt-2   flex-wrap'>
                   {[1, 2, 3, 4, 5, 6, 7, 8].map((btn) => (
                     <div className='flex flex-wrap' key={btn}>
                       <button
-                        className='bg-slate-300 rounded-full px-3 p-1 text-sm font-thin  text-slate-500 ring-1 ring-slate-400'
+                        className='bg-slate-300 rounded-full px-1 md:px-3 p-1 text-sm font-thin  text-slate-500 ring-1 ring-slate-400'
                         onClick={() => visibleModal(false)}
                       >
                         electrical installation{" "}
@@ -97,7 +97,7 @@ const FilterModal = ({ visibleModal }) => {
               </span>
             </span>
             <hr className='w-full h-2 mt-2 mb-2' />
-            <span className='flex flex-row justify-between text-xl px-7 font-bold text-blue-500 '>
+            <span className='flex flex-row justify-between text-xl px-2 md:px-7 font-bold text-blue-500 '>
               <span className=' flex flex-col text-black font-bold text-md '>
                 <span className='text-black font-bold text-sm '>Streams</span>
                 <div className='flex flex-row gap-3 mt-2   flex-wrap'>
@@ -115,7 +115,7 @@ const FilterModal = ({ visibleModal }) => {
               </span>
             </span>
             <hr className='w-full h-2 mt-2 mb-2' />
-            <span className='flex flex-row justify-between text-xl px-7 font-bold text-blue-500 '>
+            <span className='flex flex-row justify-between text-xl px-2 md:px-7 font-bold text-blue-500 '>
               <span className=' flex flex-col text-black font-bold text-md '>
                 <span className='text-black font-bold text-sm '>Level</span>
                 <div className='flex flex-row gap-3 mt-2   flex-wrap'>
@@ -133,7 +133,7 @@ const FilterModal = ({ visibleModal }) => {
               </span>
             </span>
             <hr className='w-full h-2 mt-2 mb-2' />
-            <span className='flex flex-row justify-between text-xl px-7 font-bold text-blue-500 '>
+            <span className='flex flex-row justify-between text-xl px-2 md:px-7 font-bold text-blue-500 '>
               <span className=' flex flex-col text-black font-bold text-md '>
                 <span className='text-black font-bold text-sm '>Status</span>
                 <div className='flex flex-row gap-3 mt-2   flex-wrap'>
@@ -151,7 +151,7 @@ const FilterModal = ({ visibleModal }) => {
               </span>
             </span>
             <hr className='w-full h-2 mt-2 mb-3' />
-            <span className='flex flex-row justify-between text-xl p-7 font-bold text-blue-500 '>
+            <span className='flex flex-row justify-between text-xl p-2 md:p-7 font-bold text-blue-500 '>
               <span className=' flex flex-col text-black font-bold text-md '>
                 <span className='text-black font-bold text-sm '>Sections</span>
                 <div className='flex flex-row gap-3 mt-2'>
@@ -193,8 +193,8 @@ const FilterModal = ({ visibleModal }) => {
                 </div>
               </span>
             </span>
-            <hr className='w-full h-2 mt-2 mb-3' />
-            <div className='flex justify-end mt-2 mx-3 gap-5 m-3'>
+            <hr className='w-full h-2 mt-0 md:mt-2 mb-0 md:mb-3' />
+            <div className='flex justify-end mt-0 md:mt-2 mx-3 gap-1 md:gap-5 m-3'>
               <button
                 className='bg-blue rounded-full px-4 p-1 text-white bg-blue-500'
                 onClick={() => visibleModal(false)}

@@ -19,14 +19,14 @@ const PayrollProfile = ({ payrolStatus }) => {
   };
 
   return (
-    <div className='mx-40 flex flex-row  w-full'>
-      <div className='w-1/4 md:h-[calc(82vh-0rem)] mt-3 mb-11 mx-8 rounded-2xl shadow-2xl ring-1 ring-slate-200 bg-white '>
-        <div className='flex flex-col mb-9 '>
+    <div className='md:mx-40 flex flex-col md:flex-row   w-full'>
+      <div className='md:w-1/4 md:h-[calc(82vh-0rem)] md:mt-3 md:mb-11 mx-2 md:mx-8 rounded-2xl md:shadow-2xl md:ring-1 ring-slate-200 bg-white '>
+        <div className='flex flex-col md:mb-9 '>
           <span className='text-xl p-7 text-blue-600 font-bold'>payroll</span>
-          <div className='flex p-9 gap-1 justify-center flex-col'>
+          <div className='flex p-2 md:p-9 gap-1 ring-1 ring-slate-200 md:ring-0 rounded-xl md:rounded-none justify-center flex-row md:flex-col'>
             <span
               onClick={salaryLogTab}
-              className={`p-1 px-8 text-lg cursor-pointer rounded-md ${
+              className={`p-1 px-3 md:px-8 text-lg cursor-pointer rounded-md ${
                 salaryLog ? "bg-slate-200" : "bg-slate-3200"
               } py-3 text-slate-400`}
             >
@@ -34,7 +34,7 @@ const PayrollProfile = ({ payrolStatus }) => {
             </span>
             <span
               onClick={salaryAdjustmentTab}
-              className={`p-1 px-8 text-lg cursor-pointer rounded-md ${
+              className={`p-1 px-3 md:px-8 text-lg cursor-pointer rounded-md ${
                 salaryAdjustment ? "bg-slate-200" : "bg-slate-3200"
               } py-3 text-slate-400`}
             >
@@ -43,16 +43,16 @@ const PayrollProfile = ({ payrolStatus }) => {
           </div>
         </div>
       </div>
-      <div className='w-full mt-4 rounded-2xl mb-11  flex-wrap  '>
+      <div className='w-full  mt-2 md:mt-4 rounded-2xl mb-11  flex-wrap  '>
         <>
           {salaryLog && (
-            <div className='flex flex-col w-full gap-7'>
+            <div className='flex flex-col w-full gap-4 md:gap-7'>
               <span className='text-xl text-blue-600 font-bold  px-4'>
                 salary log{" "}
               </span>
-              <div className='flex flex-row gap-4'>
-                <div className='flex flex-col justify-center w-full rounded-md m-5 bg-slate-200'>
-                  <div className='flex mx-4 flex-row  gap-10 px-8'>
+              <div className='flex flex-col md:flex-row gap-2 md:gap-4'>
+                <div className='flex flex-col justify-center md:w-full p-3 rounded-md m-5 bg-slate-200'>
+                  <div className='flex mx-4 flex-row  gap-6 md:gap-10 px-4 md:px-8'>
                     <div className='mt-8 -ml-3 pr-4'>
                       <Image
                         src='/elsabet.jpeg'
@@ -62,7 +62,7 @@ const PayrollProfile = ({ payrolStatus }) => {
                         className='rounded-full rounded-image -ml-4'
                       />
                     </div>
-                    <div className='flex flex-col gap-5 text-slate-500'>
+                    <div className='flex flex-col gap-2 md:gap-5 text-slate-500'>
                       <span className='text-xl font-bold'>HANA Sirgut</span>
                       <span>store officer</span>
                       <span>department : computer</span>
@@ -84,16 +84,16 @@ const PayrollProfile = ({ payrolStatus }) => {
                     </span>
                   </div>
                 </div>
-                <div className='flex flex-col gap-4 mr-3'>
+                <div className='flex flex-col gap-2 md:gap-4 mx-3 md:mx-0 md:mr-3'>
                   <span className='text-xl font-bold text-black'>Data</span>
-                  <div className=' rounded-md shadow-md ring-2  bg-slate-50 ring-slate-100 p-9 flex flex-row gap-10 '>
+                  <div className=' rounded-md shadow-md ring-2  bg-slate-50 ring-slate-100 p-7 md:p-9 flex flex-row gap-6 md:gap-10 '>
                     {[5, 2, 3].map((item) => (
                       <span
                         key={item}
                         className='flex flex-row  text-sm justify-between mb-3 gap-5 text-slate-600'
                       >
                         <span
-                          className={`p-1 rounded-lg px-3 w-full flex flex-col justify-start text-center text-xs h-10   text-slate-500`}
+                          className={`p-1 rounded-lg px-3 w-full flex flex-col justify-center text-center text-xs h-10   text-slate-500`}
                         >
                           <span className='flex justify-start font-bold text-lg'>
                             {item}
@@ -110,7 +110,7 @@ const PayrollProfile = ({ payrolStatus }) => {
                         className='flex flex-row  text-sm justify-between mb-3 gap-5 text-slate-600'
                       >
                         <span
-                          className={`p-1 rounded-lg px-3 w-full flex flex-col justify-start text-center text-xs h-10   text-slate-500`}
+                          className={`p-1 rounded-lg px-3 w-full flex flex-col justify-center text-center text-xs h-10   text-slate-500`}
                         >
                           <span className='flex justify-start font-bold text-lg'>
                             {item}
@@ -133,7 +133,7 @@ const PayrollProfile = ({ payrolStatus }) => {
                 className='flex flex-col p-2 shadow-md ring-1
                ring-slate-200 rounded-md mx-3 mb-3'
               >
-                <div className='flex mb-2 flex-row flex-wrap gap-1 w-full overflow-x-scroll justify-around'>
+                {/* <div className='flex mb-2 flex-row flex-wrap gap-1 w-full overflow-x-scroll justify-around'>
                   <div className='flex  text-slate-300 flex-row gap-6 w-full justify-around'>
                     <span>month</span>
                     <span>salary</span>
@@ -149,7 +149,6 @@ const PayrollProfile = ({ payrolStatus }) => {
                     <span>recite</span>
                     <span className={` px-8 -py-3 `}>remark</span>
                   </div>
-                  {/* ))} */}
                 </div>
                 <div className='flex h-96 flex-row flex-wrap gap-1 w-full overflow-x-scroll justify-around'>
                   {[1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 19, 20, 21, 22].map(
@@ -197,7 +196,90 @@ const PayrollProfile = ({ payrolStatus }) => {
                       </div>
                     )
                   )}
+                </div> */}
+                <div className='table-container overflow-scroll'>
+                  <table>
+                    <tbody>
+                      <tr className='text-xs md:text-base sm:text-sm md:w-80 text-slate-500'>
+                        <th>month</th>
+                        <th>salary</th>
+                        <th>bonus</th>
+                        <th className='px-2 -py-3'>reason</th>
+                        <th>penalties</th>
+                        <th className='px-2 -py-3'>reason</th>
+                        <th>overtime</th>
+                        <th>due date</th>
+                        <th className='px-5 -py-3'>PAYMENT ETB</th>
+                        <th>receipt</th>
+                        <th className='px-8 -py-3'>remark</th>
+                      </tr>
+                      {[
+                        1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 19, 20, 21, 22,
+                      ].map((item) => (
+                        <tr key={item} className='text-sm text-gray-900'>
+                          <td className='w-32 px-1 sm:w-40 md:w-72 py-1 md:py-3'>
+                            {item}.jan
+                          </td>
+                          <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
+                            450
+                          </td>
+                          <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
+                            450
+                          </td>
+                          <td className='w-32 px-2 -py-3 py-1 md:py-3'>
+                            <button
+                              data-modal-hide='default-modal'
+                              type='button'
+                              className='text-slate-200 ring-1 h-5 ring-slate-300 rounded-md focus:ring-4 focus:outline-none focus:ring-slate-300 font-medium px-2 text-sm'
+                            >
+                              your reason
+                            </button>
+                          </td>
+                          <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
+                            450
+                          </td>
+                          <td className='w-32 px-2 -py-3 py-1 md:py-3'>
+                            <button
+                              data-modal-hide='default-modal'
+                              type='button'
+                              className='text-slate-200 ring-1 h-5 ring-slate-300 rounded-md focus:ring-4 focus:outline-none focus:ring-slate-300 font-medium px-2 text-sm'
+                            >
+                              your reason
+                            </button>
+                          </td>
+                          <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
+                            450
+                          </td>
+                          <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
+                            21,21,2011
+                          </td>
+                          <td className='w-32 px-5 -py-3 py-1 md:py-3'>
+                            <button
+                              data-modal-hide='default-modal'
+                              type='button'
+                              className='text-slate-500 ring-1 h-5 ring-slate-300 rounded-md focus:ring-4 focus:outline-none focus:ring-slate-300 font-medium px-5 text-sm'
+                            >
+                              450
+                            </button>
+                          </td>
+                          <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
+                            21,21,2011
+                          </td>
+                          <td className='w-32 px-8 -py-3 py-1 md:py-3'>
+                            <button
+                              data-modal-hide='default-modal'
+                              type='button'
+                              className='text-slate-200 ring-1 h-5 ring-slate-300 rounded-md focus:ring-4 focus:outline-none focus:ring-slate-300 font-medium px-8 text-sm'
+                            >
+                              your reason
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
                 </div>
+
                 <div className='flex flex-row justify-between mt-4'>
                   <button
                     className='bg-blue-500 rounded-full px-4  text-white'
@@ -213,13 +295,13 @@ const PayrollProfile = ({ payrolStatus }) => {
             </div>
           )}
           {salaryAdjustment && (
-            <div className='flex flex-wrap  flex-row     mb-9 '>
-              <div className='flex flex-col  mb-9   bg-white rounded-xl w-full shadow-xl ring-1 ring-slate-200'>
-                <span className='text-xl p-7 font-bold text-blue-500 '>
+            <div className='flex flex-wrap  flex-row     md:mb-9 '>
+              <div className='flex flex-col  mb-9   bg-white rounded-xl w-full mx-2 shadow-xl ring-1 ring-slate-200'>
+                <span className='text-xl p-3 md:p-7 font-bold text-blue-500 '>
                   salary adjustment
                 </span>
                 <div className='flex flex-col w-full '>
-                  <div className='flex flex-wrap  flex-row   px-10 gap-20   bg-white rounded-lg '>
+                  <div className='flex flex-wrap  flex-row   px-5 md:px-10 gap-5 md:gap-20   bg-white rounded-lg '>
                     <div className='flex flex-row  mb-2 gap-3 '>
                       <i className='fa fa-plus mt-3 mb-0 py-0 h-6 px-1 rounded-full bg-slate-400  text-xl'></i>
                       <span className='text-md p-0 mt-3 font-bold text-slate-500'>
@@ -229,7 +311,7 @@ const PayrollProfile = ({ payrolStatus }) => {
                         <input
                           name=''
                           // onChange={"onChange"}
-                          className='shadow   appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-4 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+                          className='shadow   appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 md:py-4 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                           id='description'
                           type='text'
                           placeholder='entry '
@@ -292,7 +374,7 @@ const PayrollProfile = ({ payrolStatus }) => {
                 </div>
                 <hr className='w-full h-2 mt-2' />
                 <div className='flex flex-col w-full '>
-                  <div className='flex flex-wrap  flex-row   px-10 gap-12   bg-white rounded-lg '>
+                  <div className='flex flex-wrap  flex-row   px-3 md:px-10 gap-4 md:gap-12   bg-white rounded-lg '>
                     <div className='flex flex-row  mb-2 gap-3 '>
                       <i className='fa fa-search text-yellow-400 mt-3 mb-0 py-0 h-8 px-2  rounded-full  text-xl'></i>
                       <span className='text-md p-0 mt-3 font-bold text-slate-500'>
@@ -302,7 +384,7 @@ const PayrollProfile = ({ payrolStatus }) => {
                         <input
                           name=''
                           // onChange={"onChange"}
-                          className='shadow w-32  appearance-none ring-1 ring-slate-400 border rounded-lg  py-4 px-1  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+                          className='shadow w-32  appearance-none ring-1 ring-slate-400 border rounded-lg  py-2 md:py-4 px-1  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                           id='description'
                           type='text'
                           placeholder='entry '
@@ -310,7 +392,7 @@ const PayrollProfile = ({ payrolStatus }) => {
                       </span>
                       <span className='mt-3'> ETB</span>
                     </div>
-                    <div className='flex flex-row  mb-2 gap-3 '>
+                    <div className='flex flex-row  md:mb-2 gap-3 '>
                       <i className='fa-solid fa-scale-balanced text-yellow-400 mt-3 mb-0 py-0 h-8 px-2  rounded-full  text-xl'></i>
                       <span className='text-md p-0 mt-3 font-bold text-slate-500'>
                         set to
@@ -319,7 +401,7 @@ const PayrollProfile = ({ payrolStatus }) => {
                         <input
                           name=''
                           // onChange={"onChange"}
-                          className='shadow  w-32  appearance-none ring-1 ring-slate-400 border rounded-lg  py-4 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+                          className='shadow  w-32  appearance-none ring-1 ring-slate-400 border rounded-lg  py-2 md:py-4 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                           id='description'
                           type='text'
                           placeholder='entry '
@@ -343,7 +425,7 @@ const PayrollProfile = ({ payrolStatus }) => {
                       </span>
                     </div>
                   </div>
-                  <div className='flex flex-row gap-20   flex-wrap overflow-x-scroll  mt-10'>
+                  <div className='flex flex-row gap-5 md:gap-20   flex-wrap overflow-x-scroll  md:mt-10'>
                     <div className='flex flex-row gap-5 mx-14 '>
                       <span className='bg-green-500 text-xs p-2 px-8 rounded-md text-white '>
                         add
@@ -390,7 +472,7 @@ const PayrollProfile = ({ payrolStatus }) => {
                     </button>
                   </div>
                   <hr className='w-full h-2 mt-2 mb-3' />
-                  <div className='flex flex-col mx-5 gap-6'>
+                  <div className='flex flex-col mx-5 gap-3 md:gap-6'>
                     <div className='flex flex-row  mb-2 gap-3 '>
                       <i className='fa fa-search mt-1 mb-0 py-0 h-8 px-2 rounded-full  text-pink-600  text-3xl'></i>
                       <span>overtime</span>
@@ -406,10 +488,10 @@ const PayrollProfile = ({ payrolStatus }) => {
                       </span>
                     </div>
                     <div className='flex flex-row  mb-2 gap-3 '>
-                      <i className='fa fa-search mt-1 mb-0 py-0 h-8 px-2 rounded-full  text-green-600  text-3xl'></i>
+                      <i className='fa fa-search mt-1 mb-0 py-0 md:h-8 px-2 rounded-full  text-green-600  text-3xl'></i>
                       extra pay
-                      <i className='fa fa-plus mt-2 mb-0 py-0 h-6 px-2  rounded-full bg-slate-400  text-xl'></i>
-                      <span className='flex  flex-row gap-2'>
+                      <i className='fa fa-plus mt-2  mb-0 py-0 h-6 px-2  rounded-full bg-slate-400  text-xl'></i>
+                      <span className='flex  flex-col md:flex-row gap-2'>
                         <input
                           name=''
                           className='shadow   appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-4  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
@@ -432,7 +514,7 @@ const PayrollProfile = ({ payrolStatus }) => {
                       <span className='flex  flex-row gap-2'>
                         <input
                           name=''
-                          className='shadow    appearance-none ring-1 ring-slate-400 border rounded-lg  py-2 px-64   text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+                          className='shadow    appearance-none ring-1 ring-slate-400 border rounded-lg  py-2 md:px-64   text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                           id='description'
                           type='text'
                           placeholder='enter stuff id  '
@@ -442,7 +524,7 @@ const PayrollProfile = ({ payrolStatus }) => {
                   </div>
                   <hr className='w-full h-3 m-3' />
                   <div className='flex flex-col w-full '>
-                    <div className='flex flex-wrap  flex-row   px-10 gap-20   bg-white rounded-lg '>
+                    <div className='flex flex-wrap  flex-row  px-3 md:px-10 gap-3 md:gap-20   bg-white rounded-lg '>
                       <div className='flex flex-row  mb-2 gap-3 '>
                         <i className='fa-solid fa-hourglass-start text-2xl mt-3 text-emerald-500'></i>
                         {/* <i className='fa fa-plus mt-3 mb-0 py-0 h-8 px-2  rounded-full bg-slate-400  text-xl'></i> */}
@@ -453,7 +535,7 @@ const PayrollProfile = ({ payrolStatus }) => {
                           <input
                             name=''
                             // onChange={"onChange"}
-                            className='shadow   appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-4 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+                            className='shadow   appearance-none ring-1 ring-slate-400 border rounded-lg w-full md:py-4 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                             id='description'
                             type='text'
                             placeholder='yirgalem beyisa '
@@ -464,12 +546,12 @@ const PayrollProfile = ({ payrolStatus }) => {
                       <div className='flex flex-row  mb-2 gap-3 '>
                         <i className='fa-solid fa-hourglass-start text-2xl mt-3 text-emerald-500'></i>
                         <span className='text-md mt-3  font-bold text-slate-500'>
-                          tutution update
+                          tutution
                         </span>
                         <span className='flex  flex-row gap-2'>
                           <input
                             name=''
-                            className='shadow   appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-4  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+                            className='shadow   appearance-none ring-1 ring-slate-400 border rounded-lg w-full md:py-2 px-4  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                             id='description'
                             type='text'
                             placeholder='21,21,2021 '

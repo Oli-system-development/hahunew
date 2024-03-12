@@ -121,7 +121,6 @@ const Dashboard = () => {
       label: "Chat",
       color: "text-slate-300",
     },
-
   ];
   //     name: "trianes",
   //     icon: <UserAddOutlined />,
@@ -216,19 +215,20 @@ const Dashboard = () => {
   //   },
   // ];
   return (
-    <div className='mt-3 '>
-      <b className='font-sans px-10 text-4xl  mt-28 py-9'>wellcome back , </b>{" "}
-      <br />
-      <b className='fon-sans px-10 text-4xl mt-x20'>misrak </b>
+    <div className='mt-3 bg-slate-100'>
+      <span className='hidden md:flex flex-col'>
+        <b className='font-sans px-10 text-4xl  '>wellcome back , </b>
+        <b className='fon-sans px-10 text-4xl mt-x20'>misrak </b>
+      </span>
       <div className=''>
-        <div className='mt-0 flex flex-row '>
-          <div className='w-64 h-2/3 -mb-7 mt-16 ml-16 mr-8 rounded-2xl shadow-xl ring-1  ring-slate-200'>
-            <div className='flex flex-col gap-5 w-full'>
-              <span className='bg-white rounded-lg '>
-                <span className='text-2xl flex justify-center  -mt-10 text-center'>
+        <div className='mt-1 flex flex-col md:flex-row '>
+          <div className='w-auto pt-2 md:pt-2 bg-white  mx-7 md:mx-2  md:w-64 md:h-2/3 -mb-7 mt-16 md:ml-16 md:mr-12 rounded-2xl shadow-xl ring-1  ring-slate-300'>
+            <div className='flex flex-row md:flex-col gap-2 mt-3 md:mt-0 h-20 md:h-auto md:gap-5 w-full'>
+              <span className='flex flex-row md:block justify-normal w-full bg-white rounded-lg '>
+                <span className='text-2xl flex justify-center   md:-mt-10 text-center'>
                   <Link href='/profile'>
                     <Image
-                      src='/elsabet.jpeg'
+                      src='/logo.png'
                       alt=''
                       width={120}
                       height={120}
@@ -236,28 +236,29 @@ const Dashboard = () => {
                     />
                   </Link>
                 </span>
-                {/* <span className='text-2xl'>Misrak Berhanu</span> */}
-                <span className='bg-slate-200  font-thin text-sm p-2 px-3 rounded-2xl text-slate-600 mx-11 my-2 flex justify-center text-center'>
+                <span className='bg-slate-200 h-9 md:h-auto font-thin text-sm p-2 px-8 md:px-3 rounded-2xl text-slate-600 mx-4 md:mx-11 my-0 md:my-2 flex justify-center text-center'>
                   Trainer
                 </span>
-                <span className='text-slate-400  font-thin text-sm p-2 px-3 flex justify-center mb-11 text-center'>
+                <span className='text-slate-400  w-full md:w-auto font-thin text-sm p-2 px-0 md:px-3 flex justify-center mb-0 md:mb-11 text-center'>
                   IT department
                 </span>
               </span>
-              <span className='text-slate-400  font-thin text-sm p-2 px-3 flex justify-center mt-96  text-center'>
+              <span className='hidden md:flex text-slate-400  font-thin text-sm p-2 px-3  justify-center mt-1 md:mt-96  text-center'>
                 School logo
               </span>
             </div>
           </div>
 
-          <div className=' flex flex-col flex-wrap w-1/3 m-12 '>
-            <span className='text-2xl text-center'>HaHu Tools</span>
-            <div className='flex flex-col mb-16 flex-wrap h-96  gap-16 p-10 overflow-x-scroll shadow-md'>
+          <div className='tools flex flex-col flex-wrap w-auto md:w-1/3 m-8 md:m-12  '>
+            <span className='text-lg md:text-2xl text-center mt-6 md:mt-0'>
+              HaHu Tools
+            </span>
+            <div className='flex bg-white rounded-lg flex-col mb-16 flex-wrap h-96 md:w-[93%] gap-7 md:gap-14 p-3  md:p-6 overflow-x-scroll shadow-md'>
               {tools.map((tool) => (
                 <div key={tool.id} className='f'>
                   <Link href={tool.link}>
                     <span
-                      className={`w-11 h-11 p-9 rounded-full ring-slate-200 ring-1 shadow-xl flex items-center justify-center text-xl bg-white ${tool.color}`}
+                      className={`w-12 h-12  rounded-full ring-slate-200 ring-1 shadow-xl flex items-center justify-center text-xl bg-white ${tool.color}`}
                     >
                       {tool.icon}
                     </span>
@@ -266,26 +267,29 @@ const Dashboard = () => {
                 </div>
               ))}
             </div>
-            <span className='text-xl text-slate-400 font-bold pt-6'>
+            <span className='hidden md:block text-xl text-slate-400 font-bold pt-6'>
               {" "}
               Select Tools
             </span>{" "}
           </div>
-          <div className='w bg-white h-4/5'>
+          <div className='news h-64 md:h-4/5 -mt-10 md:mt-10 mb-20 md:mb-0 md:mr-8 m-3'>
             <div className='  '>
-              <span className='text-2xl text-center '>News, and updates</span>
-              <div className=' flex flex-row gap-5  h-[calc(70vh-1rem)] shadow-md'>
-                <div className='flex flex-col  gap-1 h-full'>
-                  <div className='flex flex-wrap gap-1 h-full'>
-                    {[1, 2].map((tool) => (
-                      //card
+              <span className='flex justify-center text-xl md:text-2xl text-center '>
+                News, and updates
+              </span>
+              <div className='  bg-white md:flex md:flex-row gap-5 p-  h-72 md:h-[calc(70vh-1rem)] shadow-md'>
+                <div className='flex flex-col md:h-full p-2'>
+                  <div className='flex   flex-col h-64 md:h-auto w-auto md:w-96 flex-wrap   gap-3 md:gap-16 md:p-10 overflow-x-scroll '>
+                    {[1, 2, 3, 4, 5].map((tool) => (
                       <div key={tool}>
                         <figure className=''>
-                          <span>
+                          <span
+                            className={` w-40  md:w-32    ring-slate-200 ring-1 shadow-xl flex items-center justify-center text-xl bg-white ${tool.color}`}
+                          >
                             <Image
-                              src='/elsabet.jpeg'
+                              src='/books.jpeg'
                               alt=''
-                              width={170}
+                              width={180}
                               height={3}
                               className='bg-white'
                             />
@@ -308,44 +312,21 @@ const Dashboard = () => {
                       </div>
                     ))}
                   </div>
+
                   <div>
-                    {/* card */}
-                    <div>
-                      <figure className=''>
-                        <span>
-                          <Image
-                            src='/elsabet.jpeg'
-                            alt=''
-                            width={170}
-                            height={3}
-                            className='bg-white'
-                          />
-                        </span>
-                        <figcaption className=' bg-green-800 w-36 p-3'>
-                          <span className='w-40 flex flex-col'>
-                            <span className='text-md px-3 font-bold text-white'>
-                              Post update
-                            </span>
-                            <span className='font-thin  text-white px-3 text-xs'>
-                              certified in data base design habtamu girma
-                            </span>
-                          </span>
-                        </figcaption>
-                      </figure>
-                      <span
-                        onClick={toggleModal}
-                        className='flex cursor-pointer justify-end text-blue-500'
-                      >
-                        <i className='fa fa-plus bg-blue-600 text-white p-1 rounded-full'></i>
-                      </span>
-                    </div>
+                    <span
+                      onClick={toggleModal}
+                      className='flex cursor-pointer  justify-end text-blue-500'
+                    >
+                      <i className='fa fa-plus bg-blue-600 text-white p-1 rounded-full'></i>
+                    </span>
                   </div>
 
                   {isModalVisible && (
                     <div className='flex ring-1  shadow-2xl fixed  -top-10 right-0 left-0 z-100 justify-center  items-center  md:inset-0 h-[calc(140%-1rem)] max-h-full'>
-                      <div className=' p-4 w-[24%] h-[80%]  max-h-full'>
+                      <div className=' p-4 w-auto md:w-[24%] h-auto md:h-[80%]  max-h-full'>
                         <div className=' bg-white rounded-lg shadow-2xl '>
-                          <div className='flex items-center justify-between p-4 md:p-5  rounded-t'>
+                          <div className='flex items-center justify-between p-2 md:p-5  rounded-t'>
                             <button
                               onClick={toggleModal}
                               type='button'
@@ -372,9 +353,9 @@ const Dashboard = () => {
                           </div>
                           <div className=''>
                             <div className=''>
-                              <div className='px-10 flex flex-col '>
+                              <div className='px-6 md:px-10 flex flex-col '>
                                 <form onSubmit={""} className='gap-2'>
-                                  <label className='block text-slate-700 text-sm font-bold mb-2'>
+                                  <label className='block text-slate-700 text-sm font-bold mb-0 md:mb-2'>
                                     Announcement title
                                   </label>
                                   <input
@@ -385,8 +366,8 @@ const Dashboard = () => {
                                     type='text'
                                     placeholder='add header text'
                                   />
-                                  <div className=' mt-6 '>
-                                    <label className='block text-slate-700 text-sm font-bold mb-2'>
+                                  <div className=' mt-2 md:mt-6 '>
+                                    <label className='block text-slate-700 text-sm font-bold mb-0 md:mb-2'>
                                       description
                                     </label>
                                     <textarea
@@ -398,7 +379,7 @@ const Dashboard = () => {
                                       placeholder='section description'
                                     />
                                   </div>
-                                  <label className='block text-slate-700 text-sm  mt-6  font-bold mb-2'>
+                                  <label className='block text-slate-700 text-sm  mt-2 md:mt-6  font-bold mb-0 md:mb-2'>
                                     upload optional picture
                                   </label>
                                   <input
@@ -409,7 +390,7 @@ const Dashboard = () => {
                                     type='text'
                                     placeholder='optional URL placeholder'
                                   />
-                                  <label className='block mt-6  text-slate-700 text-sm font-bold mb-2'>
+                                  <label className='block mt-2 md:mt-6  text-slate-700 text-sm font-bold mb-0 md:mb-2'>
                                     picture alt
                                   </label>
                                   <input
@@ -434,11 +415,6 @@ const Dashboard = () => {
                                           filter
                                         </span>
                                         <span>
-                                          {/* <Switch
-                                            defaultChecked
-                                            // onChange={"wait for it"}
-                                          /> */}
-
                                           <label className='relative inline-flex items-center cursor-pointer'>
                                             <input
                                               type='checkbox'
@@ -452,14 +428,10 @@ const Dashboard = () => {
                                       {[1, 2, 3, 4].map((item) => (
                                         <span
                                           key={item}
-                                          className='flex flex-row justify-between mb-3 text-slate-600'
+                                          className='flex flex-row justify-between mb-1 md:mb-3 text-slate-600'
                                         >
                                           <span>landing page</span>
                                           <span>
-                                            {/* <Switch
-                                              defaultChecked
-                                              // onChange={"wait for it"}
-                                            /> */}
                                             <label className='relative inline-flex items-center cursor-pointer'>
                                               <input
                                                 type='checkbox'
@@ -500,21 +472,20 @@ const Dashboard = () => {
                     </div>
                   )}
                 </div>
-                <div className='bg-slate-200 w-72 rounded-r-lg '>
+                <div className='hidden md:block bg-slate-200 w-72 rounded-r-lg '>
                   <span className='text-blue-400 p-4 pt-2'>HaHu updates</span>
                 </div>
-                {/* <i className="fa fa-user-circle-o" aria-hidden="true"></i> */}
               </div>
             </div>
           </div>
         </div>
-        <div className=' flex w-3/4  flex-col shadow-xl mx-96 mr-9  h-72 mb-6'>
+        <div className=' flex w-auto md:w-3/4 m-3 md:-mt-5  flex-col shadow-xl  md:mx-96  md:mr-9  h-72 mb-6'>
           <div className='text-2xl px-3 text-black '>Daily Tasks</div>
-          <div className='flex flex-wrap justify-center'>
+          <div className='flex  flex-wrap flex-col h-64 overflow-x-scroll   md:justify-center'>
             {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((task) => (
               <div
                 key={task}
-                className='bg-slate-200 w-44 m-1 text-slate-500 font-md text-xs rounded-lg p-3  '
+                className='bg-white w-44 md:w-auto m-1 text-slate-500 font-md text-xs rounded-lg p-3  '
               >
                 <div className='flex flex-row py-1 gap-3'>
                   <i className='fa fa-user text-xl font-bold text-slate-500'></i>{" "}

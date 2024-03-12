@@ -46,7 +46,7 @@ const Report = () => {
           </span>
         </div>
 
-        <div className='flex w-full flex-col gap-2 shadow-2xl rounded-xl p-4  ring-2 ring-slate-100 '>
+        <div className='hidden md:flex w-full flex-col gap-2 shadow-2xl rounded-xl p-4  ring-2 ring-slate-100 '>
           <div className='flex flex-row justify-between w-full px-20  text-md font-thin text-slate-500  '>
             <div className='flex flex-col gap-3 text-slate-700 w-full'>
               <span className=' flex flex-row font-thin text-slate-400 pt-1 w-full justify-between '>

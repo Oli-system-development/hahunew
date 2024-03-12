@@ -36,26 +36,26 @@ const Trainees = () => {
 
   return (
     <>
-      <div className='flex w-full  p-7 mx-32 flex-col gap-8 '>
-        <div className='flex text-slate-500 text-xl font-bold justify-between'>
+      <div className='flex w-full  p-2 md:p-7 md:mx-32 flex-col gap-8 '>
+        <div className='flex text-slate-500 text-lg md:text-xl font-bold justify-between'>
           <span>
             <i className='fa fa-box px-3 pt-1 text-xl'></i> Trainees
           </span>
         </div>
 
-        <div className='flex w-full flex-col gap-2 shadow-2xl rounded-xl p-4  ring-2 ring-slate-100 '>
-          <div className='flex flex-row justify-between w-full px-20  text-md font-thin text-slate-500 m-3 '>
-            <div className='flex flex-row gap-11 text-slate-700'>
+        <div className='flex w-full flex-col gap-2 shadow-2xl md:rounded-xl p-1 md:p-4  md:ring-2 ring-slate-100 '>
+          <div className='flex flex-col md:flex-row md:justify-between w-full md:px-20  text-md font-thin text-slate-500 md:m-3 gap-2 '>
+            <div className='flex flex-row gap-3 md:gap-11 text-slate-700'>
               <i className='fa fa-search mt-2  text-slate-400 text-2xl '></i>
               <button
-                className='bg-slate-200 px-6  p-1 font-bold text-sm text-slate-600 rounded-full cursor-pointer'
+                className='bg-slate-200 md:px-6 h-7 md:h-auto p-1 font-bold text-sm text-slate-600 md:rounded-full cursor-pointer'
                 onClick={toggleModal}
               >
                 {" "}
                 filter
               </button>
 
-              <span className='font-thin text-slate-400 pt-1'>
+              <span className='font-thin text-slate-400 pt-1 text-xs md:text-normal'>
                 {" "}
                 COMPUTER DEPARTMENT/DATABASE STREAM / SECTION 3E
               </span>
@@ -63,9 +63,9 @@ const Trainees = () => {
             {isModalVisible && (
               <FilterModal visibleModal={() => setModalVisible(false)} />
             )}
-            <div className='flex justify-around gap-16'>
-              <i className='fa fa-tag mt-2  text-yellow-700 bg-slate-100 ring-1 ring-yellow-500 rounded-full px-1  text-2xl '></i>
-              <i className='fa fa-plus mt-2  text-white bg-green-600 rounded-full px-1  text-2xl '></i>
+            <div className='flex justify-around gap-2 md:gap-16'>
+              <i className='fa fa-tag mt-2  text-yellow-700 bg-slate-100 ring-1 ring-yellow-500 rounded-full px-1  text-lg md:text-2xl py-1 '></i>
+              <i className='fa fa-plus mt-2  text-white bg-green-600 rounded-full px-1  text-lg md:text-2xl py-1'></i>
               <span className='flex gap-3'>
                 <span>
                   <Popover className='relative'>
@@ -166,151 +166,71 @@ const Trainees = () => {
               </span>
             </div>
           </div>
-          <div className='flex flex-row'>
-            {/* <div className='flex rounded-sm  w-full'>
-              <div className='flex flex-wrap  flex-row  '>
-                <div className='flex flex-col  ring-1 ring-slate-100 shadow-xl mx-2 rounded-2xl w-full'>
-                  <div className='flex p-1 gap-2 justify-center  flex-wrap flex-row bg-white  px-10'>
-                    <div className='flex flex-row justify-around w-full gap-52 text-sm font-thin text-slate-500 m-3 '>
-                      <span className='flex flex-block'>TraineeName</span>
-                      <span>section</span>
-                      <span> year</span>
-                      <span> status</span>
-                    </div>
-
-                    <div className='all_items flex flex-row flex-wrap gap-6 w-full overflow-y-scroll h-5/6 justify-around -mt-20'>
-                      <div className='flex flex-row flex-wrap gap-4 w-full overflow-y-scroll justify-between'>
-                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12].map((item) => (
-                          <div
-                            key={item}
-                            className={`flex  text-slate-500 flex-row gap-6 w-full justify-between cursor-pointer ${
-                              item === selectedItem
-                                ? "bg-blue-500 text-white"
-                                : ""
-                            }`}
-                            onClick={() => handleButtonClick(item)}
-                          >
-                            <span htmlFor='' className='flex flex-row'>
-                              <span>
-                                <Image
-                                  src='/elsabet.jpeg'
-                                  alt=''
-                                  width={50}
-                                  height={50}
-                                  className='rounded-full rounded-image text-center'
-                                />
-                              </span>
-                              <span className='flex flex-col'>
-                                <span>Melak ab </span>
-                                <span className='text-slate-600 font-thin'>
-                                  TF010233{" "}
-                                </span>
-                              </span>
-                            </span>
-
-                            <span>IT C1</span>
-                            <span>2022</span>
-
-                            {item === 4 ||
-                            item === 3 ||
-                            item === 6 ||
-                            item === 11 ||
-                            item === 15 ? (
-                              <button
-                                data-modal-hide='default-modal'
-                                type='button'
-                                className={`text-slate-400 ring-1 h-5 ring-red-300 rounded-full focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium  text-sm px-5 py-0 `}
-                              >
-                                withdrawn
-                              </button>
-                            ) : (
-                              <button
-                                data-modal-hide='default-modal'
-                                type='button'
-                                className={`text-slate-400  ring-1 h-5 ring-green-300 rounded-full focus:ring-4 focus:outline-none focus:ring-green-300 font-medium  text-sm px-8 -py-3 `}
-                              >
-                                active{" "}
-                              </button>
-                            )}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> */}
-            <div className='  flex w-full p-1 gap-2 justify-center  flex-wrap flex-row bg-white rounded-md'>
-              <table className='scrolldown '>
-                <thead className=' flex flex-row flex-wrap gap-6 w-full justify-around  text-slate-500  cursor-pointer '>
-                  <tr>
-                    <th className='text-sm font-thin text-slate-500 py-3'>
-                      TraineeName
-                    </th>
-                    <th className='text-sm font-thin text-slate-500 py-3'>
-                      section
-                    </th>
-                    <th className='text-sm font-thin text-slate-500 py-3'>
-                      year
-                    </th>
-                    <th className='text-sm font-thin text-slate-500 py-3'>
-                      status
-                    </th>
-                  </tr>
-                </thead>
+          <div className='flex flex-col md:flex-row gap-2'>
+            <div className='table-container h-[calc(50vh-1vh)] md:h-[calc(70vh-1vh)] overflow-scroll ring-1 ring-slate-200 rounded-lg'>
+              <table>
                 <tbody>
-                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 19].map((item) => (
-                    <tr
-                      key={item}
-                      className={`text-slate-500 flex-row gap-6 w-full justify-between cursor-pointer ${
-                        item === selectedItem ? "bg-blue-500 text-white" : ""
-                      }`}
-                      onClick={() => handleButtonClick(item)}
-                    >
-                      <td className='flex flex-row'>
-                        <span>
-                          <Image
-                            src='/elsabet.jpeg'
-                            alt=''
-                            width={50}
-                            height={50}
-                            className='rounded-full rounded-image text-center'
-                          />
-                        </span>
-                        <span className='flex flex-col'>
-                          <span>Melak ab</span>
-                          <span className='text-slate-600 font-thin'>
-                            TF010233
+                  <tr className='text-sm font-thin text-slate-500'>
+                    {["Trainee Name", "Section", "Year", "Status"].map(
+                      (tab, index) => (
+                        <th key={index}>{tab}</th>
+                      )
+                    )}
+                  </tr>
+                  <tr className='h-1 bg-slate-100 w-full' />
+                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12].map((item) => (
+                    <tr key={item} className='text-sm text-gray-900'>
+                      <td
+                        className='w-32 px-1 sm:w-40 md:w-72 py-1 md:py-3 cursor-pointer'
+                        onClick={() => handleButtonClick(item)}
+                      >
+                        <span className='flex flex-row gap-0'>
+                          <span className='w-10 md:w-20 h-10 '>
+                            <Image
+                              src='/elsabet.jpeg'
+                              alt=''
+                              width={50}
+                              height={50}
+                              className='rounded-lg rounded-image text-center'
+                            />
+                          </span>
+                          <span className='flex md:-mx-3 flex-col text-start'>
+                            <span>Melak ab </span>
+                            <span className=' text-xs md:text-base text-slate-600 font-thin'>
+                              melakabebeee@gmail.com
+                            </span>
                           </span>
                         </span>
                       </td>
-                      <td>IT C1</td>
-                      <td>2022</td>
-                      {item === 4 ||
-                      item === 3 ||
-                      item === 6 ||
-                      item === 11 ||
-                      item === 15 ? (
-                        <td>
+                      <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
+                        IT C1
+                      </td>
+                      <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
+                        2022
+                      </td>
+                      <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
+                        {item === 4 ||
+                        item === 3 ||
+                        item === 6 ||
+                        item === 11 ||
+                        item === 15 ? (
                           <button
                             data-modal-hide='default-modal'
                             type='button'
-                            className={`text-slate-400 ring-1 h-5 ring-red-300 rounded-full focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm px-5 py-0`}
+                            className='text-white ring-1 h-6 bg-red-300 rounded-full focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm px-5 py-0'
                           >
                             withdrawn
                           </button>
-                        </td>
-                      ) : (
-                        <td>
+                        ) : (
                           <button
                             data-modal-hide='default-modal'
                             type='button'
-                            className={`text-slate-400 ring-1 h-5 ring-green-300 rounded-full focus:ring-4 focus:outline-none focus:ring-green-300 font-medium text-sm px-8 -py-3`}
+                            className='text-white ring-1 h-6 bg-green-300 rounded-full focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm px-5 py-1'
                           >
                             active
                           </button>
-                        </td>
-                      )}
+                        )}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -320,18 +240,18 @@ const Trainees = () => {
             <div className='flex  rounded-sm w-full'>
               <div className='flex flex-col w-full'>
                 <div className='flex flex-row justify-around shadow-xl w-full bg-white'>
-                  <div className='flex flex-row justify-center w-full bg-slate-300 rounded-md'>
-                    <div className='flex flex-row  gap-10 p-8'>
-                      <div className='mt-8 -ml-3 pr-4'>
+                  <div className='flex flex-row justify-center w-full bg-slate-300 gap-0 rounded-md'>
+                    <div className='flex flex-row  gap-1 md:gap-10 p-2 md:p-8'>
+                      <div className='md:mt-8 w-20 md:w-auto md:-ml-3 mdpr-4'>
                         <Image
                           src='/elsabet.jpeg'
                           alt=''
                           width={150}
                           height={150}
-                          className='rounded-full rounded-image -ml-4'
+                          className='rounded-full rounded-image md-ml-4'
                         />
                       </div>
-                      <div className='flex flex-col gap-5 text-slate-500'>
+                      <div className='flex flex-col gap-2 md:gap-5 text-slate-500'>
                         <span className='text-xl font-bold'>HANA Sirgut</span>
                         <span>store officer</span>
                         <span>department : computer</span>
@@ -344,7 +264,7 @@ const Trainees = () => {
                         </span>
                       </div>
                     </div>
-                    <div className='flex flex-col gap-5 pt-16 pr-3 pl-10  text-left '>
+                    <div className='flex flex-col gap-2 md:gap-5 pt-10 md:pt-16 md:pr-3 md:pl-10 text-xs md:text-base  md:text-left '>
                       <span>store officer</span>
                       <span>department : computer</span>
                       <span>date joined : 12-12,2022</span>
@@ -352,13 +272,13 @@ const Trainees = () => {
                         <i className='fa fa-phone px-2'></i>032823323
                       </span>
                       <span>
-                        <i className='fa fa-message px-2'></i>hana@gmail.com
+                        <i className='fa fa-message md:px-2'></i>hana@gmail.com
                       </span>
                     </div>
                   </div>
                 </div>
                 <div className='flex justify-start mt-4 mb-2 '>
-                  <div className=' rounded-md shadow-xl bg-gray-100 p-7 flex flex-row gap-10  '>
+                  <div className=' rounded-md shadow-xl bg-gray-100 p-5 md:p-7 flex flex-row gap-6 md:gap-10  '>
                     {[5, 2, 3].map((item) => (
                       <span
                         key={item}
@@ -385,31 +305,40 @@ const Trainees = () => {
                   </span>
                 </div>
                 <div className='flex flex-row'>
-                  <div className='flex flex-row -mt-7 gap-7'>
+                  <div className='flex flex-col md:flex-row -mt-7 gap-7'>
                     <div className='flex flex-col '>
-                      <div className='flex flex-col rounded-md pt-4 pr-3 pl-10  h-64 flex-wrap bg-white text-start w-72 mt-14 mb-1 text-slate-500 shadow-md '>
-                        <div className='flex p-1 gap-2 justify-center  flex-wrap flex-row bg-white rounded-md '>
-                          <div className='flex flex-row  w-full gap-10 text-sm font-thin text-slate-500 '>
-                            <span className='flex gap-5'>
-                              <span>COURSE</span>
-                              <span>REUSLT</span>
-                              <span> ABSENSE</span>
-                              <span>CGPA</span>
-                            </span>
-                          </div>
-                          <div className='flex flex-row flex-wrap gap-4 w-full overflow-y-scroll h-5/6 justify-around '>
-                            {[1, 2, 3, 4, 5].map((item) => (
-                              <div
-                                key={item}
-                                className={`flex text-black text-sm font-thin flex-row gap-10 w-full  cursor-pointer `}
-                              >
-                                <span>{item}. database</span>
-                                <span>12</span>
-                                <span>8</span>
-                                <span>8</span>
-                              </div>
-                            ))}
-                          </div>
+                      <div className='flex flex-col rounded-md md:pt-4 md:pr-3 md:pl-10  h-64 flex-wrap bg-white text-start md:w-72 mt-14 mb-1 text-slate-500 shadow-md '>
+                        <div className='table-container overflow-scroll'>
+                          <table>
+                            <tbody>
+                              <tr className='text-xs md:text-base sm:text-sm md:w-80'>
+                                <th>COURSE</th>
+                                <th>RESULT</th>
+                                <th>ABSENSE</th>
+                                <th>CGPA</th>
+                              </tr>
+
+                              {[1, 2, 3, 4, 5].map((item) => (
+                                <tr
+                                  key={item}
+                                  className='text-sm text-gray-900'
+                                >
+                                  <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72'>
+                                    {item}. database
+                                  </td>
+                                  <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72'>
+                                    12{" "}
+                                  </td>
+                                  <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72'>
+                                    8
+                                  </td>
+                                  <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72'>
+                                    8
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
                         </div>
                       </div>
                     </div>
@@ -424,7 +353,7 @@ const Trainees = () => {
                           </span>
                         </div>
 
-                        <div className='flex flex-col  rounded-md justify-start  bg-white text-start w-64 mt-4 mb-1 text-slate-500 shadow-md '>
+                        <div className='flex flex-col  rounded-md justify-start  bg-white text-start md:w-64 mt-4 mb-1 text-slate-500 shadow-md '>
                           <span className='text-md px-3 font-bold text-black'>
                             Issues
                           </span>
