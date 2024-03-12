@@ -50,40 +50,25 @@ const AddDepartment = ({ deptStatus }) => {
 
   return (
     <>
-      <div className='flex w-full flex-row gap-2 shadow-xl rounded-xl p-4 bg-slate-200'>
-        <div className='w-1/3 md:h-[calc(82vh-0rem)] mt-3 mb-11 mx-8 rounded-2xl shadow-2xl ring-1 ring-slate-200 bg-white '>
+      <div className='flex w-full flex-col md:flex-row gap-2 md:shadow-xl rounded-xl p-2 md:p-4 '>
+        <div className='md:w-1/3 md:h-[calc(82vh-0rem)] md:mt-3 md:mb-11 md:mx-8 rounded-2xl md:shadow-2xl ring-1 ring-slate-200 bg-white '>
           <div className='flex flex-col mb-9 '>
-            <span className='text-xl p-7 text-blue-600 font-bold'>
+            <span className='md:text-xl px-2 md:p-7 text-blue-600 font-bold'>
               Add Department
             </span>
-            <div className='flex p-9 gap-1 justify-center flex-col'>
+            <div className='flex p-2 md:p-9 gap-0 ring-1 ring-slate-200 md:ring-0 rounded-xl md:rounded-none justify-center flex-row md:flex-col '>
               <span
                 onClick={generalTab}
-                className={`p-1 px-8 text-lg cursor-pointer rounded-md ${
+                className={`p-1 px-3 md:px-8  text-sm md:text-lg cursor-pointer rounded-md ${
                   general ? "bg-slate-200" : "bg-slate-3200"
                 } py-3 text-slate-400`}
               >
                 General{" "}
               </span>
-              {/* <span
-                onClick={administratorTab}
-                className={`p-1 px-8 text-lg cursor-pointer rounded-md ${
-                  admin ? "bg-slate-200" : "bg-slate-3200"
-                } py-3 text-slate-400`}
-              >
-                Administrator{" "}
-              </span>
-              <span
-                onClick={attachIndustriesTab}
-                className={`p-1 px-8 text-lg cursor-pointer rounded-md ${
-                  attachIndustries ? "bg-slate-200" : "bg-slate-3200"
-                } py-3 text-slate-400`}
-              >
-                Attach Industries{" "}
-              </span> */}
+
               <span
                 onClick={contentTab}
-                className={`p-1 px-8  text-lg cursor-pointer rounded-md ${
+                className={`p-1 px-3 md:px-8  text-sm md:text-lg cursor-pointer rounded-md ${
                   content ? "bg-slate-200" : "bg-slate-3200"
                 } py-3 text-slate-400`}
               >
@@ -91,7 +76,7 @@ const AddDepartment = ({ deptStatus }) => {
               </span>
               <span
                 // onClick={gradingTab}
-                className={`p-1 px-8 mt-72 text-lg cursor-pointer rounded-md ${
+                className={`p-1 px-3 md:px-8  text-sm md:text-lg cursor-pointer rounded-md ${
                   grading ? "bg-slate-200" : "bg-slate-3200"
                 } py-3 text-slate-400`}
               >
@@ -100,16 +85,16 @@ const AddDepartment = ({ deptStatus }) => {
             </div>
           </div>
         </div>
-        <div className='w-3/4  mx-8 mt-4 rounded-2xl mb-11 ring-1 flex-wrap ring-slate-200  '>
+        <div className='md:w-3/4  md:mx-8 md:mt-4 rounded-2xl mb-11 ring-1 flex-wrap ring-slate-200  '>
           <>
             {general && (
-              <div className='flex flex-row gap-7'>
-                <div className='flex flex-wrap  flex-row  h-[calc(82vh-0rem)] p-10  mb-9 bg-white rounded-lg'>
+              <div className='flex flex-col md:flex-row gap-2 md:gap-7'>
+                <div className='flex flex-wrap  flex-row  md:h-[calc(82vh-0rem)] p-2 md:p-10  mb-1 md:mb-9 bg-white rounded-lg'>
                   <div className='flex flex-col  '>
-                    <span className='text-xl pt-3 px-7 font-bold text-blue-600'>
+                    <span className='md:text-xl pt-3 px-1 md:px-7 font-bold text-blue-600'>
                       General
                     </span>
-                    <div className='flex px-9 gap-5 justify-center flex-col '>
+                    <div className='flex px-2 md:px-9 gap-2 md:gap-5 justify-center flex-col '>
                       <div className='flex flex-col pt-4 gap-4 justify-around'>
                         <label htmlFor=''>Department NAME</label>
                         <input
@@ -145,7 +130,7 @@ const AddDepartment = ({ deptStatus }) => {
                       </div>
                     </div>
                     <form action=''>
-                      <div className='flex pt-5 mt-10  gap-5 px-9 flex-row '>
+                      <div className='flex pt-5 mt-4 md:mt-10  gap-2 md:gap-5 px-4 md:px-9 flex-row '>
                         <div className='flex flex-col gap-7'>
                           <label htmlFor=''>Current year applicant limit</label>
                           <input
@@ -158,7 +143,7 @@ const AddDepartment = ({ deptStatus }) => {
                           />{" "}
                         </div>
                       </div>
-                      <div className='flex flex-col gap-7 pt-4 px-9'>
+                      <div className='flex flex-col gap-4 md:gap-7 pt-2 md:pt-4 px-2 md:px-9'>
                         <label htmlFor=''>associate Industries</label>
                         <span className='flex flex-row gap-2'>
                           <input
@@ -176,23 +161,23 @@ const AddDepartment = ({ deptStatus }) => {
                   </div>
                 </div>
                 <div className='flex flex-col '>
-                  <div className='flex flex-wrap  flex-col  h-96 p-10    mb-9 bg-white rounded-lg '>
-                    <div className='flex flex-col  mb-9 '>
-                      <span className='text-xl p-7 font-bold text-black'>
+                  <div className='flex flex-wrap  flex-col  h-64 md:h-96 p-2 md:p-10   mb-2 md:mb-9 bg-white rounded-lg '>
+                    <div className='flex flex-col  mb-3 md:mb-9 '>
+                      <span className='md:text-xl p-2 md:p-7 font-bold text-black'>
                         department head
                       </span>
                       <span className='flex flex-row gap-2'>
                         <input
                           name=''
                           // onChange={"onChange"}
-                          className='shadow   appearance-none ring-1 ring-slate-400 border rounded-lg w-72  py-2 px-20 ml-9  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+                          className='shadow   appearance-none ring-1 ring-slate-400 border rounded-lg md:w-72  py-2 md:px-20 ml-2 md:ml-9  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                           id='description'
                           type='text'
                           placeholder='assign department head '
                         />
                       </span>
                     </div>
-                    <div className='flex flex-col gap-7 pt-4 px-9'>
+                    <div className='flex flex-col gap-2 md:gap-7 pt-2 md:pt-4 px-2 md:px-9'>
                       <label htmlFor=''>department assistant</label>
                       <span className='flex flex-row gap-2'>
                         <input
@@ -301,11 +286,13 @@ const AddDepartment = ({ deptStatus }) => {
               </div>
             )}
             {content && (
-              <div className='flex flex-wrap  flex-row     mb-9 '>
-                <div className='flex flex-col  mb-9  h-[calc(74vh-0rem)] w-2/3 bg-white rounded-xl shadow-md'>
-                  <span className='text-xl p-7 font-bold '>Content</span>
+              <div className='flex flex-wrap  flex-row     md:mb-9 '>
+                <div className='flex flex-col  md:mb-9  md:h-[calc(74vh-0rem)] md:w-2/3 bg-white rounded-xl shadow-md'>
+                  <span className='md:text-xl p-2 md:p-7 font-bold '>
+                    Content
+                  </span>
                   <div className='flex flex-col '>
-                    <div className='flex flex-wrap  flex-col   p-10 gap-4    mb-9 bg-white rounded-lg '>
+                    <div className='flex flex-wrap  flex-col   p-4 md:p-10 gap-2 md:gap-4    mb-2 md:mb-9 bg-white rounded-lg '>
                       <div className='flex flex-col  mb-9 '>
                         <span className='text-md   font-bold text-slate-500'>
                           add introduction
@@ -314,14 +301,14 @@ const AddDepartment = ({ deptStatus }) => {
                           <textarea
                             name=''
                             // onChange={"onChange"}
-                            className='shadow  h-40  appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+                            className='shadow  h-32 md:h-40  appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 md:px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                             id='description'
                             type='text'
                             placeholder='enter the units in order '
                           />
                         </span>
                       </div>
-                      <div className='flex flex-col  mb-9 '>
+                      <div className='flex flex-col  mb-3 md:mb-9 '>
                         <span className='text-md   font-bold text-slate-500'>
                           attach image or video
                         </span>
@@ -329,7 +316,7 @@ const AddDepartment = ({ deptStatus }) => {
                           <input
                             name=''
                             // onChange={"onChange"}
-                            className='shadow   appearance-none ring-1 ring-slate-400 border rounded-lg  py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+                            className='shadow   appearance-none ring-1 ring-slate-400 border rounded-lg  py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline w-full'
                             id='description'
                             type='text'
                             placeholder='enter the units in order '
@@ -340,7 +327,7 @@ const AddDepartment = ({ deptStatus }) => {
                     </div>
                   </div>
                 </div>
-                <div className='flex justify-end h-10'>
+                <div className='flex justify-end mt-2 h-10'>
                   <button
                     className='flex justify-center ml-40 bg-blue-700 py-2 rounded-full w-40 text-white '
                     onClick={() => deptStatus(false)}

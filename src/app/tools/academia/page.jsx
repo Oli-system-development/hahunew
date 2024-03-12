@@ -54,8 +54,8 @@ const Academia = () => {
             </Link>
           </span>
         </div>
-        <div className='flex flex-row w-full mx-10 gap-3'>
-          <div className='flex fixed  flex-col w-16 shadow-lg ring-1 ring-slate-200  overflow-y-scroll gap-7 rounded-2xl'>
+        <div className='flex flex-row  mx-1 md:mx-10 gap-3'>
+          <div className='flex fixed mt-[calc(78vh-1vh)] justify-between md:mt-0 bg-slate-50 z-50 flex-row md:flex-col w-full  md:w-16 shadow-lg ring-1 ring-slate-200   md:gap-7 rounded-2xl'>
             {[
               "fa fa-home",
               "fa fa-box",
@@ -72,7 +72,7 @@ const Academia = () => {
                 <span>
                   <i
                     className={`${icon} p-3 ${
-                      icon === "fa-solid fa-glasses" && "mt-10"
+                      icon === "fa-solid fa-glasses" && "md:mt-10"
                     } text-xl ${
                       iconClickStates[index]
                         ? "bg-blue-500 text-blue-100  rounded-xl"
@@ -92,13 +92,13 @@ const Academia = () => {
               (tab === "fa fa-box" && <Departments />) ||
               (tab === "fa-regular fa-envelope" && <Occupation />) ||
               (tab === "fa-solid fa-temperature-empty" && <Level />) ||
-              (tab === "fa-solid fa-arrow-right-to-city" && <Sections />)||
+              (tab === "fa-solid fa-arrow-right-to-city" && <Sections />) ||
               (tab === "fa-solid fa-glasses" && <Requests />)
             ) /* Missing colon here */
           }
         </div>
       </div>
-      <div className='flex flex-row'>test</div>
+      {/* <div className='flex flex-row'>test</div> */}
     </>
   );
 };

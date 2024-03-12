@@ -45,8 +45,8 @@ const Departments = () => {
 
   return (
     <>
-      <div className='flex w-full  p-7 mx-32 flex-col gap-8 '>
-        <div className='flex text-slate-500 text-xl font-bold justify-between'>
+      <div className='flex w-full  p-2 md:p-7 md:mx-32 flex-col gap-8 '>
+        <div className='flex text-slate-500 text-lg md:text-xl font-bold justify-between'>
           <span>
             <i className='fa fa-box px-3 pt-1 text-xl'></i> Departments
           </span>
@@ -65,72 +65,67 @@ const Departments = () => {
         <div
           className={`flex  ${
             openAddDepartment && "hidden"
-          } w-full flex-row gap-2 shadow-xl  rounded-xl p-4 bg-slate-200`}
+          } w-full flex-col md:flex-row gap-2 shadow-xl  rounded-xl p-4  bg-slate-200`}
         >
-          <div className='flex rounded-sm  w-full'>
-            <div className='flex flex-wrap  flex-row  '>
-              <div className='flex flex-col '>
-                <div className='flex p-1 gap-2 justify-center  flex-wrap flex-row bg-white rounded-md '>
-                  <div className='flex flex-row justify-around w-full gap-52 text-sm font-thin text-slate-500 m-3 '>
-                    <span>
-                      <span>Name</span>
-                    </span>
-                    <span className='flex gap-20'>
-                      <span>HEAD</span>
-                      <span> STREAMS</span>
-                      {/* <span>
-                        <i className='fa fa-list'></i>
-                      </span> */}
-                    </span>
-                  </div>
-                  <div className=' all_items flex flex-row flex-wrap gap-6 w-full overflow-y-scroll h-5/6 justify-around -mt-20'>
-                    {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
-                      <div
-                        key={item}
-                        className={`flex text-slate-500 flex-row gap-10 w-full justify-around cursor-pointer ${
-                          item === selectedItem ? "bg-blue-500 text-white" : ""
-                        }`}
-                        onClick={() => handleItemClick(item)}
-                      >
-                        <span className='flex flex-col font-bold'>
-                          {item}. &nbsp;&nbsp;&nbsp;information technology
-                          <span
-                            className={`text-sm font-thin ${
-                              item === selectedItem
-                                ? "text-white"
-                                : "text-slate-600"
-                            }`}
-                          >
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TF02230300
-                          </span>
+          <div className='table-container overflow-scroll bg-white rounded-lg  h-[calc(40vh)] md:h-[calc(60vh)]'>
+            <table>
+              <tbody>
+                <tr className='text-sm font-thin'>
+                  <th>Name</th>
+                  <th>HEAD</th>
+                  <th>STREAMS</th>
+                </tr>
+                <tr className='h-1 bg-slate-100 w-full' />
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
+                  <tr
+                    key={item}
+                    className={`text-sm text-gray-900 ${
+                      item === selectedItem ? "bg-blue-500 text-white" : ""
+                    }`}
+                    onClick={() => handleItemClick(item)}
+                  >
+                    <td className='w-32 px-3 sm:w-40 md:w-72 py-1 md:py-3 cursor-pointer'>
+                      <span className='flex  flex-col text-start'>
+                        <span>{item}. Information Technology</span>
+                        <span
+                          className={`text-sm font-thin ${
+                            item === selectedItem
+                              ? "text-white"
+                              : "text-slate-600 mx-3"
+                          }`}
+                        >
+                          TF02230300
                         </span>
-                        <span className='flex gap-10'>
-                          <span>fashion C2</span>
-                          <span>2</span>
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
+                      </span>
+                    </td>
+                    <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
+                      Fashion C2{" "}
+                    </td>
+                    <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
+                      2{" "}
+                    </td>{" "}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-          <div className='flex  rounded-sm w-full'>
+
+          <div className='flex  rounded-xl w-full'>
             <div className='flex flex-col w-full'>
-              <div className='flex flex-row justify-around w-full bg-white'>
-                <div className='flex flex-col  gap-10 p-8 w-full'>
-                  <div className='book_items flex flex-col flex-wrap gap-6 w-full overflow-y-scroll h-64 justify-around '>
+              <div className='flex flex-row justify-around w-full bg-white rounded-lg mb-3'>
+                <div className='flex flex-col  gap-4 md:gap-10 p-3 md:p-8 w-full'>
+                  <div className='book_items flex flex-col flex-wrap gap-4 md:gap-6 w-full overflow-y-scroll h-64 justify-around '>
                     {[1, 2, 3, 4].map((item) => (
                       <div
                         key={item}
-                        className={`flex text-slate-500 flex-col gap-6 w-full justify-around cursor-pointer `}
+                        className={`flex text-slate-500 flex-col gap-1 md:gap-6 w-full justify-around cursor-pointer `}
                         onClick={handleBackToItems}
                       >
                         <span className='text-xl font-bold'>
                           Information technology{" "}
                         </span>
 
-                        <div className='flex flex-col  text-slate-500'>
+                        <div className='flex flex-col text-sm md:text-normal  text-slate-500'>
                           <p>
                             some details about the course like the quick brown
                             fox jumped over the lazy dog . well that was not as
@@ -149,7 +144,7 @@ const Departments = () => {
                     ))}
                   </div>
                 </div>
-                <div className='flex flex-col gap-3  justify-center text-center bg-blue-600  w-64  text-slate-100'>
+                <div className='flex flex-col gap-1 md:gap-3  justify-center text-center bg-blue-600  w-40 md:w-64  text-sm md:text-normal text-slate-100'>
                   <span>ID : ETS0392/12</span>
                   <span>DATA : 12-12,2022</span>
                   <span>CGPA : 3.5</span>
@@ -157,9 +152,9 @@ const Departments = () => {
                 </div>
               </div>
               <span className='font-bold text-xl'> Stats</span>
-              <div className='flex flex-row  gap-1 w-full'>
+              <div className='flex flex-col md:flex-row  gap-1 w-full'>
                 <div className='flex flex-col w-full '>
-                  <div className='flex flex-col w-full gap-5 p-6  flex-wrap '>
+                  <div className='flex flex-col w-full gap-3 md:gap-5 p-3 md:p-6  flex-wrap '>
                     {[1, 2, 3, 4].map((appointment) => (
                       <div key={appointment} className='flex flex-row w-full'>
                         <span className='flex text-slate-100 font-thin flex-col  bg-indigo-400 rounded-lg px-1 w-20 -mr-2 opacity-75 z-10'>
@@ -196,8 +191,8 @@ const Departments = () => {
                     ))}
                   </div>
                 </div>
-                <div className='flex flex-col '>
-                  <div className='flex flex-col rounded-md pt-4 pr-3 pl-10  h-48 bg-white text-start w-64  mb-1 text-slate-500 shadow-md '>
+                <div className='flex flex-col  items-center w-full '>
+                  <div className='flex flex-col rounded-md pt-4 md:pr-3 pl-4 md:pl-10  h-48 bg-white text-start w-full  md:w-64  mb-1 text-slate-500 shadow-md '>
                     <span className='text-xl px-3 font-bold text-black'>
                       streams
                     </span>
@@ -206,7 +201,7 @@ const Departments = () => {
                     <span>3.system training </span>
                     <span>2.field study </span>
                   </div>
-                  <div className='flex flex-col rounded-md pt-4 pr-3 pl-10  h-48 bg-white text-start w-64 mt-3 mb-1 text-slate-500 shadow-md '>
+                  <div className='flex flex-col rounded-md pt-4 md:pr-3 pl-4 md:pl-10  h-48 bg-white text-start w-full  md:w-64 mt-3 mb-1 text-slate-500 shadow-md '>
                     <span className='text-xl px-3 font-bold text-black'>
                       teams
                     </span>
