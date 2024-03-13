@@ -59,7 +59,7 @@ const page = () => {
                 Bat man the dark insight
               </span>
             </span>
-            <span className='bg-blue-600 text-blue-100 p-3 rounded-xl md:rounded-full px-2 w-full md:w-40 md:px-4 mt-20'>
+            <span className='bg-blue-600 text-blue-100 p-3 text-center rounded-full px-2 w-full md:w-40 md:px-4 mt-20'>
               Read now
             </span>
           </span>
