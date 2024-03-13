@@ -4,8 +4,11 @@ import React from "react";
 
 const Btob = () => {
   return (
-    <div className='m-6 bg-slate-50'>
-      <div className='flex flex-col'>
+    <div className='  m-6 bg-slate-50'>
+      <div className='md:hidden flex justify-center'>
+        i am working on responsive
+      </div>
+      <div className='hidden md:block  flex-col'>
         <div className='flex flex-row justify-between'>
           <div className='flex gap-20 '>
             <span className='mt-3'>

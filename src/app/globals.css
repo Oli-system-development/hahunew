@@ -27,7 +27,7 @@ table td:first-child {
   width: auto;
   left: 0;
   z-index: 9;
-  /* background-color: transparent; */
+  background-color: white;
 }
 
 table tr th:first-child {
