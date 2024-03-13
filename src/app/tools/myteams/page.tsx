@@ -1,5 +1,6 @@
 "use client";
 import { Popover } from "@headlessui/react";
+import { Sparkline } from "@mantine/charts";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -37,7 +38,7 @@ const Teams = () => {
     });
   };
   return (
-    <div className='m-4 mx-6 flex flex-col'>
+    <div className='m-1 md:m-4 mx-1 md:mx-6 flex flex-col'>
       <div className='flex flex-row justify-between'>
         <div className='flex gap-20'>
           <span className='mt-3'>
@@ -48,7 +49,7 @@ const Teams = () => {
                   alt='image'
                   layout='fill'
                   objectFit='cover'
-                  className='rounded-lg rounded-image'
+                  className='rounded-full rounded-image'
                   objectPosition='center'
                 />
               </Link>
@@ -65,9 +66,9 @@ const Teams = () => {
           />
         </Link>
       </div>
-      <div className='flex bg-slate-200 rounded-xl mx-20'>
-        <div className='flex flex-row p-14 justify-between w-full'>
-          <div className='flex flex-col w-full'>
+      <div className='flex bg-slate-200 rounded-xl mx-1 mt-3 md:mx-20'>
+        <div className='flex flex-col md:flex-row p-3 md:p-14 justify-around md:justify-between w-full'>
+          <div className='flex flex-col w-full mb-4'>
             <span className='font-bold text-xl'>My teams</span>
             <div className='-mx-5'>
               <button className='bg-white text-slate-400 shadow-md gap-14 rounded-lg m-5 p-2 px-4'>
@@ -84,11 +85,11 @@ const Teams = () => {
               </button>
             </div>
             <span>team announcements</span>
-            <div className=' rounded-md ring-1 ring-slate-200 p-9 flex flex-row gap-10 '>
+            <div className=' rounded-md ring-1 ring-slate-200 p-3 md:p-9 flex flex-row gap-3 md:gap-10 '>
               {[1, 2, 3].map((item) => (
                 <span
                   key={item}
-                  className='flex flex-row  text-sm justify-between mb-3 gap-5 text-slate-600'
+                  className='flex flex-row  text-sm justify-between mb-3 gap-2 md:gap-5 text-slate-600'
                 >
                   <span
                     className={`p-1 rounded-lg px-3 w-full text-center text-xs h-24  ${
@@ -98,21 +99,21 @@ const Teams = () => {
                     }
                                 bg-blue-400 text-blue-200`}
                   >
-                    certified in database design
+                    meeting sechduled on of day wednesday{" "}
                   </span>
                 </span>
               ))}
             </div>
             <span className='mt-1 mb-1 text-xl'> store office 1</span>
             <span className='my-1'> assigned position store manager </span>
-            <div className=' rounded-md shadow-sm bg-slate-50 p-9 flex flex-row gap-10 '>
+            <div className=' rounded-md shadow-sm bg-slate-50 p-4 md:p-9 flex flex-row gap-3 md:gap-10 '>
               {[5, 2, 3].map((item) => (
                 <span
                   key={item}
                   className='flex flex-row  text-sm justify-between mb-3 gap-5 text-slate-600'
                 >
                   <span
-                    className={`p-1 rounded-lg px-3 w-full flex flex-col justify-start text-center text-xs h-10   text-slate-500`}
+                    className={`p-1 rounded-lg px-3 w-full flex flex-col justify-start text-center text-xs h-16 md:h-10   text-slate-500`}
                   >
                     <span className='flex justify-start font-bold text-lg'>
                       {item}
@@ -123,15 +124,15 @@ const Teams = () => {
               ))}
             </div>
             <span className='my-1 mx-3'> members </span>
-            <div className='flex flex-row gap-10 w-full justify-around'>
-              <div className='flex flex-col w-64'>
+            <div className='flex flex-col md:flex-row gap-3 md:gap-10 w-full justify-around'>
+              <div className='flex flex-col md:w-64'>
                 <div className='flex flex-row   flex-wrap gap-4  overflow-y-scroll h-64 justify-between'>
                   {[1, 2, 3, 4, 5].map((item) => (
                     <div
                       key={item}
                       className='flex w-full  flex-wrap text-slate-500 flex-row justify-between ring-2 ring-slate-300  shadow-md rounded-md bg-slate-200 p-1'
                     >
-                      <span className='flex flex-row justify-between w-64'>
+                      <span className='flex flex-row justify-between w-72 md:w-64'>
                         <span className='flex flex-row '>
                           <span>
                             <i className='fa fa-user rounded-full text-blue-400 text-2xl p-2'></i>
@@ -192,6 +193,24 @@ const Teams = () => {
                   className={`p-1 rounded-lg px-3 w-full text-center text-xs h-32   bg-blue-400 text-blue-200`}
                 >
                   performance management
+                  <Sparkline
+                    w={200}
+                    h={60}
+                    data={[0, 20, 40, 20, 40, 10, 50]}
+                    curveType='linear'
+                    color='green'
+                    fillOpacity={0.6}
+                    strokeWidth={2}
+                  />
+                  <Sparkline
+                    w={200}
+                    h={60}
+                    data={[100, 20, 40, 20, 40, 10, 50]}
+                    curveType='linear'
+                    color='blue'
+                    fillOpacity={0.6}
+                    strokeWidth={2}
+                  />
                 </span>
               </span>
               <span className='flex flex-row  text-sm   text-slate-600'>
@@ -199,24 +218,55 @@ const Teams = () => {
                   className={`p-1 rounded-lg px-10 w-full text-center text-xs h-32   bg-pink-600 text-blue-200`}
                 >
                   time management
+                  <Sparkline
+                    w={200}
+                    h={60}
+                    data={[0, 20, 40, 20, 40, 10, 50]}
+                    curveType='bump'
+                    color='red'
+                    fillOpacity={0.6}
+                    strokeWidth={2}
+                  />
+                  <Sparkline
+                    w={200}
+                    h={60}
+                    data={[100, 20, 40, 20, 40, 10, 50]}
+                    curveType='bump'
+                    color='blue'
+                    fillOpacity={0.6}
+                    strokeWidth={2}
+                  />
                 </span>
               </span>
             </div>
           </div>
           <div className='flex flex-col w-full'>
-            <div className='flex flex-row justify-center w-full'>
-              <div className='flex flex-row bg-slate-300 gap-10 p-8'>
-                <div className='mt-8 -ml-3 pr-4'>
-                  <Image
-                    src='/elsabet.jpeg'
-                    alt=''
-                    width={150}
-                    height={150}
-                    className='rounded-full rounded-image -ml-4'
-                  />
+            <div className='flex flex-row justify-around shadow-xl w-full bg-white'>
+              <div className='flex flex-row justify-center w-full bg-slate-300 gap-0 rounded-md'>
+                <div className='flex flex-row  gap-1 md:gap-10 p-2 md:p-8'>
+                  <div className='md:mt-8 w-20 md:w-auto md:-ml-3 mdpr-4'>
+                    <Image
+                      src='/elsabet.jpeg'
+                      alt=''
+                      width={150}
+                      height={150}
+                      className='rounded-full rounded-image md-ml-4'
+                    />
+                  </div>
+                  <div className='flex flex-col gap-2 md:gap-5 text-slate-500'>
+                    <span className='text-xl font-bold'>HANA Sirgut</span>
+                    <span>store officer</span>
+                    <span>department : computer</span>
+                    <span>date joined : 12-12,2022</span>
+                    <span>
+                      <i className='fa fa-phone px-2'></i>032823323
+                    </span>
+                    <span>
+                      <i className='fa fa-message px-2'></i>hana@gmail.com
+                    </span>
+                  </div>
                 </div>
-                <div className='flex flex-col gap-5 text-slate-500'>
-                  <span className='text-xl font-bold'>HANA Sirgut</span>
+                <div className='flex flex-col gap-2 md:gap-5 pt-10 md:pt-16 md:pr-3 md:pl-10 text-xs md:text-base  md:text-left '>
                   <span>store officer</span>
                   <span>department : computer</span>
                   <span>date joined : 12-12,2022</span>
@@ -224,29 +274,17 @@ const Teams = () => {
                     <i className='fa fa-phone px-2'></i>032823323
                   </span>
                   <span>
-                    <i className='fa fa-message px-2'></i>hana@gmail.com
+                    <i className='fa fa-message md:px-2'></i>hana@gmail.com
                   </span>
                 </div>
               </div>
-              <div className='flex flex-col gap-5 pt-4 pr-3 pl-20 bg-blue-400 text-right '>
-                <span className='text-xl font-bold'>your teams</span>
-                <span>store officer</span>
-                <span>department : computer</span>
-                <span>date joined : 12-12,2022</span>
-                <span>
-                  <i className='fa fa-phone px-2'></i>032823323
-                </span>
-                <span>
-                  <i className='fa fa-message px-2'></i>hana@gmail.com
-                </span>
-              </div>
             </div>
 
-            <div className=' flex justify-end px-10 pt-9'>
-              <button className='bg-pink-900 text-white shadow-md gap-14  rounded-full m-5 p-2 px-10'>
+            <div className=' flex justify-center md:justify-end md:px-10 gap-1 pt-9'>
+              <button className='text-xs w-full md:w-auto md:text-normal bg-pink-900 text-white shadow-md   rounded-lg md:rounded-full h-9 md:m-5 p-2  md:px-10'>
                 resign
               </button>
-              <button className='bg-blue-300 text-white shadow-md gap-14 rounded-full m-5 p-2 px-6'>
+              <button className='text-xs w-full md:w-auto md:text-normal  bg-blue-300 text-white shadow-md gap-14 rounded-lg md:rounded-full h-9 md:h-auto md:m-5 p-2  md:px-6'>
                 new team{" "}
               </button>
 
@@ -256,7 +294,7 @@ const Teams = () => {
                     <Popover.Button className=''>
                       <span className='flex cursor-pointer justify-start z-100 text-slate-400 opacity-80'>
                         <button
-                          className='bg-slate-500 text-white shadow-md gap-14 rounded-full m-5 p-2 px-4'
+                          className='bg-slate-500 text-white shadow-md gap-14 rounded-lg md:rounded-full h-9 md:h-auto md:m-5 p-2 px-4'
                           onClick={toggleModal}
                         >
                           explore teams{" "}
@@ -299,17 +337,17 @@ const Teams = () => {
               </Popover>
             </div>
 
-            <span className='font-bold px-20 text-xl pt-9 flex justify-end'>
+            <span className='font-bold md:px-20 text-xl pt-9 flex justify-end'>
               schedule and tasks
             </span>
             <div className='flex flex-row justify-center w-full '>
-              <div className='flex flex-row bg-white gap-10 p-8'>
+              <div className='flex flex-row bg-white gap-2 md:gap-10 p-2 md:p-8'>
                 <div className='flex flex-col gap-5 text-slate-500'>
                   <span className='text-md font-bold text-slate-500'>2015</span>
                   <span className='text-md font-bold text-green-500'>
                     AUGUST
                   </span>
-                  <div className='flex w-80'>
+                  <div className='flex md:w-80'>
                     <Calendar
                       onChange={handleDateClick}
                       value={selectedDate}
@@ -318,8 +356,8 @@ const Teams = () => {
                   </div>
                 </div>
               </div>
-              <div className='flex flex-col gap-1 pt-4 pr-3 pl-20 bg-white text-right '>
-                <div className='flex flex-col gap-1 pt-4 pr-3 pl-20 bg-white text-right '>
+              <div className='flex flex-col gap-1 pt-4 pr-3 md:pl-20 bg-white text-right '>
+                <div className='flex flex-col gap-1 pt-4 md:pr-3 md:pl-20 bg-white text-right '>
                   {[1, 2, 3, 4, 5].map((index) => (
                     <button
                       key={index}
@@ -327,7 +365,7 @@ const Teams = () => {
                         buttonClicked[index - 1]
                           ? "bg-blue-200"
                           : "bg-slate-200"
-                      } text-black shadow-md ring-1 text-xs m-1 p-2 px-9`}
+                      } text-black shadow-md ring-1 text-xs m-1 w-full p-2 mx:px-9`}
                       onClick={() => handleButtonClick(index - 1)}
                     >
                       {buttonClicked[index - 1]
