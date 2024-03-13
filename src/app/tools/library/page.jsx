@@ -4,9 +4,9 @@ import React from "react";
 
 const page = () => {
   return (
-    <div className='m-6'>
+    <div className='m-2 md:m-6'>
       <div className='flex flex-row justify-between'>
-        <div className='flex gap-20'>
+        <div className='flex gap-3 md:gap-20'>
           <span className='mt-3'>
             <div className='w-10 h-10 rounded-full shadow-lg relative'>
               <Link href={"/dashboard"}>
@@ -24,7 +24,7 @@ const page = () => {
           <div className='flex flex-row mt-3'>
             <input
               name=''
-              className='shadow h-8 bg-slate-100 appearance-none ring-1 ring-slate-400 border  w-64 rounded-full  py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+              className='shadow h-8 bg-slate-100 appearance-none ring-1 ring-slate-400 border  w-32 md:w-64 rounded-full  py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
               id='header text'
               type='text'
               placeholder='search'
@@ -42,7 +42,7 @@ const page = () => {
           />
         </Link>
       </div>
-      <div className='flex flex-row justify-between gap-20 px-20 pt-20  '>
+      <div className='flex flex-col md:flex-row justify-between gap-4 md:gap-20 px-2 md:px-20 pt-20  '>
         <div className='w-full h-96 rounded-lg shadow-lg relative'>
           <Image
             src={"/batman.jpeg"}
@@ -52,22 +52,22 @@ const page = () => {
             objectPosition='center'
             className='rounded-lg rounded-image'
           />
-          <span className='absolute inset-0 flex flex-row justify-between items-baseline mt-40 p-6 text-white text-lg font-bold'>
+          <span className='absolute inset-0 flex flex-row justify-between items-baseline mt-20 md:mt-40 p-3 md:p-6 text-white text-lg font-bold'>
             <span className='flex flex-col text-slate-300 text-sm '>
               Frank miller :
               <span className='text-3xl font-bold text-white'>
                 Bat man the dark insight
               </span>
             </span>
-            <span className='bg-blue-600 text-blue-100 p-3 rounded-full px-4 mt-20'>
+            <span className='bg-blue-600 text-blue-100 p-3 rounded-xl md:rounded-full px-2 w-full md:w-40 md:px-4 mt-20'>
               Read now
             </span>
           </span>
         </div>
-        <span className='flex flex-col w-full gap-10 shadow-md rounded-xl p-8 bg-slate-300'>
+        <span className='flex flex-col w-full gap-3 md:gap-10 shadow-md rounded-xl p-2 md:p-8 bg-slate-300'>
           <span className='text-2xl font-bold'>class books</span>
-          <div className='flex flex-row gap-10 px-1'>
-            <div className='w-full h-64 rounded-lg shadow-lg relative'>
+          <div className='flex flex-row gap-2 md:gap-10 px-1'>
+            <div className='w-full h-56 md:h-64 rounded-lg shadow-lg relative'>
               <Image
                 src={"/books.jpeg"}
                 alt='image'
@@ -77,7 +77,7 @@ const page = () => {
                 className='rounded-lg rounded-image'
               />
             </div>
-            <div className='w-full h-64 rounded-lg shadow-lg relative'>
+            <div className='w-full h-56 md:h-64 rounded-lg shadow-lg relative'>
               <Image
                 src={"/books.jpeg"}
                 alt='image'
@@ -94,7 +94,7 @@ const page = () => {
           </span>
         </span>
       </div>
-      <div className='flex px-20 flex-row  gap-8 text-xl font-bold'>
+      <div className='flex md:px-20 flex-row my-2 gap-4 md:gap-8 text-xl font-bold'>
         <span>All books</span>
         <span>
           <i className='fa fa-plus rounded-full text-white bg-blue-600 p-1 '></i>
