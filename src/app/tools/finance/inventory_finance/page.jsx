@@ -30,18 +30,23 @@ const InventoryFinance = () => {
 
   return (
     <>
-      <div className='flex w-full  p-7 mx-32 flex-col gap-8 '>
+      <div className='flex w-full  p-7 md:mx-32 flex-col gap-8 '>
         <div className='flex text-slate-500 text-xl font-bold justify-between'>
           <span>
             <i className='fa fa-book px-3 pt-1 text-xl'></i> inventory finance
           </span>
         </div>
 
-        <div className='flex w-full flex-col gap-2 shadow-2xl rounded-xl p-4  ring-2 ring-slate-100 '>
-          <div className="relative h-1/3 w-full md:h-full md:w-1/2 bg-[url('/bg.jpeg')]">
-            <Image src='/notyet.png' alt='' width={300} height={300} className='object-cover w-full h-full' />
+        <div className='flex w-full flex-col gap-2  rounded-xl p-4  ring-2 ring-slate-100 '>
+          <div className="relative  w-full md:h-full md:w-1/2 bg-[url('/bg.jpeg')]">
+            <Image
+              src='/notyet.png'
+              alt=''
+              width={300}
+              height={300}
+              className='object-cover w-full h-full'
+            />
           </div>
-
         </div>
       </div>
     </>
