@@ -19,52 +19,8 @@ const Ucs = () => {
   };
 
   return (
-    <div className='p-6 '>
-      <div className=''>
-        {/* <table className='w-full'>
-          <thead className=' text-start text-slate-500  cursor-pointer '>
-            <tr className='   text-slate-500 flex-row   cursor-pointer'>
-              <th>COURSE</th>
-              <th>DATE CREATEDDATEDATE CREATEDDATE</th>
-              <th>PREQUISITES</th>
-              <th>ADMIN</th>
-              <th>ADMIN</th>
-              <th>ADMIN</th>
-              <th>ADMIN</th>
-            </tr>
-          </thead>
-          <tbody
-          //  className='all_items flex flex-row flex-wrap gap-2 w-full overflow-y-scroll  justify-around mt-8'
-          >
-            {[1, 2, 3, 4, 5].map((item) => (
-              <tr
-                key={item}
-                className={` text-slate-500 flex-row  w-full justify-around cursor-pointer ${
-                  item === selectedItem ? "bg-blue-500 text-white" : ""
-                }`}
-                onClick={() => handleItemClick(item)}
-              >
-                <td className='flex flex-col font-bold'>
-                  {item}. computational breach test
-                  <span
-                    className={`text-sm font-thin ${
-                      item === selectedItem ? "text-white" : "text-slate-600"
-                    }`}
-                  >
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TF02230300
-                  </span>
-                </td>
-                <td>electronics CI</td>
-                <td>12-24-202</td>
-                <td>fashion C2</td> <td>electronics CI</td>
-                <td>12-24-202</td>
-                <td>fashion C2</td>
-              </tr>
-            ))}
-          </tbody>
-        </table> */}
-      </div>
-      <div className='flex flex-row justify-between p-5  w-full'>
+    <div className='p-2 md:p-6 '>
+      <div className='flex flex-row justify-between p-2 md:p-5  w-full'>
         <span>
           <Link href={"/dashboard/"}>
             <Image src={"/logo.png"} alt='' width={40} height={40} />
@@ -83,9 +39,9 @@ const Ucs = () => {
           </Link>
         </span>
       </div>
-      <div className='flex flex-row justify-between px-10 pb-10'>
-        <div className='flex flex-row gap-11 text-slate-700'>
-          <span className='flex gap-3 text-slate-500 text-2xl'>
+      <div className='flex flex-row justify-between px-2 md:px-10 pb-4 md:pb-10'>
+        <div className='flex flex-row gap-2 md:gap-11 text-slate-700'>
+          <span className='flex gap-3 text-slate-500 md:text-2xl'>
             <span>
               <i className='fa fa-book'></i>
             </span>
@@ -96,7 +52,7 @@ const Ucs = () => {
         </div>
         <div className='flex justify-end'>
           <button
-            className='bg-blue-600 text-blue-50 rounded-full px-6 p-2'
+            className='bg-blue-600 text-blue-50 rounded-full px-6 p-1'
             onClick={() => setOpenAddBook(!openAddBook)}
           >
             add course
@@ -104,25 +60,27 @@ const Ucs = () => {
         </div>
       </div>
 
-      <div className='flex flex-row justify-between px-20 -mt-8'>
-        <div className='flex gap-20'>
+      <div className='flex flex-row justify-between px-1 md:px-20 md:-mt-8'>
+        <div className='flex gap-3 md:gap-20'>
           <div className='flex flex-row mt-3 justify-between w-full'>
             <input
               name=''
               // onChange={() => alert("wait for form data ")}
-              className='shadow h-8 bg-slate-100 appearance-none ring-1 ring-slate-400 border  w-64 rounded-full  py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+              className='shadow h-8 bg-slate-100 appearance-none ring-1 ring-slate-400 border  w-28 md:w-64 rounded-full  py-2 md:px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
               id='header text'
               type='text'
               placeholder='search'
             />
             <i className='fa fa-search mt-2 -mx-5 text-slate-400'></i>
           </div>
-          <span className='flex justify-end mt-2 text-slate-600'>filter</span>
+          <span className='flex justify-end md:mt-2 m-5  text-slate-600 text-xs md:text-normal'>
+            filter
+          </span>
           <div className='flex flex-row mt-3'>
             <input
               name=''
               // onChange={() => alert("wait for form data ")}
-              className='shadow h-8 bg-slate-100 appearance-none ring-1 ring-slate-400 border  w-64 rounded-full  py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+              className='shadow h-8 bg-slate-100 appearance-none ring-1 ring-slate-400 border  w-28 md:w-64 rounded-full  py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
               id='header text'
               type='text'
               placeholder='department'
@@ -130,15 +88,15 @@ const Ucs = () => {
           </div>
         </div>
         <span
-          className='flex gap-8 text-slate-500 text-2xl'
+          className='flex gap-2 md:gap-8 mt-4 md:mt-0 text-slate-500 md:text-2xl'
           onClick={() => setOpenCourses(!openCourses)}
         >
-          <i className='fa fa-list'></i>
-          <i className='fa fa-list'></i>
+          <i className='fa fa-bars'></i>
+          <i className='fa fa-bars'></i>
         </span>
       </div>
       <div
-        className={`flex  shadow-xl ring-1 ring-slate-200 px-14 mx-14 mt-6 rounded-md ${
+        className={`flex  shadow-xl ring-1 ring-slate-200 md:px-14 md:mx-14 mt-6 rounded-md ${
           openAddBook ? "hidden" : ""
         }`}
       >
@@ -147,237 +105,115 @@ const Ucs = () => {
         ) : null}
       </div>
       <div
-        className={`flex  bg-slate-200 px-14 mx-14 mt-6 rounded-md ${
+        className={`flex  bg-slate-200 md:px-14 mx-2 px-2 md:mx-14 mt-6 rounded-md ${
           openCourses ? "hidden" : ""
         }`}
       >
         {!openAddBook ? (
-          <div className='flex w-full flex-row'>
-            <div className='flex rounded-sm p-6 w-full'>
-              <div className='flex flex-wrap  flex-row  '>
-                <div className='flex flex-col '>
-                  {showBookDetails ? (
-                    <div className='book_items flex flex-col flex-wrap gap-6 w-full overflow-y-scroll justify-around '>
-                      <div
-                        className={`flex text-slate-500 flex-col gap-6 w-full justify-around cursor-pointer `}
-                        onClick={handleBackToItems}
-                      >
-                        <div className='-mt-5'>
-                          <Image
-                            src='/book1.jpeg'
-                            alt=''
-                            width={590}
-                            height={150}
-                            className='rounded-xl mt-7 rounded-image'
-                          />
-                        </div>
-                        <span className='text-xl font-bold'>
-                          Computational breach test
-                        </span>
-                        <div className='flex flex-col  text-slate-500'>
-                          <p>
-                            some details about the course like the quick brown
-                            fox jumped over the lazy dog . well that was not as
-                            long as i had hoped
-                          </p>
-                        </div>
-                        <span className='text-xl font-bold'>
-                          unit assignment
-                        </span>
-
-                        <div className='flex flex-col  text-black'>
-                          <p>some details about the</p>{" "}
-                          <p>some details about the</p>
-                        </div>
-                      </div>
+          <div className='flex w-full flex-col md:flex-row'>
+            <div className='flex flex-col mt-5 '>
+              {showBookDetails ? (
+                <div className='book_items flex flex-col flex-wrap gap-6 w-full overflow-y-scroll justify-around '>
+                  <div
+                    className={`flex text-slate-500 flex-col gap-6 w-full justify-around cursor-pointer `}
+                    onClick={handleBackToItems}
+                  >
+                    <div className='-mt-5'>
+                      <Image
+                        src='/book1.jpeg'
+                        alt=''
+                        width={590}
+                        height={150}
+                        className='rounded-xl mt-7 rounded-image'
+                      />
                     </div>
-                  ) : (
-                    // <div className=' tableFixHead flex w-full p-1 gap-2 justify-center  flex-wrap flex-row bg-white rounded-md'>
-                    //   <table className='w-full'>
-                    //     <thead className='all_items flex flex-row flex-wrap gap-6 w-full justify-around  text-slate-500  cursor-pointer '>
-                    //       <tr className=' flex w-full  text-slate-500 flex-row gap-10  justify-around cursor-pointer'>
-                    //         <th>COURSE</th>
-                    //         <th>DATE CREATED</th>
-                    //         <th>PREQUISITES</th>
-                    //         <th>ADMIN</th>
-                    //       </tr>
-                    //     </thead>
-                    //     <tbody className='all_items flex flex-row flex-wrap gap-2 w-full overflow-y-scroll  justify-around mt-8'>
-                    //       {[1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 19].map(
-                    //         (item) => (
-                    //           <tr
-                    //             key={item}
-                    //             className={`flex text-slate-500 flex-row gap-10 w-full justify-around cursor-pointer ${
-                    //               item === selectedItem
-                    //                 ? "bg-blue-500 text-white"
-                    //                 : ""
-                    //             }`}
-                    //             onClick={() => handleItemClick(item)}
-                    //           >
-                    //             <td className='flex flex-col font-bold'>
-                    //               {item}. computational breach test
-                    //               <span
-                    //                 className={`text-sm font-thin ${
-                    //                   item === selectedItem
-                    //                     ? "text-white"
-                    //                     : "text-slate-600"
-                    //                 }`}
-                    //               >
-                    //                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TF02230300
-                    //               </span>
-                    //             </td>
-                    //             <td>electronics CI</td>
-                    //             <td>12-24-202</td>
-                    //             <td>fashion C2</td>
-                    //           </tr>
-                    //         )
-                    //       )}
-                    //     </tbody>
-                    //   </table>
-                    // </div>
-                    //!2
-                    // <div className='tableFixHead flex w-full p-1 gap-2 justify-center flex-wrap flex-row bg-white rounded-md'>
-                    //   <table className='w-full table-spacing'>
-                    //     <thead className='w-full'>
-                    //       <tr className='w-full space-x-7'>
-                    //         <th>COURSE</th>
-                    //         <th>DATE CREATED</th>
-                    //         <th>PREQUISITES</th>
-                    //         <th>ADMIN</th>
-                    //       </tr>
-                    //     </thead>
-                    //     <tbody
-                    //       className='tbody-scrollable overflow-y-scroll'
-                    //       style={{ height: "30vh" }}
-                    //     >
-                    //       {[1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 19].map(
-                    //         (item) => (
-                    //           <tr
-                    //             key={item}
-                    //             onClick={() => handleItemClick(item)}
-                    //           >
-                    //             <td className='text-center'>electronics CI</td>
-                    //             <td className='text-center'>electronics CI</td>
-                    //             <td className='text-center'>12-24-202</td>
-                    //             <td className='text-center'>fashion C2</td>
-                    //           </tr>
-                    //         )
-                    //       )}
-                    //     </tbody>
-                    //   </table>
-                    // </div>
-
-                    //!3
-
-                    <div className='  flex w-full p-1 gap-2 justify-center  flex-wrap flex-row bg-white rounded-md'>
-                      <table className='scrolldown '>
-                        <thead className=' flex flex-row flex-wrap gap-6 w-full justify-around  text-slate-500  cursor-pointer '>
-                          <tr>
-                            <th className='w-64'>COURSE</th>
-                            <th>DATE CREATED</th>
-                            <th>PREQUISITES</th>
-                            <th>ADMIN</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 19].map(
-                            (item) => (
-                              <tr
-                                key={item}
-                                className={` text-slate-500 flex-row gap-10 w-full justify-around cursor-pointer ${
-                                  item === selectedItem
-                                    ? "bg-blue-500 text-white"
-                                    : ""
-                                }`}
-                                onClick={() => handleItemClick(item)}
-                              >
-                                <td className='flex flex-col w-64 font-bold justify-start text-start'>
-                                  <span>{item}. computational breach test</span>
-                                  <span
-                                    className={`text-sm font-thin ${
-                                      item === selectedItem
-                                        ? "text-white"
-                                        : "text-slate-600"
-                                    }`}
-                                  >
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TF02230300
-                                  </span>
-                                </td>
-                                <td>electronics CI</td>
-                                <td>12-24-202</td>
-                                <td>fashion C2</td>
-                              </tr>
-                            )
-                          )}
-                        </tbody>
-                      </table>
+                    <span className='text-xl font-bold'>
+                      Computational breach test
+                    </span>
+                    <div className='flex flex-col  text-slate-500'>
+                      <p>
+                        some details about the course like the quick brown fox
+                        jumped over the lazy dog . well that was not as long as
+                        i had hoped
+                      </p>
                     </div>
-                    // <div className='container w-full'>
-                    //   <table className='text-left w-full'>
-                    //     <thead className='bg-black flex text-white w-full'>
-                    //       <tr className='flex w-full mb-4'>
-                    //       <td className='p-4 w-1/4'>Dogs</td>
+                    <span className='text-xl font-bold'>unit assignment</span>
 
-                    //       </tr>
-                    //     </thead>
-                    //     <tbody
-                    //       className='bg-grey-light flex flex-col items-center justify-between overflow-y-scroll w-full'
-                    //       style={{ height: "30vh" }}
-                    //     >
-                    //       <tr className='flex w-full mb-4'>
-                    //         <td className='p-4 w-1/4'>Dogs</td>
-                    //         <td className='p-4 w-1/4'>Cats</td>
-                    //         <td className='p-4 w-1/4'>Birds</td>
-                    //         <td className='p-4 w-1/4'>Fish</td>
-                    //       </tr>
-                    //       <tr className='flex w-full mb-4'>
-                    //         <td className='p-4 w-1/4'>Dogs</td>
-                    //         <td className='p-4 w-1/4'>Cats</td>
-                    //         <td className='p-4 w-1/4'>Birds</td>
-                    //         <td className='p-4 w-1/4'>Fish</td>
-                    //       </tr>
-                    //       <tr className='flex w-full mb-4'>
-                    //         <td className='p-4 w-1/4'>Dogs</td>
-                    //         <td className='p-4 w-1/4'>Cats</td>
-                    //         <td className='p-4 w-1/4'>Birds</td>
-                    //         <td className='p-4 w-1/4'>Fish</td>
-                    //       </tr>
-
-                    //       <tr className='flex w-full mb-4'>
-                    //         <td className='p-4 w-1/4'>Dogs</td>
-                    //         <td className='p-4 w-1/4'>Cats</td>
-                    //         <td className='p-4 w-1/4'>Birds</td>
-                    //         <td className='p-4 w-1/4'>Fish</td>
-                    //       </tr>
-                    //       <tr className='flex w-full mb-4'>
-                    //         <td className='p-4 w-1/4'>Dogs</td>
-                    //         <td className='p-4 w-1/4'>Cats</td>
-                    //         <td className='p-4 w-1/4'>Birds</td>
-                    //         <td className='p-4 w-1/4'>Fish</td>
-                    //       </tr>
-                    //     </tbody>
-                    //   </table>
-                    // </div>
-                  )}
+                    <div className='flex flex-col  text-black'>
+                      <p>some details about the</p>{" "}
+                      <p>some details about the</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                //!3
+
+                <div className='table-container overflow-scroll ring-1 ring-slate-200 shadow-sm bg-white rounded-lg h-[calc(40vh)] md:h-[calc(60vh)]'>
+                  <table>
+                    <tbody>
+                      <tr className='text-sm font-thin'>
+                        <th>COURSE</th>
+                        <th>DATE CREATED</th>
+                        <th>PREQUISITES</th>
+                        <th>ADMIN</th>
+                      </tr>
+                      <tr className=' bg-slate-100 w-full' />
+                      {[1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 19].map(
+                        (item) => (
+                          <tr
+                            key={item}
+                            className={`text-slate-500 flex-row gap-10 w-full justify-around cursor-pointer ${
+                              item === selectedItem
+                                ? "bg-blue-500 text-white"
+                                : ""
+                            }`}
+                            onClick={() => handleItemClick(item)}
+                          >
+                            <td className='w-20 md:w-32 px-1 text-slate-500 md:px-10 py-3 flex flex-col font-bold justify-start text-start text-sm'>
+                              <span>{item}. computational breach test</span>
+                              <span
+                                className={`text-sm font-thin ${
+                                  item === selectedItem
+                                    ? "text-slate-500"
+                                    : "text-slate-600"
+                                }`}
+                              >
+                                TF02230300
+                              </span>
+                            </td>
+                            <td className='w-32 px-7 md:px-10 py-3'>
+                              electronics CI
+                            </td>
+                            <td className='w-32 px-7 md:px-10 py-3'>
+                              12-24-202
+                            </td>
+                            <td className='w-32 px-7 md:px-10 py-3'>
+                              fashion C2
+                            </td>
+                          </tr>
+                        )
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              )}
             </div>
-            <div className='flex p-6 rounded-sm w-full'>
+            <div className='flex p2 md:p-6 rounded-sm w-full'>
               <div className='flex flex-col w-full'>
-                <div className='flex flex-row justify-around w-full bg-white'>
-                  <div className='flex flex-col  gap-10 p-8 w-full'>
-                    <div className='book_items flex flex-col flex-wrap gap-6 w-full overflow-y-scroll h-64 justify-around '>
+                <div className='flex flex-row justify-around w-full rounded-lg bg-white'>
+                  <div className='flex flex-col  gap-4 md:gap-10 p-1  md:p-8 w-full'>
+                    <div className='book_items flex flex-col flex-wrap gap-4 md:gap-6 w-full overflow-y-scroll h-64 justify-around '>
                       {[1, 2, 3, 4].map((item) => (
                         <div
                           key={item}
-                          className={`flex text-slate-500 flex-col gap-6 w-full justify-around cursor-pointer `}
+                          className={`flex text-slate-500 flex-col gap-1 md:gap-6 w-full justify-around cursor-pointer `}
                           onClick={handleBackToItems}
                         >
                           <span className='text-xl font-bold'>
-                            Computational breach test
+                            Information technology{" "}
                           </span>
 
-                          <div className='flex flex-col  text-slate-500'>
+                          <div className='flex flex-col text-sm md:text-normal  text-slate-500'>
                             <p>
                               some details about the course like the quick brown
                               fox jumped over the lazy dog . well that was not
@@ -396,17 +232,17 @@ const Ucs = () => {
                       ))}
                     </div>
                   </div>
-                  <div className='flex flex-col gap-3 pt-4 pr-3 pl-10 h-48 bg-violet-400 text-start w-64 mt-14 mb-1 text-slate-200'>
+                  <div className='flex flex-col gap-3 pt-4 pr-3 pl-10 h-48 bg-violet-400 text-start w-32 md:w-64 mt-14 mb-1 text-slate-200'>
                     <span>ID : ETS0392/12</span>
                     <span>DATA : 12-12,2022</span>
                     <span>CGPA : 3.5</span>
                     <span>UNITS : 5</span>
                   </div>
                 </div>
-                <div className='flex flex-row -mt-7 gap-7'>
-                  <div className='flex flex-col '>
-                    <div className='flex flex-col rounded-md pt-4 pr-3 pl-10  h-48 bg-white text-start w-64 mt-14 mb-1 text-slate-500 shadow-md '>
-                      <span className='text-xl px-3 font-bold text-black'>
+                <div className='flex flex-col md:flex-row -mt-7 gap-2 md:gap-7'>
+                  <div className='flex flex-row md:flex-col gap-2 '>
+                    <div className='flex flex-col rounded-md pt-4 md:pr-3 md:pl-10 p-2 h-48 bg-white text-start w-64 mt-14 mb-1 text-slate-500 shadow-md '>
+                      <span className='text-xl md:px-3 font-bold text-black'>
                         Units
                       </span>
                       <span>1.introduction</span>
@@ -414,8 +250,8 @@ const Ucs = () => {
                       <span>3.system training </span>
                       <span>2.field study </span>
                     </div>
-                    <div className='flex flex-col rounded-md pt-4 pr-3 pl-10  h-48 bg-white text-start w-64 mt-3 mb-1 text-slate-500 shadow-md '>
-                      <span className='text-xl px-3 font-bold text-black'>
+                    <div className='flex flex-col rounded-md pt-4 md:pr-3 md:pl-10 p-2 h-48 bg-white text-start w-64 mt-14 md:mt-3 mb-1 text-slate-500 shadow-md '>
+                      <span className='text-xl md:px-3 font-bold text-black'>
                         Tasks
                       </span>
 
@@ -426,7 +262,7 @@ const Ucs = () => {
                     </div>
                   </div>
                   <div className='flex flex-col w-full '>
-                    <div className='flex flex-col rounded-md pt-4 pr-3 pl-10   h-40 bg-white text-start  mt-14 mb-1 text-slate-500 shadow-md '>
+                    <div className='flex flex-col rounded-md pt-4 pr-3 pl-10   h-40 bg-white text-start  md:mt-14 mb-1 text-slate-500 shadow-md '>
                       <span className='text-xl px-3 font-bold text-black'>
                         Units
                       </span>
@@ -446,7 +282,7 @@ const Ucs = () => {
                           "Lorem ipsum dolor sit amet consectetur adipisicing elit"
                         }
                       </p>
-                      <div className='flex flex-row mt-16'>
+                      <div className='flex flex-row md:mt-16'>
                         <input
                           name=''
                           // onChange={() => alert("wait for form data ")}

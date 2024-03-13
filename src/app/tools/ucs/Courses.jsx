@@ -42,16 +42,53 @@ const Courses = ({ openCourse }) => {
                 <span>3.6</span>
                 <span>5</span>
                 <span className='rounded-full bg-black px-3 h-6'></span>
-                {/* <span className='flex gap-10'>
-                <span>electronics CI</span>
-                <span>12-24-202</span>
-                <span>fashion C2</span>
-              </span> */}
               </div>
               <hr className=' w-full  text-black' />
             </>
           ))}
         </div>
+        {/* <div className='table-container overflow-scroll ring-1 ring-slate-200 shadow-sm bg-white rounded-lg h-[calc(40vh)] md:h-[calc(60vh)]'>
+          <table>
+            <tbody>
+              <tr className='text-sm font-thin'>
+                <th>COURSE</th>
+                <th>abrv</th>
+                <th>cgpa</th>
+                <th>units</th>
+                <th>prerequests</th>
+                <th>identifier</th>
+              </tr>
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 19].map((item) => (
+                <tr
+                  key={item}
+                  className={`text-slate-500 flex-row gap-10 w-full justify-around cursor-pointer ${
+                    item === selectedItem ? "bg-blue-500 text-white" : ""
+                  }`}
+                  onClick={() => handleItemClick(item)}
+                >
+                  <td className='w-32 px-7 py-3 flex flex-col font-bold justify-start text-start'>
+                    <span>{item}. computational breach test</span>
+                    <span
+                      className={`text-sm font-thin ${
+                        item === selectedItem ? "text-white" : "text-slate-600"
+                      }`}
+                    >
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TF02230300
+                    </span>
+                  </td>
+                  <td className='w-32 px-7 py-3'>CBT</td>
+                  <td className='w-32 px-7 py-3'>3.6</td>
+                  <td className='w-32 px-7 py-3'>5</td>
+                  <td className='w-32 px-7 py-3'>
+                    <span className='rounded-full bg-black px-3 h-6'></span>
+                  </td>
+                  <td className='w-32 px-7 py-3'>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div> */}
       </div>
     </div>
   );
