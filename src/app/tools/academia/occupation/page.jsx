@@ -44,7 +44,7 @@ const Occupation = () => {
           </button>
         </div>
         {openAddDepartment && (
-          <div className='flex w-full flex-row gap-2 shadow-xl rounded-xl p-4 bg-slate-200'>
+          <div className='flex w-full flex-row gap-2 shadow-xl rounded-xl p-1 md:p-4 bg-slate-200'>
             <AddOccupation addOccupation={() => setOpenAddDepartment(false)} />
           </div>
         )}

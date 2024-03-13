@@ -2,7 +2,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import { Calendar, Modal, Progress, theme } from "antd";
-import AddSection from './AddSection';
+import AddSection from "./AddSection";
 const topBar = [
   "Staff Name/ID",
   "Sex",
@@ -34,10 +34,9 @@ const Sections = () => {
   //   setIsModalOpen(false);
   // };
   const toggleModal = () => {
-
     setModalVisible((prev) => !prev);
   };
-  //! 
+  //!
 
   const handleItemClick = (item) => {
     setSelectedItem(item === selectedItem ? null : item);
@@ -65,8 +64,8 @@ const Sections = () => {
   };
   return (
     <>
-      <div className='flex w-full  p-7 mx-32 flex-col gap-8 '>
-        <div className='flex text-slate-500 text-xl font-bold justify-between'>
+      <div className='flex w-full  p-2 md:p-7 md:mx-32 flex-col gap-8 '>
+        <div className='flex text-slate-500 text-lg md:text-xl font-bold justify-between'>
           <span>
             <i className='fa-solid fa-arrow-right-to-city px-3 pt-1 text-xl'></i>{" "}
             Sections
@@ -80,63 +79,69 @@ const Sections = () => {
           {/* <Button>add section</Button> */}
         </div>
         {openAddSection && (
-          <div className='flex w-full flex-row gap-2  rounded-xl p-4 bg-slate-100'>
+          <div className='flex w-full flex-row gap-2 shadow-xl rounded-xl p-4 bg-slate-200'>
             <AddSection sectionStatus={() => setOpenAddSection(false)} />
           </div>
         )}
         <div
           className={`flex  ${
             openAddSection && "hidden"
-          } w-full flex-row gap-2   rounded-xl p-4 bg-white`}
+          } w-full flex-col md:flex-row gap-2 shadow-xl  rounded-xl p-4  `}
         >
-          <div className={`flex rounded-sm  w-full shadow-2xl ${schedule&&"hidden"}`}>
-            <div className='flex flex-wrap  flex-row  '>
-              <div className='flex flex-col '>
-                <div className='flex p-1 gap-2 justify-center  flex-wrap flex-row bg-white rounded-md '>
-                  <div className='flex flex-row justify-around w-full gap-2 text-sm font-thin text-slate-500 mb-3 '>
-                    <span></span>
-                    <span>SECTION Name</span>
-                    <span>YEAR</span>
-                    <span> LEVEL</span>
-                    <span> STUDENTS</span>
-                    <span> SECLUDE</span>
-                    <span> INSTRUCTOR</span>
-                    <span>
-                      <i className='fa fa-ellipsis-v'></i>
-                    </span>
-                  </div>
-                  <div className=' all_items flex flex-row flex-wrap gap-8 w-full overflow-y-scroll h-5/6 justify-around '>
-                    {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
-                      <div
-                        key={item}
-                        className={`flex text-slate-500 flex-row gap-1 w-full justify-around cursor-pointer ${
-                          item === selectedItem ? "bg-blue-500 text-white" : ""
-                        }`}
-                        onClick={() => handleItemClick(item)}
-                      >
-                        <span>{item}.</span>
-                        <span>Sec A</span>
-                        <span>2020</span>
-                        <span>Level V||</span>
-                        <span>
-                          23 <i className='fa fa-edit text-blue-600'></i>
-                        </span>
-                        <span>
-                          23 <i className='fa fa-edit text-blue-600'></i>
-                        </span>
-                        <span>
-                          2 <i className='fa fa-edit text-blue-600'></i>
-                        </span>
-
-                        <span></span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className='table-container overflow-scroll ring-1 ring-slate-200 shadow-sm bg-white rounded-lg h-[calc(40vh)] md:h-[calc(60vh)]'>
+            <table>
+              <tbody>
+                <tr className='text-sm font-thin text-slate-600'>
+                  <th></th>
+                  <th>SECTION Name</th>
+                  <th>YEAR</th>
+                  <th>LEVEL</th>
+                  <th>STUDENTS</th>
+                  <th>SECLUDE</th>
+                  <th>INSTRUCTOR</th>
+                  <th>
+                    <i className='fa fa-ellipsis-v'></i>
+                  </th>
+                </tr>
+                <tr className='h-1 bg-slate-100 w-full' />
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
+                  <tr
+                    key={item}
+                    className={`text-sm text-gray-900 ${
+                      item === selectedItem ? "bg-blue-500 text-white" : ""
+                    }`}
+                    onClick={() => handleItemClick(item)}
+                  >
+                    <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
+                      {item}.
+                    </td>
+                    <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
+                      Sec A
+                    </td>
+                    <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
+                      2020
+                    </td>
+                    <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
+                      Level V||
+                    </td>
+                    <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
+                      23 <i className='fa fa-edit text-blue-600'></i>
+                    </td>
+                    <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
+                      23 <i className='fa fa-edit text-blue-600'></i>
+                    </td>
+                    <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
+                      2 <i className='fa fa-edit text-blue-600'></i>
+                    </td>
+                    <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'></td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-         {schedule&& <div className='flex flex-wrap flex-col m-9  bg-white rounded-xl shadow-md'>
+
+          {schedule && (
+            <div className='flex flex-wrap flex-col m-9  bg-white rounded-xl shadow-md'>
               <div className='flex flex-row  mb-9  '>
                 <div className='flex flex-col p-7 gap-6 w-full '>
                   <span className='text-xl  font-bold text-blue-600'>
@@ -196,7 +201,9 @@ const Sections = () => {
                       )
                     )}
                     {isModalVisible && (
-                      <div className='flex z-20 opacity-100 shadow-2xl fixed top-20 mt-20 right-0 left-0 z-100 justify-center items-center md:inset-0 h-[calc(140%-1rem)] max-h-full'>                        <div className=' p-4 w-[24%] h-[80%]  max-h-full'>
+                      <div className='flex z-20 opacity-100 shadow-2xl fixed top-20 mt-20 right-0 left-0 z-100 justify-center items-center md:inset-0 h-[calc(140%-1rem)] max-h-full'>
+                        {" "}
+                        <div className=' p-4 w-[24%] h-[80%]  max-h-full'>
                           <div className=' bg-white rounded-lg shadow-2xl '>
                             <div className=''>
                               <div className=''>
@@ -293,16 +300,30 @@ const Sections = () => {
 
                                       <div className='flex flex-col   '>
                                         <span className='text-md   font-bold text-slate-500'>
-                                          clone to 
+                                          clone to
                                         </span>
                                         <span className='flex pt-3 flex-row gap-2 flex-wrap'>
-                                        <button className="text-sm font-thin ring-1 ring-slate-200 px-3 rounded-md">mon</button>
-                                        <button className="text-sm font-thin ring-1 ring-slate-200 px-3 rounded-md bg-blue-500  text-white">thu</button>
-                                        <button className="text-sm font-thin ring-1 ring-slate-200 px-3 rounded-md">wed</button>
-                                        <button className="text-sm font-thin ring-1 ring-slate-200 px-3 rounded-md">thu</button>
-                                        <button className="text-sm font-thin ring-1 ring-slate-200 px-3 rounded-md">fri</button>
-                                         <button className="text-sm font-thin ring-1 ring-slate-200 px-3 rounded-md  bg-blue-500  text-white">sat</button>
-                                         <button className="text-sm font-thin ring-1 ring-slate-200 px-3 rounded-md">sun</button>
+                                          <button className='text-sm font-thin ring-1 ring-slate-200 px-3 rounded-md'>
+                                            mon
+                                          </button>
+                                          <button className='text-sm font-thin ring-1 ring-slate-200 px-3 rounded-md bg-blue-500  text-white'>
+                                            thu
+                                          </button>
+                                          <button className='text-sm font-thin ring-1 ring-slate-200 px-3 rounded-md'>
+                                            wed
+                                          </button>
+                                          <button className='text-sm font-thin ring-1 ring-slate-200 px-3 rounded-md'>
+                                            thu
+                                          </button>
+                                          <button className='text-sm font-thin ring-1 ring-slate-200 px-3 rounded-md'>
+                                            fri
+                                          </button>
+                                          <button className='text-sm font-thin ring-1 ring-slate-200 px-3 rounded-md  bg-blue-500  text-white'>
+                                            sat
+                                          </button>
+                                          <button className='text-sm font-thin ring-1 ring-slate-200 px-3 rounded-md'>
+                                            sun
+                                          </button>
                                         </span>
                                       </div>
                                     </div>
@@ -335,28 +356,31 @@ const Sections = () => {
                   </div>
                 </div>
               </div>
-            </div>}
+            </div>
+          )}
 
-          <div className='flex  rounded-sm w-full'>
-            <div className='flex flex-col w-full'>
+          <div className='flex flex-col md:flex-col rounded-sm w-full'>
+            <div className='flex gap-1 md:gap-4 flex-col w-full'>
               <div className='flex flex-row'>
-                <div className='flex flex-row -mt-7 gap-7 w-full'>
-                  <div className='flex flex-col w-[77%] '>
-                    <div className='flex flex-col justify-start  z-10 rounded-md  pr-3  pl-3   flex-wrap bg-white text-start w-full  mb-1 text-slate-500 shadow-xl '>
+                <div className='flex flex-col md:flex-row md:-mt-7 gap-2 md:gap-7 md:w-full'>
+                  <div className='flex flex-col  md:w-[77%] '>
+                    <div className='flex flex-col justify-start  md:z-10 rounded-md  pr-3  pl-3   flex-wrap bg-white text-start md:w-full  mb-1 text-slate-500 shadow-xl  '>
                       <span>Level |</span>
-                      <div className='flex justify-center text-center flex-col w-full py-2 flex-wrap text-sm gap-2 text-slate-600 '>
-                        <div className='p-5 my-5 flex flex-col'>
+                      <div className='flex justify-center text-center flex-col w-full md:py-2 flex-wrap text-sm gap-2 text-slate-600 '>
+                        <div className='p-1 md:p-5 my-1 md:my-5 flex flex-col'>
                           <Progress
                             type='circle'
                             status='active'
                             percent={98}
                           />
-                          <span className='mt-7'>6 courses completed </span>
+                          <span className='mt-3 md:mt-7'>
+                            6 courses completed{" "}
+                          </span>
                         </div>
                       </div>
                       <div className='flex flex-col justify-start  bg-white   '>
                         <span className='my-1 mb-1'> Instructors</span>
-                        <div className='flex flex-row gap-0 mb-6  justify-start'>
+                        <div className='flex flex-row gap-0 mb-3 md:mb-6  justify-start'>
                           <div className='flex flex-col '>
                             <div className='flex flex-row   flex-wrap gap-4   justify-between'>
                               {[1].map((item) => (
@@ -388,8 +412,9 @@ const Sections = () => {
                             </div>
                           </div>
                         </div>
-                        <button className='mt-9 w-36 text-sm rounded-full bg-slate-300 text-slate-700 m-2'
-                        onClick={()=>setSchedule((prev=>!prev))}
+                        <button
+                          className='mt-2 md:mt-9 w-36 text-sm rounded-full bg-slate-300 text-slate-700 m-2'
+                          onClick={() => setSchedule((prev) => !prev)}
                         >
                           manage schedule
                         </button>
@@ -397,9 +422,9 @@ const Sections = () => {
                     </div>
                   </div>
                   <div className='flex flex-col w-full mt-3'>
-                    <div className='flex flex-col gap-2  h-60  w-full text-start  mt-3 mb-1 text-slate-200'>
-                      <div className='flex flex-col  rounded-md justify-start  text-start  mt-4 mb-1 text-slate-500  w-full'>
-                        <div className='flex flex-col w-full gap-3  justify-center text-center bg-blue-600   h-52  text-slate-100'>
+                    <div className='flex flex-col gap-2  md:h-60  w-full text-start  mt-3 md:mb-1 text-slate-200'>
+                      <div className='flex flex-col gap-2 rounded-md justify-start  text-start  mt-4 md:mb-1 text-slate-500  w-full'>
+                        <div className='flex flex-col w-full gap-3  justify-center text-center bg-blue-600   md:h-52  text-slate-100'>
                           <span>ID : ETS0392/12</span>
                           <span>DATA : 12-12,2022</span>
                           <span>CGPA : 3.5</span>
@@ -408,9 +433,8 @@ const Sections = () => {
                         <div className='flex flex-row text-slate-500 text-xl font-bold  justify-between px-5 w-full'>
                           <span>Data</span>
                         </div>
-
-                        <div className='flex gap-3 justify-start flex-col'>
-                          <div className=' rounded-md shadow-xl bg-white p-7 flex flex-row gap-10  '>
+                        <div className='flex gap-3 justify-start flex-col md:h-64'>
+                          <div className=' rounded-md shadow-xl bg-white p-4 md:p-7 flex flex-row gap-10  '>
                             {[5, 2, 3].map((item) => (
                               <span
                                 key={item}
@@ -427,7 +451,7 @@ const Sections = () => {
                               </span>
                             ))}
                           </div>
-                          <div className=' rounded-md shadow-xl bg-slate-300 p-7 flex flex-row gap-10  '>
+                          <div className=' rounded-md shadow-xl bg-slate-300 p-4 md:p-7 flex flex-row gap-10  '>
                             {[5, 2, 3].map((item) => (
                               <span
                                 key={item}
@@ -450,97 +474,92 @@ const Sections = () => {
                   </div>
                 </div>
               </div>
-              <div className='flex rounded-sm mt-4  w-full'>
-                <div className='flex flex-wrap  flex-row  '>
-                  <div className='flex flex-col  ring-1 ring-slate-100 shadow-xl mx-2 rounded-2xl w-full'>
-                    <div className='flex p-1 gap-2 justify-center  flex-wrap flex-row bg-white  px-10'>
-                      <div className='flex flex-row justify-around w-full gap-2 text-sm font-thin text-slate-500 m-3 '>
-                      <span></span>
-                        <span >TraineeName</span>
-                        <span className='flex  px-14'>CGPA</span>
-                        <span> COURSE</span>
-                        <span> status</span>
-                        <span> COURSES</span>
-                        <span> promote</span>
-                      </div>
-
-                      <div className='all_items flex flex-row flex-wrap gap-6 w-full overflow-y-scroll h-5/6 justify-around '>
-                        {/* <span className='h-1 bg-slate-100 w-full my-3' /> */}
-                        <div className='flex flex-row flex-wrap gap-2 w-full overflow-y-scroll justify-between'>
-                          {[1, 2, 3, 4].map((item) => (
-                            <div
-                              key={item}
-                              className={`flex  text-slate-500 flex-row gap-2 w-full justify-between cursor-pointer ${
-                                item === selectedItem
-                                  ? "bg-blue-500 text-white"
-                                  : ""
-                              }`}
-                              onClick={() => handleButtonClick(item)}
-                            >
-                              <span>{item}</span>
-                              <span htmlFor='' className='flex flex-row'>
-                                {/* {item}.Melak */}
-                                <span>
-                                  <Image
-                                    src='/elsabet.jpeg'
-                                    alt=''
-                                    width={50}
-                                    height={50}
-                                    className='rounded-full rounded-image text-center'
-                                  />
-                                </span>
-                                <span className='flex flex-col'>
-                                  <span>Melak ab </span>
-                                  <span className='text-slate-600 font-thin'>
-                                    TF010233{" "}
-                                  </span>
-                                </span>
-                              </span>
-
-                              <span>electro C1</span>
-                              <span>
-                                3 <i className='fa fa-edit text-blue-600'></i>
-                              </span>
-                              {item === 4 ||
-                              item === 3 ||
-                              item === 6 ||
-                              item === 11 ||
-                              item === 15 ? (
-                                <button
-                                  data-modal-hide='default-modal'
-                                  type='button'
-                                  className={`text-slate-400 ring-1 h-5 ring-red-300 rounded-full focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium  text-sm px-1 py-0 `}
-                                  // onClick={handlePayrollStatus}
-                                >
-                                  withdrawn
-                                </button>
-                              ) : (
-                                <button
-                                  data-modal-hide='default-modal'
-                                  type='button'
-                                  className={`text-slate-400  ring-1 h-5 ring-green-300 rounded-full focus:ring-4 focus:outline-none focus:ring-green-300 font-medium  text-sm px-4 -py-3 `}
-                                  // onClick={handlePayrollStatus}
-                                >
-                                  active{" "}
-                                </button>
-                              )}
-                              <span>2020</span>
-                              <span className='flex gap-2'>
-                              <i className='fa-solid fa-circle-check text-green-400 font-bold text-lg'></i>
-                              <i className='fa-solid fa-xmark text-red-400 font-bold'></i>
+              <div className='table-container mt-3 overflow-scroll ring-1 ring-slate-200 shadow-sm bg-white rounded-lg h-[calc(40vh)] md:h-[calc(60vh)]'>
+                <table>
+                  <tbody>
+                    <tr className='text-sm font-thin'>
+                      <th></th>
+                      <th>TraineeName</th>
+                      <th className=''>CGPA</th>
+                      <th>COURSE</th>
+                      <th>status</th>
+                      <th>COURSES</th>
+                      <th>promote</th>
+                    </tr>
+                    <tr className='h-1 bg-slate-100 w-full' />
+                    {[1, 2, 3, 4].map((item) => (
+                      <tr
+                        key={item}
+                        className={`text-sm text-gray-900 ${
+                          item === selectedItem ? "bg-blue-500 text-white" : ""
+                        }`}
+                        onClick={() => handleButtonClick(item)}
+                      >
+                        <td>{item}</td>
+                        <td className='w-32 px-1 sm:w-40 md:w-72 py-1 md:py-3'>
+                          <span className='flex flex-row gap-0'>
+                            <span className='w-10'>
+                              <Image
+                                src='/elsabet.jpeg'
+                                alt=''
+                                width={50}
+                                height={50}
+                                className='rounded-full rounded-image text-center'
+                              />
                             </span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
+                            <span className='flex flex-col'>
+                              <span>Melak ab </span>
+                              <span className='text-slate-600 font-thin'>
+                                TF010233{" "}
+                              </span>
+                            </span>
+                          </span>
+                        </td>
 
-                    </div>
-                      <div className="flex justify-end">
-
-                        <button className="bg-blue-500 rounded-full h-6 text-white px-4 m-3">done</button>
-                      </div>
-                  </div>
-                </div>
+                        <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
+                          <i className='fa fa-edit text-blue-600 mx-3'></i>
+                        </td>
+                        <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
+                          electro C1
+                        </td>
+                        <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
+                          {item === 4 ||
+                          item === 3 ||
+                          item === 6 ||
+                          item === 11 ||
+                          item === 15 ? (
+                            <button
+                              data-modal-hide='default-modal'
+                              type='button'
+                              className={`text-slate-400 ring-1 h-5 ring-red-300 rounded-full focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium  text-sm px-1 py-0 `}
+                              // onClick={handlePayrollStatus}
+                            >
+                              withdrawn
+                            </button>
+                          ) : (
+                            <button
+                              data-modal-hide='default-modal'
+                              type='button'
+                              className={`text-slate-400  ring-1 h-5 ring-green-300 rounded-full focus:ring-4 focus:outline-none focus:ring-green-300 font-medium  text-sm px-4 -py-3 `}
+                              // onClick={handlePayrollStatus}
+                            >
+                              active{" "}
+                            </button>
+                          )}
+                        </td>
+                        <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
+                          2020
+                        </td>
+                        <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
+                          <span className='flex gap-7 justify-center'>
+                            <i className='fa-solid fa-circle-check text-green-400 font-bold text-lg'></i>
+                            <i className='fa-solid fa-xmark text-red-400 font-bold'></i>
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
