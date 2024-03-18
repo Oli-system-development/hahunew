@@ -67,11 +67,11 @@ const AddSection = ({ addSection, sectionStatus }) => {
     console.log(value.format("YYYY-MM-DD"), mode);
   };
   const { token } = theme.useToken();
-  const wrapperStyle = {
-    width: 280,
-    border: `1px solid   ${token.colorBorderSecondary}`,
-    borderRadius: token.borderRadiusLG,
-  };
+  // const wrapperStyle = {
+  //   width: 280,
+  //   border: `1px solid   ${token.colorBorderSecondary}`,
+  //   borderRadius: token.borderRadiusLG,
+  // };
   return (
     <>
       <div className='flex w-full flex-col md:flex-row gap-2 md:shadow-xl rounded-xl  md:p-4 '>
@@ -304,7 +304,7 @@ const AddSection = ({ addSection, sectionStatus }) => {
             )}
             {schedule && (
               <div className='flex flex-wrap flex-col m-1 md:m-9  bg-white rounded-xl shadow-md'>
-                <div className='flex flex-col md:flex-row gap-10 mb-2 md:mb-9  '>
+                <div className='flex flex-col md:flex-row gap-4 md:gap-10 mb-2 md:mb-9  '>
                   <div className='flex flex-col mb-2 p-2 md:p-7 gap2 md:gap-6 w-full '>
                     <span className='md:text-xl  font-bold text-blue-600'>
                       {" "}
@@ -328,8 +328,10 @@ const AddSection = ({ addSection, sectionStatus }) => {
                       />
                     </div>
                   </div>
-                  <div className='md:w-full'>
-                    <div style={wrapperStyle}>
+                  <div className=' md:w-auto'>
+                    <div
+                    // style={"wrapperStyle"}
+                    >
                       <Calendar
                         fullscreen={false}
                         onPanelChange={onPanelChange}
