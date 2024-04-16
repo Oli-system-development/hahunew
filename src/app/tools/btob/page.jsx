@@ -5,11 +5,8 @@ import React from "react";
 const Btob = () => {
   return (
     <div className='  m-2 md:m-6 bg-slate-50'>
-      {/* <div className='md:hidden flex justify-center'>
-        i am working on responsive
-      </div> */}
-      <div className='flex gap-2  flex-col'>
-        <div className='flex flex-row gap-6 md:justify-between'>
+      <div className='flex gap-2 w-full  flex-col'>
+        <div className='flex flex-row w-full gap-6 justify-between'>
           <div className='flex gap-1 md:gap-20 '>
             <span className='mt-3'>
               <div className='w-10 h-10 rounded-full shadow-lg relative'>
@@ -30,7 +27,7 @@ const Btob = () => {
 
               <input
                 name=''
-                className='shadow h-8 w-32 appearance-none ring-1 ring-slate-200 border  md:w-96 rounded-full  py-2 md:px-4  text-slate-400 leading-tight focus:outline-none focus:shadow-outline'
+                className='shadow h-8 w-40 appearance-none ring-1 ring-slate-200 border  md:w-96 rounded-full  py-2 md:px-4  text-slate-400 leading-tight focus:outline-none focus:shadow-outline'
                 id='header text'
                 type='text'
                 placeholder='what are you looking for...'
@@ -45,7 +42,9 @@ const Btob = () => {
             <span className='mt-4'>
               <i className='fa fa-cart-plus md:text-2xl text-slate-300'></i>
             </span>
-            <span className='mt-4 text-slate-400'>8:41 sun 06/22</span>
+            <span className=' hidden md:block text-xs md:text-base  mt-4 text-slate-400'>
+              8:41 sun 06/22
+            </span>
             <Link href={"/profile"} className='w-10 mt-3 md:mt-auto'>
               <Image
                 src={"/elsabet.jpeg"}
@@ -810,9 +809,9 @@ const Btob = () => {
           <div className='md:w-96'> Vehicle Parts & Accessories</div>
           <span className='px-8 ring-1 ring-slate-400 rounded-full w-full bg-slate-300 h-2 mt-4'></span>
         </div>
-        {/* <div className='flex row mx-8 px-8  w-full'>
-          <div className='flex flex-col gap-5 w-full border-r-4 px-1 bg-lime-700'>
-            <div className='flex justify-center mt-20'>
+        <div className='flex flex-col md:flex-row h-72 md:h-auto overflow-scroll  md:mx-8 px-2 md:px-8  w-auto'>
+          <div className='flex flex-col gap-5 border-b-4 md:border-b-0 w-full border-r-4 px-1 bg-lime-800'>
+            <div className='flex justify-center my-3 md:mt-20'>
               <div className='flex  w-32  h-32 py-2 rounded-lg  relative'>
                 <Image
                   src={"/shirt.jpg"}
@@ -825,7 +824,7 @@ const Btob = () => {
               </div>
             </div>
           </div>
-          <div className='flex flex-col gap-5 w-full border-r-4 px-1'>
+          <div className='flex flex-col gap-5 border-b-4 md:border-b-0 w-full border-r-4 px-1'>
             <div className='flex flex-col gap-2'>
               <span className='text-xl font-bold'>Premium OEM Factories</span>
               <span className='text-sm font-bold text-slate-500'>
@@ -863,7 +862,7 @@ const Btob = () => {
               </div>
             </div>
           </div>
-          <div className='flex flex-col gap-5 w-full border-r-4 px-1'>
+          <div className='flex flex-col gap-5 border-b-4 md:border-b-0 w-full border-r-4 px-1'>
             <div className='flex flex-col gap-2'>
               <span className='text-xl font-bold'>Premium OEM Factories</span>
               <span className='text-sm font-bold text-slate-500'>
@@ -901,7 +900,7 @@ const Btob = () => {
               </div>
             </div>
           </div>
-          <div className='flex flex-col gap-5 w-full border-r-4 px-1'>
+          <div className='flex flex-col gap-5 border-b-4 md:border-b-0 w-full border-r-4 px-1'>
             <div className='flex flex-col gap-2'>
               <span className='text-xl font-bold'>Premium OEM Factories</span>
               <span className='text-sm font-bold text-slate-500'>
@@ -939,7 +938,7 @@ const Btob = () => {
               </div>
             </div>
           </div>
-          <div className='flex flex-col gap-5 w-full border-r-4 px-1'>
+          <div className='flex flex-col gap-5 border-b-4 md:border-b-0 w-full border-r-4 px-1'>
             <div className='flex flex-col gap-2'>
               <span className='text-xl font-bold'>Premium OEM Factories</span>
               <span className='text-sm font-bold text-slate-500'>
@@ -977,19 +976,19 @@ const Btob = () => {
               </div>
             </div>
           </div>
-        </div> */}
+        </div>
         {/* step8 */}
-        {/* <div className='flex m-10 flex-row text-slate-400 font-bold text-2xl justify-between gap-2'>
+        <div className='flex m-2 md:m-10 flex-row text-slate-400 font-bold text-sm w-full md:text-2xl justify-between gap-2'>
           <spa className='w-full'>weekly deals </spa>
-          <span className='px-8 ring-1 ring-slate-400 rounded-full w-full bg-slate-300 h-2 mt-4'></span>
+          <span className='md:px-8 ring-1 ring-slate-400 rounded-full w-full bg-slate-300 h-2 mt-4'></span>
           <div className='w-full'>live </div>
-          <span className='px-8 ring-1 ring-slate-400 rounded-full w-full bg-slate-300 h-2 mt-4'></span>
-          <div className='w-full'>
+          <span className='md:px-8 ring-1 ring-slate-400 rounded-full w-full bg-slate-300 h-2 mt-4'></span>
+          <div className='w-full text-xs'>
             small comodities market place Parts & Accessories{" "}
           </div>
-          <span className='px-8 ring-1 ring-slate-400 rounded-full w-full bg-slate-300 h-2 mt-4'></span>
-        </div> */}
-        {/* <div className='flex flex-col z-10 px-10 flex-wrap overflow-x-scroll justify-normal h-64 gap-16 pt-3  '>
+          <span className='md:px-8 ring-1 ring-slate-400 rounded-full w-full bg-slate-300 h-2 mt-4'></span>
+        </div>
+        <div className='flex flex-col z-10 px-3 md:px-10 flex-wrap overflow-x-scroll justify-normal h-64 gap-4 md:gap-16 pt-3  '>
           {[1, 2, 3, 4, 5, 6].map((movie) => (
             <div key={movie} className='flex flex-col gap-3'>
               <div className='w-40 h-48 rounded-lg shadow-lg relative'>
@@ -1007,9 +1006,9 @@ const Btob = () => {
               </button>
             </div>
           ))}
-        </div> */}
+        </div>
         {/* step 9 */}
-        {/* <div className='flex m-10 flex-row text-slate-400 font-bold text-2xl  gap-2'>
+        <div className='flex m-4 md:m-10 flex-row text-slate-400 font-bold text-sm md:text-2xl  gap-2'>
           <spa className='bg-orange-500 text-white font-extrabold text-md rounded-3xl p-2 h-10'>
             RPQ{" "}
           </spa>
@@ -1018,9 +1017,9 @@ const Btob = () => {
           </div>
           <div className='w-full'>Custumization service </div>
           <div className=' ring-1 ring-slate-400 rounded-full w-full bg-slate-300 h-2 mt-4'></div>
-        </div> */}
-        {/* <div className='flex flex-row mx-4 gap-10'>
-          <div className='flex flex-col bg-blue-500 w-full text-white text-2xl font-bold gap-10 p-6'>
+        </div>
+        <div className='flex flex-col md:flex-row mx-2 md:mx-4 gap-10'>
+          <div className='flex flex-col bg-blue-500 w-full text-white text-sm md:text-2xl font-bold gap-4 md:gap-10 p-6'>
             <span className='text-xl font-bold text-white'>
               source smarter with faq
             </span>
@@ -1049,7 +1048,7 @@ const Btob = () => {
               placeholder='enter product name '
               className='ring-2 ring-slate-300 rounded-sm w-72 p-3'
             />
-            <div className='flex flex-row gap-20 '>
+            <div className='flex flex-col md:flex-row gap-20 '>
               <input
                 type='text'
                 name=''
@@ -1069,18 +1068,18 @@ const Btob = () => {
               Request for quotation
             </button>
           </div>
-        </div> */}
+        </div>
         {/* step10 */}
-        {/* <div className='flex m-10 flex-row text-slate-400 font-bold text-2xl justify-between gap-2'>
+        <div className='flex m-3 md:m-10 flex-row text-slate-400 font-bold text-lg md:text-2xl justify-between gap-2'>
           <div className='w-96'>Just Foryou </div>
           <span className='px-8 ring-1 ring-slate-400 rounded-full w-full bg-slate-300 h-2 mt-4'></span>
-        </div> */}
+        </div>
         {/* step 11 */}
-        {/* 
-        <div className='flex flex-row z-10  flex-wrap overflow-x-scroll justify-center  gap-10 px-3  pt-3  '>
+
+        <div className='flex flex-col md:flex-row md:h-auto z-10  h-72 w-full flex-wrap overflow-scroll justify-center  gap-1 md:gap-10 md:px-3  pt-3  '>
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 11, 12].map((movie) => (
             <div key={movie} className='flex flex-col gap-2'>
-              <div className='w-40 h-48 rounded-lg shadow-lg relative'>
+              <div className='w-40 md:h-48 h-32 rounded-lg shadow-lg relative'>
                 <Image
                   src={"/shirt.jpg"}
                   alt='image'
@@ -1102,11 +1101,11 @@ const Btob = () => {
             </div>
           ))}
         </div>
-        <div className='flex m-10 flex-row text-slate-400 font-bold text-2xl justify-between gap-2'>
-          <div className='w-96'> </div>
+        <div className='flex m-3 md:m-10 flex-row text-slate-400 font-bold text-lg md:text-2xl justify-between gap-2'>
+          <div className='w-96'>bussiness job </div>
           <span className='px-8 ring-1 ring-slate-400 rounded-full w-full bg-slate-300 h-2 mt-4'></span>
         </div>
-        <div className='flex flex-row z-10  flex-wrap overflow-x-scroll justify-around   px-3  pt-3  '>
+        <div className='flex  h-72 flex-col md:flex-row z-10 gap-4 flex-wrap overflow-scroll justify-around   px-3  pt-3  '>
           {[1, 2, 3, 4].map((movie) => (
             <div key={movie} className='flex flex-col gap-2'>
               <div className='w-72 h-48 rounded-lg shadow-lg relative'>
@@ -1132,9 +1131,9 @@ const Btob = () => {
             </div>
           ))}
         </div>
-        <div className='flex m-10 flex-row text-slate-400 font-bold text-2xl justify-between gap-2'>
+        <div className='flex m-3 md:m-10 flex-row text-slate-400 font-bold text-lg md:text-2xl justify-between gap-2'>
           <span className='px-8 ring-1 ring-slate-400 rounded-full w-full bg-slate-300 h-2 mt-4'></span>
-        </div> */}
+        </div>
       </div>
     </div>
   );
