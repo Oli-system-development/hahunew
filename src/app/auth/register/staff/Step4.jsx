@@ -1,6 +1,9 @@
 import React from "react";
+import { useFormContext } from "react-hook-form";
 
 const Step4 = () => {
+  const { register } = useFormContext();
+
   return (
     <div className='px-10 flex flex-col gap-8 md:w-full '>
       <span className='w-11 h-19 bg-teal-400 text-teal-400'>fsd</span>
@@ -24,7 +27,8 @@ const Step4 = () => {
                 <div className='flex flex-col gap-1'>
                   <label htmlFor=''>user name</label>
                   <input
-                    name=''
+                    {...register("userName")}
+                    name='userName'
                     className='shadow h-12 appearance-none ring-1 ring-slate-400 border rounded w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                     id='username'
                     type='text'
@@ -42,7 +46,8 @@ const Step4 = () => {
                 <div className='flex flex-col gap-1'>
                   <label htmlFor=''>select password </label>
                   <input
-                    name=''
+                    {...register("password")}
+                    name='password'
                     className='shadow h-12 appearance-none ring-1 ring-slate-400 border rounded w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                     id=''
                     type='password'
@@ -52,7 +57,8 @@ const Step4 = () => {
                 <div className='flex flex-col gap-1'>
                   <label htmlFor=''>confirm password</label>
                   <input
-                    name=''
+                    {...register("confirmPassword")}
+                    name='confirmPassword'
                     className='shadow h-12 appearance-none ring-1 ring-slate-400 border rounded w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                     id=''
                     type='password'
@@ -69,7 +75,8 @@ const Step4 = () => {
                 <div className='flex flex-col gap-1'>
                   <label htmlFor=''>upload academic history</label>
                   <input
-                    name=''
+                    {...register("academicHistory")}
+                    name='academicHistory'
                     className='shadow h-12 appearance-none ring-1 ring-slate-400 border rounded w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                     id=''
                     type='file'
@@ -82,7 +89,8 @@ const Step4 = () => {
                   </label>
 
                   <input
-                    name=''
+                    {...register("entranceExamScan")}
+                    name='entranceExamScan'
                     className='shadow h-10 appearance-none    w-full  px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                     id=''
                     type='file'
@@ -94,7 +102,8 @@ const Step4 = () => {
                     highschool transcript{" "}
                   </label>
                   <input
-                    name=''
+                    {...register("highschoolTranscript")}
+                    name='highschoolTranscript'
                     className='shadow h-10 appearance-none    w-full  px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                     id=''
                     type='file'
@@ -106,7 +115,8 @@ const Step4 = () => {
                     id scan
                   </label>
                   <input
-                    name=''
+                    {...register("idScan")}
+                    name='idScan'
                     className='shadow h-10 appearance-none    w-full  px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                     id=''
                     type='file'

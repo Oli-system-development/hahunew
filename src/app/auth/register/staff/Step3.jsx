@@ -1,6 +1,9 @@
 import React from "react";
+import { useFormContext } from "react-hook-form";
 
 const Step3 = () => {
+  const { register } = useFormContext();
+
   return (
     <div className='px-10 flex flex-col gap-8 md:w-full'>
       <span className='w-11 h-19 bg-teal-400 text-teal-400'>fsd</span>
@@ -25,7 +28,7 @@ const Step3 = () => {
                 <div className='flex flex-col gap-1'>
                   <label htmlFor=''>full name</label>
                   <input
-                    name=''
+                    {...register("fullName1")}
                     className='shadow h-12 appearance-none ring-1 ring-slate-400 border rounded w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                     id='username'
                     type='text'
@@ -35,7 +38,7 @@ const Step3 = () => {
                 <div className='flex flex-col gap-1'>
                   <label htmlFor=''>phone number</label>
                   <input
-                    name=''
+                    {...register("phoneNumber1")}
                     className='shadow h-12 appearance-none ring-1 ring-slate-400 border rounded w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                     id=''
                     type='number'
@@ -45,7 +48,7 @@ const Step3 = () => {
                 <div className='flex flex-col gap-1'>
                   <label htmlFor=''>relation</label>
                   <input
-                    name=''
+                    {...register("relation1")}
                     className='shadow h-12 appearance-none ring-1 ring-slate-400 border rounded w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                     id=''
                     type='text'
@@ -63,7 +66,7 @@ const Step3 = () => {
                 <div className='flex flex-col gap-1'>
                   <label htmlFor=''>country</label>
                   <input
-                    name=''
+                    {...register("country1")}
                     className='shadow h-12 appearance-none ring-1 ring-slate-400 border rounded w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                     id=''
                     type='text'
@@ -73,7 +76,7 @@ const Step3 = () => {
                 <div className='flex flex-col gap-1'>
                   <label htmlFor=''>region</label>
                   <input
-                    name=''
+                    {...register("region1")}
                     className='shadow h-12 appearance-none ring-1 ring-slate-400 border rounded w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                     id=''
                     type='text'
@@ -83,7 +86,7 @@ const Step3 = () => {
                 <div className='flex flex-col gap-1'>
                   <label htmlFor=''>city</label>
                   <input
-                    name=''
+                    {...register("city1")}
                     className='shadow h-12 appearance-none ring-1 ring-slate-400 border rounded w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                     id=''
                     type='text'
@@ -94,7 +97,7 @@ const Step3 = () => {
                 <div className='flex flex-col gap-1'>
                   <label htmlFor=''>woreda</label>
                   <input
-                    name=''
+                    {...register("woreda1")}
                     className='shadow h-12 appearance-none ring-1 ring-slate-400 border rounded w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                     id=''
                     type='text'
@@ -104,7 +107,7 @@ const Step3 = () => {
                 <div className='flex flex-col gap-1'>
                   <label htmlFor=''>house no</label>
                   <input
-                    name=''
+                    {...register("houseNo1")}
                     className='shadow h-12 appearance-none ring-1 ring-slate-400 border rounded w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                     id=''
                     type='text'
@@ -121,7 +124,7 @@ const Step3 = () => {
                 <div className='flex flex-col gap-1'>
                   <label htmlFor=''>full name</label>
                   <input
-                    name=''
+                    {...register("fullName2")}
                     className='shadow h-12 appearance-none ring-1 ring-slate-400 border rounded w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                     id='username'
                     type='text'
@@ -131,7 +134,7 @@ const Step3 = () => {
                 <div className='flex flex-col gap-1'>
                   <label htmlFor=''>phone number</label>
                   <input
-                    name=''
+                    {...register("phoneNumber2")}
                     className='shadow h-12 appearance-none ring-1 ring-slate-400 border rounded w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                     id=''
                     type='number'
@@ -141,7 +144,7 @@ const Step3 = () => {
                 <div className='flex flex-col gap-1'>
                   <label htmlFor=''>relation</label>
                   <input
-                    name=''
+                    {...register("relation2")}
                     className='shadow h-12 appearance-none ring-1 ring-slate-400 border rounded w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                     id=''
                     type='text'

@@ -122,98 +122,7 @@ const Dashboard = () => {
       color: "text-slate-300",
     },
   ];
-  //     name: "trianes",
-  //     icon: <UserAddOutlined />,
-  //   },
-  //   {
-  //     name: "HR",
-  //     icon: <UserAddOutlined />,
-  //   },
-  //   {
-  //     name: "library",
-  //     icon: <UserAddOutlined />,
-  //   },
-  //   {
-  //     name: "Academic",
-  //     icon: <UserAddOutlined />,
-  //   },
-  //   {
-  //     name: "trianes",
-  //     icon: <UserAddOutlined />,
-  //   },
-  //   {
-  //     name: "trianes",
-  //     icon: <UserAddOutlined />,
-  //   },
-  //   {
-  //     name: "trianes",
-  //     icon: <UserAddOutlined />,
-  //   },
-  //   {
-  //     name: "trianes",
-  //     icon: <UserAddOutlined />,
-  //   },
-  //   {
-  //     name: "trianes",
-  //     icon: <UserAddOutlined />,
-  //   },
-  // ];
-  // const dailyTasks = [
-  //   {
-  //     role: "my list",
-  //     description: "meeting with team",
-  //     icon: <UserAddOutlined />,
-  //     date: "12-3-2022",
-  //   },
-  //   {
-  //     role: "my list",
-  //     description: "meeting with team",
-  //     icon: <UserAddOutlined />,
-  //     date: "12-3-2022",
-  //   },
-  //   {
-  //     role: "my list",
-  //     description: "meeting with team",
-  //     icon: <UserAddOutlined />,
-  //     date: "12-3-2022",
-  //   },
-  //   {
-  //     role: "my list",
-  //     description: "meeting with team",
-  //     icon: <UserAddOutlined />,
-  //     date: "12-3-2022",
-  //   },
-  //   {
-  //     role: "my list",
-  //     description: "meeting with team",
-  //     icon: <UserAddOutlined />,
-  //     date: "12-3-2022",
-  //   },
-  //   {
-  //     role: "my list",
-  //     description: "meeting with team",
-  //     icon: <UserAddOutlined />,
-  //     date: "12-3-2022",
-  //   },
-  //   {
-  //     role: "my list",
-  //     description: "meeting with team",
-  //     icon: <UserAddOutlined />,
-  //     date: "12-3-2022",
-  //   },
-  //   {
-  //     role: "my list",
-  //     description: "meeting with team",
-  //     icon: <UserAddOutlined />,
-  //     date: "12-3-2022",
-  //   },
-  //   {
-  //     role: "my list",
-  //     description: "meeting with team",
-  //     icon: <UserAddOutlined />,
-  //     date: "12-3-2022",
-  //   },
-  // ];
+ 
   return (
     <div className='mt-3 bg-slate-100'>
       <span className='hidden md:flex flex-col'>
@@ -253,7 +162,7 @@ const Dashboard = () => {
             <span className='text-lg md:text-2xl text-center mt-6 md:mt-0'>
               HaHu Tools
             </span>
-            <div className='flex bg-white rounded-lg flex-col mb-16 flex-wrap h-96 md:w-[93%] gap-7 md:gap-14 p-3  md:p-6 overflow-x-scroll shadow-md'>
+            <div className='flex bg-white rounded-lg flex-col mb-16 flex-wrap h-64 md:h-[calc(50vh-1rem)] md:w-[93%] gap-7 md:gap-14 p-3  md:p-6 overflow-x-scroll shadow-md'>
               {tools.map((tool) => (
                 <div key={tool.id} className='f'>
                   <Link href={tool.link}>

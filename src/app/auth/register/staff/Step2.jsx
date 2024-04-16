@@ -1,6 +1,9 @@
 import React from "react";
+import { useFormContext } from "react-hook-form";
 
 const Step2 = () => {
+  const { register } = useFormContext();
+
   return (
     <div className='px-10 flex flex-col gap-8 md:w-full'>
       <span className='w-11 h-19 bg-teal-400 text-teal-400'>fsd</span>
@@ -29,7 +32,7 @@ const Step2 = () => {
                 <div className='flex flex-col gap-1'>
                   <label htmlFor=''>previous work area</label>
                   <input
-                    name='email'
+                    {...register("previousWorkArea")}
                     className='shadow h-12 appearance-none ring-1 ring-slate-400 border rounded w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                     id='username'
                     type='text'
@@ -39,7 +42,7 @@ const Step2 = () => {
                 <div className='flex flex-col gap-1'>
                   <label htmlFor=''>duration</label>
                   <input
-                    name='email'
+                    {...register("duration")}
                     className='shadow h-12 appearance-none ring-1 ring-slate-400 border rounded w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                     id='username'
                     type='text'
@@ -49,7 +52,7 @@ const Step2 = () => {
                 <div className='flex flex-col gap-1'>
                   <label htmlFor=''>current level</label>
                   <input
-                    name='email'
+                    {...register("currentLevel")}
                     className='shadow h-12 appearance-none ring-1 ring-slate-400 border rounded w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                     id='username'
                     type='text'
@@ -73,7 +76,7 @@ const Step2 = () => {
                       3.subjects
                     </label>
                     <input
-                      name='email'
+                      {...register("subject3")}
                       className='shadow h-12 w-32 appearance-none ring-1 ring-slate-400 border rounded  py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                       id='username'
                       type='text'
@@ -88,7 +91,7 @@ const Step2 = () => {
                       4.subjects
                     </label>
                     <input
-                      name='email'
+                      {...register("subject4")}
                       className='shadow h-12 w-32 appearance-none ring-1 ring-slate-400 border rounded  py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                       id='username'
                       type='text'
@@ -103,7 +106,7 @@ const Step2 = () => {
                       5.subjects{" "}
                     </label>
                     <input
-                      name='email'
+                      {...register("subject5")}
                       className='shadow h-12 w-32 appearance-none ring-1 ring-slate-400 border rounded  py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                       id='username'
                       type='text'
@@ -123,6 +126,7 @@ const Step2 = () => {
                     position
                   </label>
                   <select
+                    {...register("position")}
                     id='cars'
                     name='carlist'
                     form='form'
@@ -137,6 +141,7 @@ const Step2 = () => {
                     department
                   </label>
                   <select
+                    {...register("department")}
                     id='cars'
                     name='carlist'
                     form='form'
@@ -151,6 +156,7 @@ const Step2 = () => {
                     occupation{" "}
                   </label>
                   <select
+                    {...register("occupation")}
                     id='cars'
                     name='carlist'
                     form='form'
@@ -165,6 +171,7 @@ const Step2 = () => {
                     level{" "}
                   </label>
                   <select
+                    {...register("level")}
                     id='cars'
                     name='carlist'
                     form='form'
@@ -179,6 +186,7 @@ const Step2 = () => {
                     head official{" "}
                   </label>
                   <select
+                    {...register("headOfficial")}
                     id='cars'
                     name='carlist'
                     form='form'

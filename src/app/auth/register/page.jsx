@@ -1,41 +1,73 @@
 "use client";
-import Image from "next/image";
-import { useRouter } from "next/navigation";
-import "../../../styles/register.css";
-import { useState } from "react";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
 import Step4 from "./Step4";
-import { Steps } from "antd";
-
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import "../../../styles/register.css";
+import { useEffect, useState } from "react";
+import { Steps, message } from "antd";
+import { useForm, FormProvider, useFormContext } from "react-hook-form";
+import {
+  useSignUpUserMutation,
+  useSignUserMutation,
+  useGetUserQuery,
+} from "../../../services/api/authApi";
 const { Step } = Steps;
+
 const RegisterPage = () => {
-  const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState({});
+  const [currentStep, setCurrentStep] = useState(0);
+
   const router = useRouter();
+  const methods = useForm();
 
-  const nextStep = () => {
-    setStep((prevStep) => prevStep + 1);
+  const { isError } = useGetUserQuery();
+  const [signUpUser, { data, isLoading }] = useSignUpUserMutation();
+
+  useEffect(() => {
+    if (data) {
+      console.warn("registered user  Data:", data);
+    }
+  }, [data]);
+
+  const {
+    handleSubmit,
+    formState: { isSubmitting },
+  } = methods;
+
+  const onSubmit = async (data) => {
+    console.log("Submitted Data:", data);
+    if (currentStep < 3) {
+      setCurrentStep(currentStep + 1);
+    } else {
+      message.success("Form submitted successfully!");
+      // console.warn("Submitted Data:", data);
+      // console.warn(data.firstName);
+
+      const formData = new FormData();
+      Object.keys(data).forEach((key) => {
+        formData.append(key, data[key]);
+      });
+          formData.append("birthDate", "2001-02-02T08:00:00");
+
+      signUpUser(formData);
+    }
   };
 
-  const prevStep = () => {
-    setStep((prevStep) => prevStep - 1);
-  };
-
-  const handleFinish = () => {
-    router.push("/tools/hr");
-
-    console.log("Form data submitted:", formData);
-    setFormData({});
-  };
-
-  const handleFormData = (data) => {
-    setFormData((prevData) => ({ ...prevData, ...data }));
+  const onBack = () => {
+    if (currentStep > 0) {
+      setCurrentStep(currentStep - 1);
+    }
   };
 
   const description = "staff user ";
-
+  if (isLoading) {
+    return <div>is loading ...</div>;
+  }
+  if (isError) {
+    return <div>something wrong </div>;
+  }
   return (
     <div className='parent w-full'>
       <span
@@ -43,7 +75,7 @@ const RegisterPage = () => {
       >
         HAHU <span className='text-black'>Technologies</span>
       </span>
-      <div className='p-6  flex flex-wrap bg-white shadow-sm  md:h-[calc(80vh-0rem)]  flex-col items-center justify-center mx-2 rounded-xl'>
+      <div className='p-6  flex flex-wrap bg-white shadow-sm  md:h-[calc(70vh-0rem)]  flex-col items-center justify-center mx-2 rounded-xl'>
         <div className=' justify-around rounded-md flex flex-col md:flex-row md:h-[80%] md:w-full'>
           <div className="relative w-full md:h-full md:w-1/2 bg-[url('/bg.jpeg')]">
             <div className='flex w-full flex-row md:flex-col  justify-around mx-2 md:mx-20'>
@@ -54,7 +86,7 @@ const RegisterPage = () => {
                 <Image
                   src='/logo.png'
                   alt=''
-                  width={70}
+                  width={100}
                   height={70}
                   className='object-cover'
                 />
@@ -62,49 +94,49 @@ const RegisterPage = () => {
             </div>
           </div>
           <div className='form_pages w-full'>
-            {step === 1 && <Step1 onFormData={handleFormData} />}
-            {step === 2 && <Step2 onFormData={handleFormData} />}
-            {step === 3 && <Step3 onFormData={handleFormData} />}
-            {step === 4 && <Step4 onFormData={handleFormData} />}
+            <FormProvider {...methods}>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                {currentStep === 0 && <Step1 />}
+                {currentStep === 1 && <Step2 />}
+                {currentStep === 2 && <Step3 />}
+                {currentStep === 3 && <Step4 />}
+              </form>
+            </FormProvider>
           </div>
         </div>
       </div>
 
       <div className='flex flex-col p-4 gap-0'>
         <div className='flex items-center justify-center mt-2 pb-6'>
-          {step !== 1 && (
+          <div style={{ marginTop: "30px" }}>
+            {currentStep !== 0 && (
+              <button
+                onClick={onBack}
+                className='bg-blue-500 mx-4 rounded-xl w-20 md:w-32 text-white font-bold px-4 md:px-8 py-2 md:py-3 focus:outline-none focus:shadow-outline'
+              >
+                Back
+              </button>
+            )}
             <button
-              onClick={prevStep}
-              className='bg-blue-500 mx-4 rounded-xl w-20 md:w-32 text-white font-bold px-4 md:px-8 py-2 md:py-3 focus:outline-none focus:shadow-outline'
+              onClick={handleSubmit(onSubmit)}
+              loading={isSubmitting}
+              className={`${
+                currentStep === 3 ? " bg-green-500" : "bg-blue-500"
+              } rounded-xl w-20 md:w-32 text-white font-bold px-4 md:px-8 py-2 md:py-3 focus:outline-none focus:shadow-outline`}
             >
-              Back
+              {currentStep === 3 ? "Submit" : "Next"}
             </button>
-          )}
-          {step === 4 ? (
-            <button
-              onClick={handleFinish}
-              className='bg-green-500 rounded-xl w-20 md:w-32 text-white font-bold px-4 md:px-8 py-2 md:py-3 focus:outline-none focus:shadow-outline'
-            >
-              Finish
-            </button>
-          ) : (
-            <button
-              onClick={nextStep}
-              className='bg-blue-500 rounded-xl w-20 md:w-32 text-white font-bold px-4 md:px-8 py-2 md:py-3 focus:outline-none focus:shadow-outline'
-            >
-              Next
-            </button>
-          )}
+          </div>
         </div>
 
         <Steps
-          current={step - 1}
-          className='px-2 md:px-6 pb-2 md:pb-5 mr-2 md:mr-7'
+          current={currentStep}
+          className='px-0 md:px-6 pb-2 md:pb-5 mr-0 md:mr-7'
         >
           <Step
             title=''
             description={
-              <div className='mt-4 md:mt-8 -mx-2 md:-mx-10 flex flex-col text-xs md:text-md font-bold'>
+              <div className='mt-4 md:mt-8  md:-mx-10 flex flex-col text-xs md:text-md font-bold'>
                 Personal details
                 <span className='text-slate-500 text-xs md:text-sm'>
                   name and email
@@ -115,7 +147,7 @@ const RegisterPage = () => {
           <Step
             title=''
             description={
-              <div className='mt-4 md:mt-8 -mx-2 md:-mx-10 flex flex-col text-xs md:text-md font-bold'>
+              <div className='mt-4 md:mt-8  md:-mx-10 flex flex-col text-xs md:text-md font-bold'>
                 Academic
                 <span className='text-slate-500 text-xs md:text-sm'>
                   fill in academic history and choice
@@ -126,7 +158,7 @@ const RegisterPage = () => {
           <Step
             title=''
             description={
-              <div className='mt-4 md:mt-8 -mx-2 md:-mx-10 flex flex-col text-xs md:text-md font-bold'>
+              <div className='mt-4 md:mt-8  md:-mx-10 flex flex-col text-xs md:text-md font-bold'>
                 Emergency contact
                 <span className='text-slate-500 text-xs md:text-sm'>
                   provide emergency contact details
@@ -137,7 +169,7 @@ const RegisterPage = () => {
           <Step
             title=''
             description={
-              <div className='mt-4 md:mt-8 -mx-2 md:-mx-10 flex flex-col text-xs md:text-md font-bold'>
+              <div className='mt-4 md:mt-8  md:-mx-10 flex flex-col text-xs md:text-md font-bold'>
                 Finalization
                 <span className='text-slate-500 text-xs md:text-sm'>
                   for account verification

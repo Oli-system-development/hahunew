@@ -1,35 +1,58 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-// Define a service using a base URL and expected endpoints
 export const authApi = createApi({
   reducerPath: "authApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:9000" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: "http://157.245.137.76:5005/auth", prepareHeaders: (headers, { getState }) => {
+      headers.set("Authorization", `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE3NDM0MjQ5MzYsImlkIjoiVEZBMDAwMTIwMjIifQ.IQ7nJF-3plYFqEx1NlC46HgYmr9CuT49ANiG41fHxs4`)
+      return headers;
+  }}),
   endpoints: (builder) => ({
-    signinUser: builder.mutation({
+    getUser: builder.query({
+      query: () => "/students",
+      
+      // {
+
+      // return {
+      //   url: "/user/getUser",
+      //   method: "get",
+      //   body,
+      // };
+      // },
+    }),
+    signUser: builder.mutation({
       query: (body) => {
         return {
-          url: "/user/signin",
+          url: "/register",
           method: "post",
           body,
         };
       },
     }),
-    signupUser: builder.mutation({
-      query: (body) => {
+    signUpUser: builder.mutation({
+      query: (userData) => {
         return {
-          url: "/user/signup",
+          url: "/register/student",
           method: "post",
-          body,
+          body: userData,
         };
       },
     }),
-    
   }),
 });
 
-
+  // reducerPath: "authApi",
+  // baseQuery: fetchBaseQuery({ 
+  //   baseUrl: "http://157.245.137.76:5005/auth/",
+  //   prepareHeaders: (headers, { getState }) => {
+  //       headers.set('Authorization', `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE3NDM0MjQ5MzYsImlkIjoiVEZBMDAwMTIwMjIifQ.IQ7nJF-3plYFqEx1NlC46HgYmr9CuT49ANiG41fHxs4`);
+      
+  //     return headers;
+  //   },
+  // }),
 export const {
-  useSigninUserMutation,
-  useSignupUserMutation,
+  useSignUserMutation,
+  useSignUpUserMutation,
+  useGetUserQuery
 
 } = authApi;

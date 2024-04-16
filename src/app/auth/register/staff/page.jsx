@@ -7,41 +7,37 @@ import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
 import Step4 from "./Step4";
-import { Steps } from "antd";
-
+import { Steps, message } from "antd";
+import { useForm, FormProvider, useFormContext } from "react-hook-form";
 const { Step } = Steps;
+
 const RegisterPage = () => {
-  const [step, setStep] = useState(1);
-  const [formData, setFormData] = useState({});
+  const [currentStep, setCurrentStep] = useState(0);
+
   const router = useRouter();
-  // const goDashboard = () => {
-  //   router.push("/dashboard");
-  // };
+  const methods = useForm();
 
-  const nextStep = () => {
-    setStep((prevStep) => prevStep + 1);
+  const {
+    handleSubmit,
+    formState: { isSubmitting },
+  } = methods;
+
+  const onSubmit = async (data) => {
+    console.log("Submitted Data:", data);
+    if (currentStep < 3) {
+      setCurrentStep(currentStep + 1);
+    } else {
+      message.success("Form submitted successfully!");
+      console.warn("Submitted Data:", data);
+    }
   };
 
-  const prevStep = () => {
-    setStep((prevStep) => prevStep - 1);
+  const onBack = () => {
+    if (currentStep > 0) {
+      setCurrentStep(currentStep - 1);
+    }
   };
 
-  const handleFinish = () => {
-    router.push("/tools/hr");
-
-    console.log("Form data submitted:", formData);
-    // Example: You can reset the form data
-    setFormData({});
-    // You can also navigate to another page after submission
-    // router.push("/dashboard");
-  };
-
-  const handleFormData = (data) => {
-    // Merge form data from each step
-    setFormData((prevData) => ({ ...prevData, ...data }));
-  };
-
-  const description = "staff user ";
 
   return (
     <div className='parent w-full'>
@@ -51,12 +47,12 @@ const RegisterPage = () => {
         HAHU
         <span className='text-black'>Technologies</span>
       </span>
-      <div className='bg-white shadow-sm h-[calc(90vh-2rem)] md:h-[calc(80vh-0rem)] flex flex-col items-center justify-center mx-10 rounded-xl '>
-        <div className=' h-full  justify-around rounded-md flex flex-col md:flex-row md:h-[80%] md:w-full  '>
-          <div className="relative h-1/3 w-full md:h-full md:w-1/2 bg-[url('/bg.jpeg')]">
-            <div className='flex flex-col mx-20'>
-              <span className='title  font-bold text-black'>
-                Wellcome to Tegbarer Id
+      <div className='p-6  flex flex-wrap bg-white shadow-sm  md:h-[calc(70vh-0rem)]  flex-col items-center justify-center mx-2 rounded-xl'>
+        <div className=' justify-around rounded-md flex flex-col md:flex-row md:h-[80%] md:w-full'>
+          <div className="relative w-full md:h-full md:w-1/2 bg-[url('/bg.jpeg')]">
+            <div className='flex w-full flex-row md:flex-col  justify-around mx-2 md:mx-20'>
+              <span className='text-xl md:text-3xl font-bold   text-black'>
+                Welcome to Tegbarer Id
               </span>
               <div className="relative h-1/3 w-full md:h-full md:w-1/4 bg-[url('/bg.jpeg')]">
                 <Image
@@ -70,42 +66,42 @@ const RegisterPage = () => {
             </div>
           </div>
           <div className='form_pages w-full'>
-            {step === 1 && <Step1 onFormData={handleFormData} />}
-            {step === 2 && <Step2 onFormData={handleFormData} />}
-            {step === 3 && <Step3 onFormData={handleFormData} />}
-            {step === 4 && <Step4 onFormData={handleFormData} />}
+            <FormProvider {...methods}>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                {currentStep === 0 && <Step1 />}
+                {currentStep === 1 && <Step2 />}
+                {currentStep === 2 && <Step3 />}
+                {currentStep === 3 && <Step4 />}
+              </form>
+            </FormProvider>
           </div>
         </div>
       </div>
 
       <div className='flex flex-col p-4 gap-0'>
-        <div className='flex items-center justify-center mt-2 pb-6 '>
-          {step !== 1 && (
+        <div className='flex items-center justify-center mt-2 pb-6'>
+          <div style={{ marginTop: "30px" }}>
+            {currentStep !== 0 && (
+              <button
+                onClick={onBack}
+                className='bg-blue-500 mx-4 rounded-xl w-20 md:w-32 text-white font-bold px-4 md:px-8 py-2 md:py-3 focus:outline-none focus:shadow-outline'
+              >
+                Back
+              </button>
+            )}
             <button
-              onClick={prevStep}
-              className='bg-blue-500 mx-4 rounded-xl w-32 text-white font-bold px-8 py-3 focus:outline-none focus:shadow-outline'
+              onClick={handleSubmit(onSubmit)}
+              loading={isSubmitting}
+              className={`${
+                currentStep === 3 ? " bg-green-500" : "bg-blue-500"
+              } rounded-xl w-20 md:w-32 text-white font-bold px-4 md:px-8 py-2 md:py-3 focus:outline-none focus:shadow-outline`}
             >
-              Back
+              {currentStep === 3 ? "Submit" : "Next"}
             </button>
-          )}
-          {step === 4 ? (
-            <button
-              onClick={handleFinish}
-              className='bg-green-500 rounded-xl w-32 text-white font-bold px-8 py-3 focus:outline-none focus:shadow-outline'
-            >
-              Finish
-            </button>
-          ) : (
-            <button
-              onClick={nextStep}
-              className='bg-blue-500 rounded-xl w-32 text-white font-bold px-8 py-3 focus:outline-none focus:shadow-outline'
-            >
-              Next
-            </button>
-          )}
+          </div>
         </div>
 
-        <Steps current={step - 1} className='px-6 pb-5 mr-7'>
+        <Steps current={currentStep} className='px-6 pb-5 mr-7'>
           <Step
             title=''
             description={

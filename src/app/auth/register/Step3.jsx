@@ -1,9 +1,15 @@
+"use client"
 import React from "react";
+import { useFormContext } from "react-hook-form";
 
 const Step3 = () => {
+  const { register } = useFormContext();
+
   return (
     <div className='px-2 md:px-10 flex flex-col gap-4 w-full'>
-      <span className='w-5 h-5 md:w-11 md:h-19 bg-teal-400 text-teal-400'>fsd</span>
+      <span className='w-5 h-5 md:w-11 md:h-19 bg-teal-400 text-teal-400'>
+        sss
+      </span>
       <div className='flex flex-row gap-4 md:gap-10 justify-between w-full'>
         <span className='font-bold text-xl md:text-2xl text-black'>
           Registration page
@@ -13,7 +19,6 @@ const Step3 = () => {
         </span>
       </div>
       <div className='flex flex-col'>
-        <form action=''>
           <span>
             <span className='text-sm md:text-md font-bold'>
               emergency contact section
@@ -31,9 +36,10 @@ const Step3 = () => {
                 <div className='flex flex-col gap-1'>
                   <label htmlFor=''>full name</label>
                   <input
-                    name=''
+                    {...register("emergencyFullName")}
+                    name='emergencyFullName'
                     className='shadow appearance-none border rounded w-full py-2 md:py-4 px-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-                    id='username'
+                    id='fullName'
                     type='text'
                     placeholder='enter full name'
                   />
@@ -41,17 +47,19 @@ const Step3 = () => {
                 <div className='flex flex-col gap-1'>
                   <label htmlFor=''>phone number</label>
                   <input
-                    name=''
+                    {...register("emergencyPhoneNumber")}
+                    name='emergencyPhoneNumber'
                     className='shadow appearance-none border rounded w-full py-2 md:py-4 px-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                     id=''
-                    type='number'
+                    type='tel'
                     placeholder='+2452'
                   />
                 </div>{" "}
                 <div className='flex flex-col gap-1'>
                   <label htmlFor=''>relation</label>
                   <input
-                    name=''
+                    {...register("emergencyRelation")}
+                    name='emergencyRelation'
                     className='shadow appearance-none border rounded w-full py-2 md:py-4 px-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                     id=''
                     type='text'
@@ -69,7 +77,8 @@ const Step3 = () => {
                 <div className='flex flex-col gap-1'>
                   <label htmlFor=''>Country</label>
                   <input
-                    name=''
+                    {...register("emergencyCountry")}
+                    name='emergencyCountry'
                     className='shadow appearance-none border rounded w-full py-2 md:py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                     id=''
                     type='text'
@@ -79,7 +88,8 @@ const Step3 = () => {
                 <div className='flex flex-col gap-1'>
                   <label htmlFor=''>Region</label>
                   <input
-                    name=''
+                    {...register("emergencyRegion")}
+                    name='emergencyRegion'
                     className='shadow appearance-none border rounded w-full py-2 md:py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                     id=''
                     type='text'
@@ -89,7 +99,8 @@ const Step3 = () => {
                 <div className='flex flex-col gap-1'>
                   <label htmlFor=''>City</label>
                   <input
-                    name=''
+                    {...register("emergencyCity")}
+                    name='emergencyCity'
                     className='shadow appearance-none border rounded w-full py-2 md:py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                     id=''
                     type='text'
@@ -99,7 +110,8 @@ const Step3 = () => {
                 <div className='flex flex-col gap-1'>
                   <label htmlFor=''>Woreda</label>
                   <input
-                    name=''
+                    {...register("emergencyWoreda")}
+                    name='emergencyWoreda'
                     className='shadow appearance-none border rounded w-full py-2 md:py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                     id=''
                     type='text'
@@ -109,7 +121,8 @@ const Step3 = () => {
                 <div className='flex flex-col gap-1'>
                   <label htmlFor=''>House No</label>
                   <input
-                    name=''
+                    {...register("emergencyHouseNo")}
+                    name='emergencyHouseNo'
                     className='shadow appearance-none border rounded w-full py-2 md:py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                     id=''
                     type='text'
@@ -119,7 +132,6 @@ const Step3 = () => {
               </div>
             </div>
           </div>
-        </form>
       </div>
     </div>
   );
