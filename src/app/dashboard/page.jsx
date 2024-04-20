@@ -2,31 +2,81 @@
 
 import Image from "next/image";
 import Link from "next/link";
-
-import React, { useState } from "react";
-
+import Loading from "../common/loading";
+import React, { useEffect, useState } from "react";
+import { useGetUserQuery, useGetUsersQuery } from "../../services/api/authApi";
+import { RouterContext } from "next/dist/shared/lib/router-context.shared-runtime";
+import { useRouter } from "next/navigation";
+import { FormProvider, useForm } from "react-hook-form";
 const Dashboard = () => {
   const [isModalVisible, setModalVisible] = useState(false);
+  const [showUpdates, setShowUpdates] = useState(true);
+  const [matchedUser, setMAtchedUser] = useState(null);
+  const router = useRouter()
 
+  const {
+    data: users,
+    isLoading,
+    isError,
+    error,
+    isSuccess,
+  } = useGetUsersQuery();
+
+  var userId = localStorage.getItem("userData");
+   userId = "TFI00012022";
+  useEffect(() => {
+    const findMatchedEmail = async () => {
+      // console.log(username, uss);
+      
+      console.log("users", await users);
+      if (users) {
+        // const userId = localStorage.getItem("userData");
+        // console.warn(userId === uss)
+        // console.warn(userId,uss)
+        const matchedUser = users.find((user) => user.userId === userId);
+        if (matchedUser) {
+          setMAtchedUser(matchedUser);
+        }
+      }
+    };
+    
+    findMatchedEmail();
+  }, [userId, users]);
+  
   const toggleModal = () => {
+    
+    handleSubmit(onSubmit);
+    
     setModalVisible((prev) => !prev);
   };
-
-  const tools = [
-    {
-      id: "1",
-      icon: <i className='fa fa-home text-xl font-bold'></i>,
-      link: "/dashboard",
-      label: "Home",
-      color: "",
-    },
-    {
-      id: "2",
-      icon: <i className='fa fa-book-open-reader text-xl font-bold'></i>,
-      link: "../tools/library/",
-      label: "Library",
-      color: "text-red-400",
-    },
+  const showUpdate = () => {
+    setShowUpdates((prev) => !prev);
+  };
+  
+  console.log("matched user", matchedUser);
+  
+  // if (isLoading) {
+    //   return <Loading />;
+    // }
+    if (!userId) {
+      router.push('/')
+    }
+ 
+    const tools = [
+      {
+        id: "1",
+        icon: <i className='fa fa-home text-xl font-bold'></i>,
+        link: "/dashboard",
+        label: "Home",
+        color: "",
+      },
+      {
+        id: "2",
+        icon: <i className='fa fa-book-open-reader text-xl font-bold'></i>,
+        link: "../tools/library/",
+        label: "Library",
+        color: "text-red-400",
+      },
     {
       id: "3",
       icon: <i className='fa fa-plus text-xl font-bold'></i>,
@@ -122,12 +172,34 @@ const Dashboard = () => {
       color: "text-slate-300",
     },
   ];
- 
+
+
+  //todo announcement
+     const methods = useForm();
+
+     const {
+       register,
+       handleSubmit,
+       formState: { isSubmitting },
+     } = methods;
+    const onSubmit = async (data) => {
+      try {
+        console.warn("announcement:", data);
+        // await loginAdmin(data);
+        toggleModal();
+      } catch (error) {
+        console.error("Error submitting form:", error);
+        setErrorMessage("Invalid credentials.");
+      }
+    };
   return (
     <div className='mt-3 bg-slate-100'>
+      {isLoading && <Loading />}
       <span className='hidden md:flex flex-col'>
-        <b className='font-sans px-10 text-4xl  '>wellcome back , </b>
-        <b className='fon-sans px-10 text-4xl mt-x20'>misrak </b>
+        <b className='font-sans px-10 text-4xl  '>well come back , </b>
+        <b className='fon-sans px-10 text-4xl mt-x20'>
+          {matchedUser?.firstName}{" "}
+        </b>
       </span>
       <div className=''>
         <div className='mt-1 flex flex-col md:flex-row '>
@@ -146,7 +218,7 @@ const Dashboard = () => {
                   </Link>
                 </span>
                 <span className='bg-slate-200 h-9 md:h-auto font-thin text-sm p-2 px-8 md:px-3 rounded-2xl text-slate-600 mx-4 md:mx-11 my-0 md:my-2 flex justify-center text-center'>
-                  Trainer
+                  {matchedUser?.type}
                 </span>
                 <span className='text-slate-400  w-full md:w-auto font-thin text-sm p-2 px-0 md:px-3 flex justify-center mb-0 md:mb-11 text-center'>
                   IT department
@@ -232,114 +304,101 @@ const Dashboard = () => {
                   </div>
 
                   {isModalVisible && (
-                    <div className='flex ring-1  shadow-2xl fixed  -top-10 right-0 left-0 z-100 justify-center  items-center  md:inset-0 h-[calc(140%-1rem)] max-h-full'>
-                      <div className=' p-4 w-auto md:w-[24%] h-auto md:h-[80%]  max-h-full'>
-                        <div className=' bg-white rounded-lg shadow-2xl '>
-                          <div className='flex items-center justify-between p-2 md:p-5  rounded-t'>
-                            <button
-                              onClick={toggleModal}
-                              type='button'
-                              className='text-gray-400 rounded-full bg-gray-200 hover:bg-gray-200 hover:text-gray-900  text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white'
-                              data-modal-hide='default-modal'
-                            >
-                              <svg
-                                className='w-3 h-3'
-                                aria-hidden='true'
-                                xmlns=''
-                                fill='none'
-                                viewBox='0 0 14 14'
+                    <FormProvider {...methods}>
+                      <div className='flex ring-1  shadow-2xl fixed  -top-10 right-0 left-0 z-100 justify-center  items-center  md:inset-0 h-[calc(140%-1rem)] max-h-full'>
+                        <div className=' p-4 w-auto md:w-[24%] h-auto md:h-[80%]  max-h-full'>
+                          <div className=' bg-white rounded-lg shadow-2xl '>
+                            <div className='flex items-center justify-between p-2 md:p-5  rounded-t'>
+                              <button
+                                onClick={toggleModal}
+                                type='button'
+                                className='text-gray-400 rounded-full bg-gray-200 hover:bg-gray-200 hover:text-gray-900  text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white'
+                                data-modal-hide='default-modal'
                               >
-                                <path
-                                  stroke='currentColor'
-                                  strokeLinecap='round'
-                                  strokeLinejoin='round'
-                                  strokeWidth='2'
-                                  d='m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6'
-                                />
-                              </svg>
-                              <span className='sr-only'>Close modal</span>
-                            </button>
-                          </div>
-                          <div className=''>
+                                <svg
+                                  className='w-3 h-3'
+                                  aria-hidden='true'
+                                  xmlns=''
+                                  fill='none'
+                                  viewBox='0 0 14 14'
+                                >
+                                  <path
+                                    stroke='currentColor'
+                                    strokeLinecap='round'
+                                    strokeLinejoin='round'
+                                    strokeWidth='2'
+                                    d='m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6'
+                                  />
+                                </svg>
+                                <span className='sr-only'>Close modal</span>
+                              </button>
+                            </div>
                             <div className=''>
-                              <div className='px-6 md:px-10 flex flex-col '>
-                                <form onSubmit={""} className='gap-2'>
-                                  <label className='block text-slate-700 text-sm font-bold mb-0 md:mb-2'>
-                                    Announcement title
-                                  </label>
-                                  <input
-                                    name=''
-                                    // onChange={"onChange"}
-                                    className='shadow h-8 bg-slate-100 appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                                    id='header text'
-                                    type='text'
-                                    placeholder='add header text'
-                                  />
-                                  <div className=' mt-2 md:mt-6 '>
+                              <div className=''>
+                                <div className='px-6 md:px-10 flex flex-col '>
+                                  <form
+                                    onSubmit={handleSubmit(onSubmit)}
+                                    className='gap-2'
+                                  >
                                     <label className='block text-slate-700 text-sm font-bold mb-0 md:mb-2'>
-                                      description
+                                      Announcement title
                                     </label>
-                                    <textarea
-                                      name=''
-                                      // onChange={"onChange"}
-                                      className='shadow h-20 bg-slate-100 appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                                      id='description'
+                                    <input
+                                      {...register("headerText")}
+                                      className='shadow h-8 bg-slate-100 appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+                                      id='header text'
                                       type='text'
-                                      placeholder='section description'
+                                      name='headerText'
+                                      placeholder='add header text'
                                     />
-                                  </div>
-                                  <label className='block text-slate-700 text-sm  mt-2 md:mt-6  font-bold mb-0 md:mb-2'>
-                                    upload optional picture
-                                  </label>
-                                  <input
-                                    name=''
-                                    // onChange={"onChange"}
-                                    className='shadow h-8 bg-slate-100 appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                                    id='header text'
-                                    type='text'
-                                    placeholder='optional URL placeholder'
-                                  />
-                                  <label className='block mt-2 md:mt-6  text-slate-700 text-sm font-bold mb-0 md:mb-2'>
-                                    picture alt
-                                  </label>
-                                  <input
-                                    name='email'
-                                    // onChange={"onChange"}
-                                    className='shadow h-8 bg-slate-100 appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                                    id='header text'
-                                    type='text'
-                                    placeholder='image desctiption'
-                                  />
+                                    <div className=' mt-2 md:mt-6 '>
+                                      <label className='block text-slate-700 text-sm font-bold mb-0 md:mb-2'>
+                                        description
+                                      </label>
+                                      <textarea
+                                        name='description'
+                                        {...register("description")}
+                                        className='shadow h-20 bg-slate-100 appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+                                        id='description'
+                                        type='text'
+                                        placeholder='section description'
+                                      />
+                                    </div>
+                                    <label className='block text-slate-700 text-sm  mt-2 md:mt-6  font-bold mb-0 md:mb-2'>
+                                      upload optional picture
+                                    </label>
+                                    <input
+                                      name='url'
+                                      {...register("url")}
+                                      className='shadow h-8 bg-slate-100 appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+                                      id='url'
+                                      type='text'
+                                      placeholder='optional URL placeholder'
+                                    />
+                                    <label className='block mt-2 md:mt-6  text-slate-700 text-sm font-bold mb-0 md:mb-2'>
+                                      picture alt
+                                    </label>
+                                    <input
+                                      name='imageDescription'
+                                      {...register("imageDescription")}
+                                      className='shadow h-8 bg-slate-100 appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+                                      id='imageDescription'
+                                      type='text'
+                                      placeholder='image description'
+                                    />
 
-                                  <div className='flex items-start justify-around flex-row mt-6'>
-                                    <span className='text-xs font-bold'>
-                                      announcement to{" "}
-                                    </span>
-                                    <span className='flex flex-col  '>
-                                      <span
-                                        // key={""}
-                                        className='flex flex-row justify-between gap-11'
-                                      >
-                                        <span className='bg-slate-300 p-1 -ml-3 px-5 rounded-lg text-slate-500 text-xs'>
-                                          filter
-                                        </span>
-                                        <span>
-                                          <label className='relative inline-flex items-center cursor-pointer'>
-                                            <input
-                                              type='checkbox'
-                                              value=''
-                                              className='sr-only peer'
-                                            />
-                                            <div className="w-11 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                                          </label>
-                                        </span>
+                                    <div className='flex items-start justify-around flex-row mt-6'>
+                                      <span className='text-xs font-bold'>
+                                        announcement to{" "}
                                       </span>
-                                      {[1, 2, 3, 4].map((item) => (
+                                      <span className='flex flex-col  '>
                                         <span
-                                          key={item}
-                                          className='flex flex-row justify-between mb-1 md:mb-3 text-slate-600'
+                                          // key={""}
+                                          className='flex flex-row justify-between gap-11'
                                         >
-                                          <span>landing page</span>
+                                          <span className='bg-slate-300 p-1 -ml-3 px-5 rounded-lg text-slate-500 text-xs'>
+                                            filter
+                                          </span>
                                           <span>
                                             <label className='relative inline-flex items-center cursor-pointer'>
                                               <input
@@ -348,42 +407,69 @@ const Dashboard = () => {
                                                 className='sr-only peer'
                                               />
                                               <div className="w-11 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
-                                            </label>{" "}
+                                            </label>
                                           </span>
                                         </span>
-                                      ))}
-                                    </span>
-                                  </div>
-                                </form>
-                              </div>
-                              <div className="relative h-1/3 w-full md:h-full md:w-1/2 bg-[url('/bg.jpeg')]">
-                                <Image
-                                  src='/loginimage.png'
-                                  alt=''
-                                  fill
-                                  className='object-cover'
-                                />
+                                        {[1, 2, 3, 4].map((item) => (
+                                          <span
+                                            key={item}
+                                            className='flex flex-row justify-between mb-1 md:mb-3 text-slate-600'
+                                          >
+                                            <span>landing page</span>
+                                            <span>
+                                              <label className='relative inline-flex items-center cursor-pointer'>
+                                                <input
+                                                  type='checkbox'
+                                                  value=''
+                                                  className='sr-only peer'
+                                                />
+                                                <div className="w-11 h-5 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                                              </label>{" "}
+                                            </span>
+                                          </span>
+                                        ))}
+                                      </span>
+                                    </div>
+                                    <div className='flex items-center justify-end p-4  '>
+                                      <button
+                                        onClick={handleSubmit(onSubmit)}
+                                        loading={
+                                          isSubmitting ? "true" : undefined
+                                        }
+                                        className='text-white bg-blue-700 rounded-full hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium  text-sm px-5 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
+                                      >
+                                        done
+                                      </button>
+                                    </div>
+                                  </form>
+                                </div>
+                                {/* <div className="relative h-1/3 w-full md:h-full md:w-1/2 bg-[url('/bg.jpeg')]">
+                                  <Image
+                                    src='/loginimage.png'
+                                    alt=''
+                                    fill
+                                    className='object-cover'
+                                  />
+                                </div> */}
                               </div>
                             </div>
                           </div>
-                          <div className='flex items-center justify-end p-4  '>
-                            <button
-                              onClick={toggleModal}
-                              data-modal-hide='default-modal'
-                              type='button'
-                              className='text-white bg-blue-700 rounded-full hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium  text-sm px-5 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
-                            >
-                              done
-                            </button>
-                          </div>
                         </div>
                       </div>
-                    </div>
+                    </FormProvider>
                   )}
                 </div>
-                <div className='hidden md:block bg-slate-200 w-72 rounded-r-lg '>
-                  <span className='text-blue-400 p-4 pt-2'>HaHu updates</span>
-                </div>
+
+                {showUpdates && (
+                  <div className='hidden md:block bg-slate-200 w-72 rounded-r-lg '>
+                    <div className='flex flex-row'>
+                      <span className='text-blue-400 p-4 pt-2'>
+                        HaHu updates
+                      </span>
+                    </div>
+                  </div>
+                )}
+                <span onClick={showUpdate}>hide</span>
               </div>
             </div>
           </div>
