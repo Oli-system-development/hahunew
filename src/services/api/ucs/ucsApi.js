@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const announcementApi = createApi({
-  reducerPath: "announcementApi",
+export const ucsApi = createApi({
+  reducerPath: "ucsApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://157.245.137.76:5005/",
     prepareHeaders: (headers, { getState }) => {
@@ -13,15 +13,20 @@ export const announcementApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getAnnouncement: builder.query({
-      query: () => "/announcements",
+    getCourse: builder.query({
+      query: (userId) => `auth/courses?id=${userId}`,
+    }),
+    getAllCourses: builder.query({
+      query: () => "/courses",
       onError: (error) => {
-        console.error("Error fetching announcements:", error);
+        console.error("Error fetching students:", error);
       },
     }),
-    addAnnouncement: builder.mutation({
+    //tag provide
+    // invalidate
+    addCourses: builder.mutation({
       query: (data) => ({
-        url: "/announcements",
+        url: "/courses",
         method: "POST",
         body: data,
       }),
@@ -32,5 +37,8 @@ export const announcementApi = createApi({
   }),
 });
 
-export const { useAddAnnouncementMutation, useGetAnnouncementQuery } =
-  announcementApi;
+export const {
+  useGetAllCoursesQuery,
+  useGetCourseQuery,
+  useAddCoursesMutation,
+} = ucsApi;

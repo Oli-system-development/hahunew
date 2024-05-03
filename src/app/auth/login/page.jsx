@@ -26,8 +26,7 @@ const LoginPage = () => {
     try {
       console.log("Submitted Data:", data);
       await loginAdmin(data);
-      localStorage.setItem("allUserData", data);
-
+      // localStorage.setItem("userData", data);
     } catch (error) {
       console.error("Error submitting form:", error);
       setErrorMessage("Invalid credentials.");
@@ -40,7 +39,8 @@ const LoginPage = () => {
       console.log("fetched userData is :", userData);
 
       router.push("/dashboard");
-      localStorage.setItem("userData", userData.id);
+      localStorage.setItem("userData", userData);
+      localStorage.setItem("userId", userData.id);
     } else if (isError) {
       if (error) {
         setErrorMessage(error.data);

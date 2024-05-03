@@ -21,12 +21,7 @@ const Occupation = () => {
   const handleButtonClick = (btn) => {
     setSelectedButton(btn);
   };
-  // if (selectedItem) {
-  //   return <CourseDetails courseStatus={() => setSelectedCourse(false)} />;
-  // }
-  // if (openAddDepartment) {
-  //   return <AddDepartment deptStatus={() => setSelectedCourse(false)} />;
-  // }
+
 
   return (
     <>
@@ -57,10 +52,10 @@ const Occupation = () => {
             <div className='flex flex-col w-full'>
               <div className='flex flex-row justify-around w-full bg-white rounded-lg mb-3'>
                 <div className='flex flex-col  gap-4 md:gap-10 p-3 md:p-8 w-full'>
-                  <div className='book_items flex flex-col flex-wrap gap-4 md:gap-6 w-full overflow-y-scroll h-64 justify-around '>
-                    {[1, 2, 3, 4].map((item) => (
+                  <div className='book_items flex flex-col flex-wrap gap-4 md:gap-6 w-full  h-64 justify-around '>
+                    {/* {[1, 2, 3, 4].map((item) => ( */}
                       <div
-                        key={item}
+                        // key={item}
                         className={`flex text-slate-500 flex-col gap-1 md:gap-6 w-full justify-around cursor-pointer `}
                         onClick={handleBackToItems}
                       >
@@ -84,7 +79,7 @@ const Occupation = () => {
                           />
                         </div>
                       </div>
-                    ))}
+                    {/* ))} */}
                   </div>
                 </div>
                 <div className='flex flex-col gap-1 md:gap-3  justify-center text-center bg-blue-600  w-40 md:w-64  text-sm md:text-normal text-slate-100'>

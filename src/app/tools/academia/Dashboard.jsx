@@ -49,7 +49,7 @@ const Dashboard = () => {
       </div>
 
       <div className='flex  mx-1 md:mx-8 justify-between'>
-        <div className='flex h-32   justify-center md:h-auto md:flex-row gap-7 flex-col flex-wrap overflow-x-scroll md:gap-11 text-slate-700 shadow-lg p-2 md:p-5 ring-1 ring-slate-200   rounded-xl w-full md:justify-around '>
+        <div className='flex h-32   justify-center md:h-auto md:flex-row gap-7 flex-col flex-wrap overflow-x-scroll md:overflow-hidden md:gap-11 text-slate-700 shadow-lg p-2 md:p-5 ring-1 ring-slate-200   rounded-xl w-full md:justify-around '>
           <span className='flex gap-3 text-green-400'>
             <span>
               <i className='fa-solid fa-arrow-right-to-city rounded-full bg-slate-200 md:p-4'></i>

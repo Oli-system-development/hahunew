@@ -1,7 +1,7 @@
 import { Sparkline } from "@mantine/charts";
 import Image from "next/image";
 import React, { useState } from "react";
-const CourseDetail = ({ courseStatus, addDept }) => {
+const CourseDetail = ({ courseStatus, addDept,dept }) => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedCourse, setSelectedCourse] = useState(false);
   const [showBookDetails, setShowBookDetails] = useState(false);
@@ -38,41 +38,39 @@ const CourseDetail = ({ courseStatus, addDept }) => {
             <div className='flex flex-col w-full'>
               <div className='flex flex-row justify-around w-full bg-white'>
                 <div className='flex flex-col  gap-10 p-8 w-full'>
-                  <div className='book_items flex flex-col flex-wrap gap-6 w-full overflow-y-scroll h-64 justify-around '>
-                    {[1, 2, 3, 4].map((item) => (
-                      <div
-                        key={item}
-                        className={`flex text-slate-500 flex-col gap-6 w-full justify-around cursor-pointer `}
-                        // onClick={handleBackToItems}
-                      >
-                        <span className='text-xl font-bold'>
-                          Information technology{" "}
-                        </span>
+                  <div className='book_items flex flex-col flex-wrap gap-6 w-full  h-64 justify-around '>
+                    {/* {[1, 2, 3, 4].map((item) => ( */}
+                    <div
+                      // key={item}
+                      className={`flex text-slate-500 flex-col gap-6 w-full justify-around cursor-pointer `}
+                      // onClick={handleBackToItems}
+                    >
+                      <span className='text-xl font-bold'>{dept.name}</span>
 
-                        <div className='flex flex-col  text-slate-500'>
-                          <p>
-                            some details about the course like the quick brown
-                            fox jumped over the lazy dog . well that was not as
-                            long as i had hoped
-                          </p>
-                        </div>
-                        <div className='-mt-5'>
-                          <Image
-                            src='/book1.jpeg'
-                            alt=''
-                            width={290}
-                            height={150}
-                          />
-                        </div>
+                      <div className='flex flex-col  text-slate-500'>
+                        <p>
+                          some details about the course like the quick brown fox
+                          jumped over the lazy dog . well that was not as long
+                          as i had hoped
+                        </p>
                       </div>
-                    ))}
+                      <div className='-mt-5'>
+                        <Image
+                          src='/book1.jpeg'
+                          alt=''
+                          width={290}
+                          height={150}
+                        />
+                      </div>
+                    </div>
+                    {/* ))} */}
                   </div>
                 </div>
                 <div className='flex flex-col gap-3  justify-center text-center bg-blue-600  w-64  text-slate-100'>
-                  <span>ID : ETS0392/12</span>
-                  <span>DATA : 12-12,2022</span>
-                  <span>CGPA : 3.5</span>
-                  <span>UNITS : 5</span>
+                  <span>HEAD : {dept.head.user.firstName}</span>
+                  <span>ABRIV : {dept.depAbb}</span>
+                  <span>ID : { dept.depId}</span>
+                  <span>Date : 12-12,2022</span>
                 </div>
               </div>
               <span className='font-bold text-xl'> Stats</span>

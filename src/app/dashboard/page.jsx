@@ -4,15 +4,22 @@ import Image from "next/image";
 import Link from "next/link";
 import Loading from "../common/loading";
 import React, { useEffect, useState } from "react";
-import { useGetUserQuery, useGetUsersQuery } from "../../services/api/authApi";
-import { RouterContext } from "next/dist/shared/lib/router-context.shared-runtime";
+import { useGetUsersQuery } from "../../services/api/authApi";
 import { useRouter } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
+import { tools } from "./tools";
+import {
+  useAddAnnouncementMutation,
+  useGetAnnouncementQuery,
+} from "../../services/api/announcementApi";
+import { message } from "antd";
 const Dashboard = () => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [showUpdates, setShowUpdates] = useState(true);
   const [matchedUser, setMAtchedUser] = useState(null);
-  const router = useRouter()
+  const router = useRouter();
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [anns, setAnns] = useState(null);
 
   const {
     data: users,
@@ -21,180 +28,94 @@ const Dashboard = () => {
     error,
     isSuccess,
   } = useGetUsersQuery();
+  const { data: allAn } = useGetAnnouncementQuery();
+  const [
+    addAnnouncement,
+    {
+      data: addedAnn,
+      isSuccess: isSuccessAnn,
+      isLoading: isLoadingAnn,
+      isError: isErrorAnn,
+      error: errorAnn,
+    },
+  ] = useAddAnnouncementMutation();
+  const userId = process.browser ? localStorage.getItem("userId") : null;
 
-  var userId = localStorage.getItem("userData");
-   userId = "TFI00012022";
+  // var userId = localStorage.getItem("userId");
   useEffect(() => {
     const findMatchedEmail = async () => {
-      // console.log(username, uss);
-      
       console.log("users", await users);
+      console.log("all announcements", await allAn);
+      setAnns(await allAn);
+      console.log("fetched announcements are  :", await addedAnn);
+
       if (users) {
-        // const userId = localStorage.getItem("userData");
-        // console.warn(userId === uss)
-        // console.warn(userId,uss)
         const matchedUser = users.find((user) => user.userId === userId);
         if (matchedUser) {
           setMAtchedUser(matchedUser);
         }
       }
     };
-    
+
     findMatchedEmail();
-  }, [userId, users]);
-  
+
+    const updateAnnouncements = async () => {
+      if (isSuccessAnn) {
+        message.success("You have add announcements  successfully!");
+
+        setAnns(async (prevAnns) => [...prevAnns, await addedAnn]);
+      } else if (isErrorAnn) {
+        if (errorAnn) {
+          setErrorMessage(errorAnn.data);
+        } else {
+          setErrorMessage("An error occurred. Please try again.");
+        }
+      }
+    };
+
+    updateAnnouncements();
+  }, [userId, users, allAn, isSuccessAnn, isErrorAnn, addedAnn, errorAnn]);
+
   const toggleModal = () => {
-    
     handleSubmit(onSubmit);
-    
+
     setModalVisible((prev) => !prev);
   };
   const showUpdate = () => {
     setShowUpdates((prev) => !prev);
   };
-  
-  console.log("matched user", matchedUser);
-  
-  // if (isLoading) {
-    //   return <Loading />;
-    // }
-    if (!userId) {
-      router.push('/')
-    }
- 
-    const tools = [
-      {
-        id: "1",
-        icon: <i className='fa fa-home text-xl font-bold'></i>,
-        link: "/dashboard",
-        label: "Home",
-        color: "",
-      },
-      {
-        id: "2",
-        icon: <i className='fa fa-book-open-reader text-xl font-bold'></i>,
-        link: "../tools/library/",
-        label: "Library",
-        color: "text-red-400",
-      },
-    {
-      id: "3",
-      icon: <i className='fa fa-plus text-xl font-bold'></i>,
-      link: "/dashboard",
-      label: "Add",
-      color: "",
-    },
-    {
-      id: "4",
-      icon: <i className='fa fa-users-line text-xl font-bold'></i>,
-      link: "../tools/myteams/",
-      label: "Teams",
-      color: "text-pink-600",
-    },
-    {
-      id: "5",
-      icon: <i className='fa-solid fa-book text-xl font-bold'></i>,
-      link: "../tools/ucs/",
-      label: "UCS",
-      color: "text-yellow-600",
-    },
-    {
-      id: "6",
-      icon: <i className='fa-solid fa-earth-americas text-xl font-bold'></i>,
-      link: "../tools/academia/",
-      label: "Academia",
-      color: "text-indigo-600",
-    },
-    {
-      id: "7",
-      icon: <i className='fa-solid fa-square-h text-2xl font-bold'></i>,
-      link: "../tools/hr/",
-      label: "HR",
-      color: "text-green-600",
-    },
-    {
-      id: "8",
 
-      icon: <i className='fa fa-graduation-cap text-2xl font-bold'></i>,
-      link: "../tools/trainees/",
-      label: "Trainees",
-      color: "text-blue-600",
-    },
-    // {
-    //   id: "9",
-    //   icon: <i className='fa-solid fa-warehouse text-2xl font-bold'></i>,
-    //   link: "../tools/inventory/",
-    //   label: "Inventory",
-    //   color: "text-blue-600",
-    // },
-    {
-      id: "9",
-      icon: <i className='fa fa-university text-2xl font-bold'></i>,
-      link: "../tools/finance/",
-      label: "Finance",
-      color: "text-green-500",
-    },
+  // console.log("matched user", matchedUser);
 
-    {
-      id: "10",
-      icon: <i className='fa fa-cart-plus text-2xl font-bold'></i>,
-      link: "../tools/btob/",
-      label: "B2B",
-      color: "text-pink-400",
-    },
-    {
-      id: "11",
-      icon: <i className='fa-solid fa-desktop text-2xl font-bold'></i>,
-      link: "../tools/settings/",
-      label: "Partners",
-      color: "text-blue-600",
-    },
-
-    {
-      id: "12",
-      icon: <i className='fa-solid fa-desktop text-2xl font-bold'></i>,
-      link: "../tools/settings/",
-      label: "Partner",
-      color: "text-blue-500",
-    },
-    {
-      id: "13",
-      icon: <i className='fa fa-cog text-2xl font-bold'></i>,
-      link: "../tools/finance/",
-      label: "Settings",
-      color: "text-blue-500",
-    },
-    {
-      id: "14",
-      icon: <i className='fa fa-comment text-2xl font-bold'></i>,
-      link: "../tools/chat/",
-      label: "Chat",
-      color: "text-slate-300",
-    },
-  ];
-
+  if (!userId) {
+    router.push("/auth/login");
+  }
 
   //todo announcement
-     const methods = useForm();
+  const methods = useForm();
 
-     const {
-       register,
-       handleSubmit,
-       formState: { isSubmitting },
-     } = methods;
-    const onSubmit = async (data) => {
-      try {
-        console.warn("announcement:", data);
-        // await loginAdmin(data);
-        toggleModal();
-      } catch (error) {
-        console.error("Error submitting form:", error);
-        setErrorMessage("Invalid credentials.");
-      }
-    };
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = methods;
+  const onSubmit = async (data) => {
+    try {
+      console.warn("announcement:", data);
+      const formData = new FormData();
+      Object.keys(data).forEach((key) => {
+        formData.append(key, data[key]);
+      });
+      await addAnnouncement(formData);
+      toggleModal();
+    } catch (error) {
+      console.error("Error submitting Ann:", error);
+      setErrorMessage("Invalid data.");
+    }
+  };
   return (
     <div className='mt-3 bg-slate-100'>
-      {isLoading && <Loading />}
+      {(isLoading || isLoadingAnn) && <Loading />}
       <span className='hidden md:flex flex-col'>
         <b className='font-sans px-10 text-4xl  '>well come back , </b>
         <b className='fon-sans px-10 text-4xl mt-x20'>
@@ -261,11 +182,11 @@ const Dashboard = () => {
               <div className='  bg-white md:flex md:flex-row gap-5 p-  h-72 md:h-[calc(70vh-1rem)] shadow-md'>
                 <div className='flex flex-col md:h-full p-2'>
                   <div className='flex   flex-col h-64 md:h-auto w-auto md:w-96 flex-wrap   gap-3 md:gap-16 md:p-10 overflow-x-scroll '>
-                    {[1, 2, 3, 4, 5].map((tool) => (
-                      <div key={tool}>
+                    {anns?.map((ann) => (
+                      <div key={ann.title}>
                         <figure className=''>
                           <span
-                            className={` w-40  md:w-32    ring-slate-200 ring-1 shadow-xl flex items-center justify-center text-xl bg-white ${tool.color}`}
+                            className={` w-40  md:w-32    ring-slate-200 ring-1 shadow-xl flex items-center justify-center text-xl bg-white`}
                           >
                             <Image
                               src='/books.jpeg'
@@ -277,15 +198,17 @@ const Dashboard = () => {
                           </span>
                           <figcaption
                             className={`${
-                              tool === 2 ? "bg-fuchsia-600" : " bg-blue-400"
+                              ann.title === 2
+                                ? "bg-fuchsia-600"
+                                : " bg-blue-400"
                             }`}
                           >
                             <span className='w-40 flex flex-col'>
                               <span className='text-md px-3 font-bold text-white'>
-                                Post update
+                                {ann.title}
                               </span>
                               <span className='font-thin  text-white px-3 text-xs'>
-                                certified in data base design habtamu girma
+                                {ann.message}
                               </span>
                             </span>
                           </figcaption>
@@ -340,15 +263,20 @@ const Dashboard = () => {
                                     onSubmit={handleSubmit(onSubmit)}
                                     className='gap-2'
                                   >
+                                    {errorMessage && (
+                                      <span className='block w-full bg-red-100 rounded-md p-3 text-center text-red-500 text-sm font-bold mb-2'>
+                                        {errorMessage}
+                                      </span>
+                                    )}
                                     <label className='block text-slate-700 text-sm font-bold mb-0 md:mb-2'>
                                       Announcement title
                                     </label>
                                     <input
-                                      {...register("headerText")}
+                                      {...register("title")}
                                       className='shadow h-8 bg-slate-100 appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                                      id='header text'
+                                      id='title'
                                       type='text'
-                                      name='headerText'
+                                      name='title'
                                       placeholder='add header text'
                                     />
                                     <div className=' mt-2 md:mt-6 '>
@@ -356,10 +284,10 @@ const Dashboard = () => {
                                         description
                                       </label>
                                       <textarea
-                                        name='description'
-                                        {...register("description")}
+                                        name='message'
+                                        {...register("message")}
                                         className='shadow h-20 bg-slate-100 appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                                        id='description'
+                                        id='message'
                                         type='text'
                                         placeholder='section description'
                                       />

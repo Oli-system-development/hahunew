@@ -52,7 +52,8 @@ const Tuition = () => {
       <div className='flex w-full  p-2 md:p-7 md:mx-32 flex-col gap-8 '>
         <div className='flex text-slate-500 text-lg md:text-xl font-bold justify-between'>
           <span>
-            <i className='fa-solid fa-money-bill px-3 pt-1 text-xl'></i> Tuition
+            <i className='fa-solid fa-money-bill px-3 pt-1 text-xl'></i>{" "}
+            Tuition
           </span>
         </div>
 

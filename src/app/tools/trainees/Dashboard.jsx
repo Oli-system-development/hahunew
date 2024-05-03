@@ -1,17 +1,39 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import Chart from "./Chart2";
 import Image from "next/image";
 import Calendar from "react-calendar";
 import { BarChart, LineChart } from "@mantine/charts";
 import { data } from "./data";
 import { data2 } from "./linechartData";
+import { useGetAllTraineeQuery } from "../../../services/api/traineeApi";
 const Dashboard = () => {
   const [date, setDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedItem, setSelectedItem] = useState(1);
 
   const [showChart, setShowChart] = useState(false);
+  //todo fetch from api
+  const [trainees, setTrainees] = useState(null);
+  const {
+    data: traineesFromApi,
+    isLoading,
+    isSuccess,
+    isError,
+    error,
+  } = useGetAllTraineeQuery();
+  useEffect(() => {
+    const fetchTrainees = async () => {
+      console.log("Fetching trainees", await traineesFromApi);
+      setTrainees(await traineesFromApi);
+    };
+    if (isSuccess) {
+      console.log("Fetching success", trainees);
+    }
+
+    fetchTrainees();
+  }, [isLoading, isSuccess, traineesFromApi, trainees]);
+
   const handleItemClick = (item) => {
     setSelectedItem(item === selectedItem ? null : item);
   };
@@ -47,14 +69,14 @@ const Dashboard = () => {
       </div>
 
       <div className='flex  mx-1 md:mx-8 justify-between'>
-        <div className='flex h-32   justify-center md:h-auto md:flex-row gap-7 flex-col flex-wrap overflow-x-scroll md:gap-11 text-slate-700 shadow-lg p-2 md:p-5 ring-1 ring-slate-200   rounded-xl w-full md:justify-around '>
+        <div className='flex h-32   justify-center md:h-auto md:flex-row gap-7 flex-col flex-wrap overflow-x-scroll md:overflow-hidden md:gap-11 text-slate-700 shadow-lg p-2 md:p-5 ring-1 ring-slate-200   rounded-xl w-full md:justify-around '>
           <span className='flex gap-3 text-green-400'>
             <span>
               <i className='fa-solid fa-arrow-right-to-city rounded-full bg-slate-200  text-lg md:p-4'></i>
             </span>
             <span className='flex flex-col text-xs'>
               <span className='text-sm text-slate-400 '>Total Trainees</span>
-              108
+              {trainees?.length}
             </span>
           </span>{" "}
           <span className='flex gap-3 text-pink-600'>
@@ -110,7 +132,7 @@ const Dashboard = () => {
             <span className='text-white font-bold text-xl '>
               Attendance summery
             </span>
-            <LineChart
+            {/* <LineChart
               h={300}
               data={data2}
               dataKey='date'
@@ -120,12 +142,12 @@ const Dashboard = () => {
                 { name: "Tomatoes", color: "yellow" },
               ]}
               curveType='bump'
-            />
+            /> */}
           </div>
 
           <div className='flex flex-col gap-3 p-1 md:p-6 sm:w-80 md:w-96  shadow-lg rounded-xl text-xl font-bold text-slate-500'>
             <span>Financial summery</span>
-            <BarChart
+            {/* <BarChart
               h={300}
               data={data}
               dataKey='month'
@@ -134,7 +156,7 @@ const Dashboard = () => {
                 { name: "Laptops", color: "blue.6" },
               ]}
               tickLine='y'
-            />
+            /> */}
           </div>
           <div className='flex gap-3 flex-col text-xl sm:w-80 md:w-96 font-bold text-slate-500'>
             <span>Calander</span>
@@ -247,16 +269,16 @@ const Dashboard = () => {
                 ))}
               </tr>
               <tr className='h-1 bg-slate-100 w-full my-3' />
-              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 19].map((item) => (
+              {trainees?.map((trainee) => (
                 <tr
-                  key={item}
+                  key={trainee.userId}
                   className={`text-sm text-gray-900 cursor-pointer ${
-                    item === selectedItem ? "bg-blue-500 text-white" : ""
+                    trainee === selectedItem ? "bg-blue-500 text-white" : ""
                   }`}
-                  onClick={() => handleItemClick(item)}
+                  onClick={() => handleItemClick(trainee)}
                 >
                   <td className='w-32 px-1 sm:w-40 md:w-72 py-1 md:py-3'>
-                    <span className='flex flex-row gap-0'>
+                    <span className='flex flex-row gap-0 '>
                       <span className='w-10'>
                         <Image
                           src='/elsabet.jpeg'
@@ -266,32 +288,28 @@ const Dashboard = () => {
                           className='rounded-full rounded-image text-center'
                         />
                       </span>
-                      <span className='flex flex-col'>
-                        <span>Melak ab </span>
+                      <span className='flex  flex-col justify-start text-start'>
+                        <span>{trainee.user.firstName} </span>
                         <span className='text-slate-600 font-thin'>
-                          TF010233{" "}
+                          {trainee.userId}{" "}
                         </span>
                       </span>
                     </span>
                   </td>
                   <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
-                    electronics C1
+                    {trainee.section.name}
                   </td>
                   <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
                     april 21,2022
                   </td>
                   <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
-                    {item === 4 ||
-                    item === 3 ||
-                    item === 6 ||
-                    item === 11 ||
-                    item === 15 ? (
+                    {trainee.status === "withdrawn" ? (
                       <button
                         data-modal-hide='default-modal'
                         type='button'
                         className='text-slate-400 ring-1 h-5 ring-red-300 rounded-full focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm px-5 py-0'
                       >
-                        withdrawn
+                        {trainee.status}
                       </button>
                     ) : (
                       <button
@@ -299,22 +317,18 @@ const Dashboard = () => {
                         type='button'
                         className='text-slate-400 ring-1 h-5 ring-green-300 rounded-full focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm px-8 -py-3'
                       >
-                        active
+                        {trainee.status}
                       </button>
                     )}
                   </td>
                   <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
-                    {item === 4 ||
-                    item === 3 ||
-                    item === 6 ||
-                    item === 11 ||
-                    item === 15 ? (
+                    {trainee.status === "withdrawn" ? (
                       <button
                         data-modal-hide='default-modal'
                         type='button'
                         className='text-slate-400 ring-1 h-5 ring-red-300 rounded-full focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm px-5 py-0'
                       >
-                        withdrawn
+                        {trainee.status}
                       </button>
                     ) : (
                       <button
@@ -322,7 +336,7 @@ const Dashboard = () => {
                         type='button'
                         className='text-slate-400 ring-1 h-5 ring-green-300 rounded-full focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm px-8 -py-3'
                       >
-                        paid
+                        {trainee.status}
                       </button>
                     )}
                   </td>
@@ -330,11 +344,11 @@ const Dashboard = () => {
                     3.4
                   </td>
                   <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
-                    {item === 4 ||
-                    item === 3 ||
-                    item === 6 ||
-                    item === 11 ||
-                    item === 15 ? (
+                    {trainee === 4 ||
+                    trainee === 3 ||
+                    trainee === 6 ||
+                    trainee === 11 ||
+                    trainee === 15 ? (
                       <button
                         data-modal-hide='default-modal'
                         type='button'
@@ -353,11 +367,11 @@ const Dashboard = () => {
                     )}
                   </td>
                   <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
-                    {item === 4 ||
-                    item === 3 ||
-                    item === 6 ||
-                    item === 11 ||
-                    item === 15 ? (
+                    {trainee === 4 ||
+                    trainee === 3 ||
+                    trainee === 6 ||
+                    trainee === 11 ||
+                    trainee === 15 ? (
                       <button
                         data-modal-hide='default-modal'
                         type='button'

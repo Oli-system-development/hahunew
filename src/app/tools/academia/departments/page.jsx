@@ -3,6 +3,7 @@ import Image from "next/image";
 import CourseDetails from "./CourseDetail";
 import AddDepartment from "./AddDepartment";
 import React, { useState } from "react";
+import { useGetAllDepartmentsQuery } from "../../../../services/api/academia/academiaApi";
 const topBar = [
   "Staff Name/ID",
   "Sex",
@@ -20,9 +21,11 @@ const Departments = () => {
   const [selectedCourse, setSelectedCourse] = useState(false);
   const [showBookDetails, setShowBookDetails] = useState(false);
   const [openAddDepartment, setOpenAddDepartment] = useState(false);
-
+  const { data: departments, isLoading } = useGetAllDepartmentsQuery();
+  console.log("departments", departments);
   const handleItemClick = (item) => {
     setSelectedItem(item === selectedItem ? null : item);
+    
   };
   const handleBackToItems = () => {
     setShowBookDetails(!showBookDetails);
@@ -36,6 +39,7 @@ const Departments = () => {
       <CourseDetails
         courseStatus={() => setSelectedCourse(false)}
         addDept={() => setOpenAddDepartment(false)}
+        dept={selectedItem}
       />
     );
   }
@@ -76,9 +80,9 @@ const Departments = () => {
                   <th>STREAMS</th>
                 </tr>
                 <tr className='h-1 bg-slate-100 w-full' />
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item) => (
+                {departments?.map((item,index) => (
                   <tr
-                    key={item}
+                    key={index}
                     className={`text-sm text-gray-900 ${
                       item === selectedItem ? "bg-blue-500 text-white" : ""
                     }`}
@@ -86,7 +90,7 @@ const Departments = () => {
                   >
                     <td className='w-32 px-3 sm:w-40 md:w-72 py-1 md:py-3 cursor-pointer'>
                       <span className='flex  flex-col text-start'>
-                        <span>{item}. Information Technology</span>
+                        <span>{index + 1}. { item.name}</span>
                         <span
                           className={`text-sm font-thin ${
                             item === selectedItem
@@ -94,12 +98,12 @@ const Departments = () => {
                               : "text-slate-600 mx-3"
                           }`}
                         >
-                          TF02230300
+                          {item.departmentId}
                         </span>
                       </span>
                     </td>
                     <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
-                      Fashion C2{" "}
+                     {item.head?.user?.firstName}
                     </td>
                     <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
                       2{" "}
@@ -114,34 +118,34 @@ const Departments = () => {
             <div className='flex flex-col w-full'>
               <div className='flex flex-row justify-around w-full bg-white rounded-lg mb-3'>
                 <div className='flex flex-col  gap-4 md:gap-10 p-3 md:p-8 w-full'>
-                  <div className='book_items flex flex-col flex-wrap gap-4 md:gap-6 w-full overflow-y-scroll h-64 justify-around '>
-                    {[1, 2, 3, 4].map((item) => (
-                      <div
-                        key={item}
-                        className={`flex text-slate-500 flex-col gap-1 md:gap-6 w-full justify-around cursor-pointer `}
-                        onClick={handleBackToItems}
-                      >
-                        <span className='text-xl font-bold'>
-                          Information technology{" "}
-                        </span>
+                  <div className='book_items flex flex-col flex-wrap gap-4 md:gap-6 w-full  h-64 justify-around '>
+                    {/* {[1, 2, 3, 4].map((item) => ( */}
+                    <div
+                      // key={item}
+                      className={`flex text-slate-500 flex-col gap-1 md:gap-6 w-full justify-around cursor-pointer `}
+                      onClick={handleBackToItems}
+                    >
+                      <span className='text-xl font-bold'>
+                        Information technology{" "}
+                      </span>
 
-                        <div className='flex flex-col text-sm md:text-normal  text-slate-500'>
-                          <p>
-                            some details about the course like the quick brown
-                            fox jumped over the lazy dog . well that was not as
-                            long as i had hoped
-                          </p>
-                        </div>
-                        <div className='-mt-5'>
-                          <Image
-                            src='/book1.jpeg'
-                            alt=''
-                            width={290}
-                            height={150}
-                          />
-                        </div>
+                      <div className='flex flex-col text-sm md:text-normal  text-slate-500'>
+                        <p>
+                          some details about the course like the quick brown fox
+                          jumped over the lazy dog . well that was not as long
+                          as i had hoped
+                        </p>
                       </div>
-                    ))}
+                      <div className='-mt-5'>
+                        <Image
+                          src='/book1.jpeg'
+                          alt=''
+                          width={290}
+                          height={150}
+                        />
+                      </div>
+                    </div>
+                    {/* ))} */}
                   </div>
                 </div>
                 <div className='flex flex-col gap-1 md:gap-3  justify-center text-center bg-blue-600  w-40 md:w-64  text-sm md:text-normal text-slate-100'>

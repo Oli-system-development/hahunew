@@ -27,9 +27,21 @@ table td:first-child {
   width: auto;
   left: 0;
   z-index: 9;
-  background-color: white;
+  /* background-color: white; */
+}
+/* @media (max-width: 767px) {
+  table tr th:first-child,
+  table td:first-child {
+    background-color: white;
+  }
 }
 
+@media (min-width: 768px) {
+  table tr th:first-child,
+  table td:first-child {
+    background-color: none;
+  }
+} */
 table tr th:first-child {
   z-index: 11;
 }

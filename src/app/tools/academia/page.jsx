@@ -15,22 +15,12 @@ import Level from "./level/page";
 import Sections from "./sections/page";
 
 const Academia = () => {
-  const [iconClickStates, setIconClickStates] = useState(Array(8).fill(false));
   const [tab, setTab] = useState("fa fa-home");
   const router = useRouter();
-  const handleIconClick = (index) => {
-    const updatedClickStates = iconClickStates.map((state, i) =>
-      i === index ? !state : false
-    );
-    setIconClickStates(updatedClickStates);
-    // Remove the following line as it doesn't seem to be necessary
-    // ReactDOM.findDOMNode
-  };
 
   const changeTabs = (icon) => {
     setTab(icon);
   };
-  const sidbarIcons = [];
 
   return (
     <>
@@ -74,11 +64,11 @@ const Academia = () => {
                     className={`${icon} p-3 ${
                       icon === "fa-solid fa-glasses" && "md:mt-10"
                     } text-xl ${
-                      iconClickStates[index]
+                      tab === icon
                         ? "bg-blue-500 text-blue-100  rounded-xl"
                         : ""
                     }`}
-                    onClick={() => handleIconClick(index)}
+                    // onClick={() => handleIconClick(index)}
                   ></i>
                 </span>
               </div>

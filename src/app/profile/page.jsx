@@ -3,6 +3,7 @@
 import { Popover } from "@headlessui/react";
 import AskLeave from "./AskLeave";
 import EditProfile from "./AskLeave";
+import { useSelector } from "react-redux";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -11,42 +12,21 @@ import Calendar from "react-calendar";
 import { AreaChart, Sparkline } from "@mantine/charts";
 // import Calendar from "react-calendar";
 const ProfileDashboard = () => {
-  // export const data = [
-  //   {
-  //     date: "Mar 22",
-  //     Apples: 2890,
-  //     Oranges: 2338,
-  //     Tomatoes: 2452,
-  //   },
-  //   {
-  //     date: "Mar 23",
-  //     Apples: 2756,
-  //     Oranges: 2103,
-  //     Tomatoes: 2402,
-  //   },
-  //   {
-  //     date: "Mar 24",
-  //     Apples: 3322,
-  //     Oranges: 986,
-  //     Tomatoes: 1821,
-  //   },
-  //   {
-  //     date: "Mar 25",
-  //     Apples: 3470,
-  //     Oranges: 2108,
-  //     Tomatoes: 2809,
-  //   },
-  //   {
-  //     date: "Mar 26",
-  //     Apples: 3129,
-  //     Oranges: 1726,
-  //     Tomatoes: 2290,
-  //   },
-  // ];
+
   const [isModalVisible, setModalVisible] = useState(false);
   const [status, setStatus] = useState("");
   const [selectedDate, setSelectedDate] = useState(null);
+  const currentUser = useSelector((state) => state.user);
+  console.log("current user in profile", currentUser)
 
+  //!user list 
+  const userDetails = [
+    { icon: <i className='fa fa-calendar'></i>, text: currentUser?.createdAt },
+    {icon: <i className='fa fa-location'></i>,text: currentUser?.address?.region},
+    { icon: <i className='fa fa-email'></i>, text: currentUser?.email },
+    { icon: <i className='fa fa-phone'></i>, text: currentUser?.phoneNumber },
+    { icon: <i className='fa fa-save'></i>, text: "Entry Trainer" },
+  ];
   //TODO date
   const tileContent = ({ date, view }) => {
     if (view === "month" && date.getTime() === selectedDate?.getTime()) {
@@ -137,32 +117,28 @@ const ProfileDashboard = () => {
                   {/* </Popover> */}
                 </span>
                 <span className='text-xs my-2  font-bold md:text-2xl md:mx-2 flex justify-center'>
-                  Misrak Berhanu
+                  {currentUser?.firstName}
                 </span>
                 <span className='text-xs text-slate-700 flex justify-center'>
-                  TF 100000329
+                  {currentUser?.userId}
                 </span>
                 <span className='bg-slate-200  font-thin text-sm p-2 px-3 rounded-2xl text-slate-600  md:mx-11 my-2 flex justify-center text-center'>
-                  Trainer
+                  {currentUser?.type}
                 </span>
                 <span className='text-slate-800  font-thin text-sm p-2 px-3 flex justify-center md:mb-11 text-center'>
-                  IT department
+                  {currentUser?.department}
                 </span>
               </span>
-              <div className='text-slate-600 font-md bg-slate-200 h-full text-sm  md:p-2 gap-2 md:px-9 flex flex-col justify-center  text-center'>
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 11, 12, 13, 14, 15, 16, 17].map(
-                  (item) => (
-                    <div
-                      key={item}
-                      className='flex  text-xs md:text-lg justify-start gap-1 md:gap-4 pb-1 items-center  flex-row'
-                    >
-                      <span>
-                        <i className='fa fa-save'></i>
-                      </span>
-                      <span>addis ababa</span>
-                    </div>
-                  )
-                )}
+              <div className='text-slate-600  font-md bg-slate-200 h-full text-sm py-4 md:p-2 gap-2 md:px-9 flex flex-col justify-center  text-center'>
+                {userDetails?.map((item, index) => (
+                  <div
+                    key={index}
+                    className='flex  text-xs md:text-lg justify-start gap-1 md:gap-4 pb-1 items-center  flex-row'
+                  >
+                    <span>{item.icon}</span>
+                    <span>{item.text}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

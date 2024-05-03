@@ -1,22 +1,50 @@
 "use client";
 import { Popover } from "@headlessui/react";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import TuitionProfile from "../tuition/TuitionProfile";
+import { useGetTraineeQuery } from "../../../../services/api/traineeApi";
 
-const Tutition = () => {
+const Tutition = ({ trainee }) => {
   const [showCalander, setShowCalander] = useState(false);
   const [tuitionStatus, setTuitionStatus] = useState(false);
+  //todo fetch from api
+  // const [traineeInfo, setTrainee] = useState(null);
+  // const {
+  //   data: traineeFromApi,
+  //   isLoading,
+  //   isSuccess,
+  //   isError,
+  //   error,
+  // } = useGetTraineeQuery();
+  // useEffect(() => {
+  //   const fetchTrainee = async () => {
+  //     console.log("Fetching trainee", await traineeFromApi);
+  //     setTrainee(await traineeFromApi);
+  //   };
+  //   if (isSuccess) {
+  //     console.log("Fetching success", trainee);
+  //   }
+
+  //   fetchTrainee();
+  // }, [isLoading, isSuccess, traineeFromApi, trainee]);
+
   const handleTuitionStatus = () => {
     setTuitionStatus(!tuitionStatus);
   };
+  const { data: allTrianeeInfo } = useGetTraineeQuery(trainee.userId);
   if (tuitionStatus) {
     return <TuitionProfile tuitionStatus={() => setTuitionStatus(false)} />;
   }
+  if (allTrianeeInfo) {
+    console.log("course", allTrianeeInfo.course);
+  }
+  // console.log("course11", allTrianeeInfo?.course?[0]);
+
   return (
     <>
-      <div className='flex w-full  p-1 md:p-7 mx-1 md:mx-32 flex-col gap-3 bg-gray-100 rounded-2xl '>
+      <div className='flex w-full  p-1 md:p-7 mx-1 md:mx-20 flex-col gap-3 bg-gray-100 rounded-2xl '>
         <div className='flex w-full flex-col gap-2 '>
           <div className='flex flex-col md:flex-row'>
             <div className='flex rounded-sm  w-full'>
@@ -30,7 +58,7 @@ const Tutition = () => {
                     Tuition
                   </button>
                 </div>
-                <div className='flex flex-row gap-2 md:gap-20 w-full overflow-scroll md:py-2'>
+                <div className='flex flex-row gap-2 md:gap-20 w-full overflow-scroll md:overflow-hidden md:py-2'>
                   {[5, 2, 3].map((item) => (
                     <span
                       key={item}
@@ -129,7 +157,7 @@ const Tutition = () => {
                   </div>
                   <div className='flex flex-col w-full '>
                     <div className='flex flex-col rounded-md md:pt-4 md:pr-3 md:pl-10  h-64 flex-wrap bg-white text-start  mt-14 mb-1 text-slate-500 shadow-md '>
-                      <div className='table-container overflow-scroll'>
+                      <div className='table-container overflow-scroll md:overflow-hidden'>
                         <table>
                           <tbody>
                             <tr className='text-xs md:text-base sm:text-sm md:w-80'>
@@ -139,22 +167,26 @@ const Tutition = () => {
                               <th>CGPA</th>
                             </tr>
 
-                            {[1, 2, 3, 4, 5].map((item) => (
-                              <tr key={item} className='text-sm text-gray-900'>
-                                <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72'>
-                                  {item}. database
-                                </td>
-                                <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72'>
-                                  12{" "}
-                                </td>
-                                <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72'>
-                                  8
-                                </td>
-                                <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72'>
-                                  8
-                                </td>
-                              </tr>
-                            ))}
+                            {allTrianeeInfo &&
+                              allTrianeeInfo.course?.map((item, index) => (
+                                <tr
+                                  key={index}
+                                  className='text-sm text-gray-900'
+                                >
+                                  <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72'>
+                                    {index + 1}. {item.name}
+                                  </td>
+                                  <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72'>
+                                    {item.result}
+                                  </td>
+                                  <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72'>
+                                    {item.absense}
+                                  </td>
+                                  <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72'>
+                                    {item.result}
+                                  </td>
+                                </tr>
+                              ))}
                           </tbody>
                         </table>
                       </div>
@@ -218,7 +250,9 @@ const Tutition = () => {
                         />
                       </div>
                       <div className='flex flex-col gap-2 md:gap-5 text-slate-500'>
-                        <span className='text-xl font-bold'>HANA Sirgut</span>
+                        <span className='text-xl font-bold'>
+                          {trainee.user.firstName}
+                        </span>
                         <span>store officer</span>
                         <span>department : computer</span>
                         <span>date joined : 12-12,2022</span>
@@ -312,10 +346,10 @@ const Tutition = () => {
                             </div>
                           </div>
 
-                          <div className='flex flex-col md:flex-row md:-mt-7 gap-7'>
+                          <div className='flex flex-col md:flex-row md:-mt-7 gap-0 md:gap-7'>
                             <div className='flex flex-col w-full '>
-                              <div className='flex flex-col gap-2  h-60  w-full text-start  mt-10  mb-1 text-slate-200'>
-                                <div className='flex flex-col  rounded-md justify-start  bg-white text-start w-64 mt-4 mb-1 text-slate-500 shadow-md '>
+                              <div className='flex flex-col gap-2  h-60  w-full text-start  md:mt-10  mb-1 text-slate-200'>
+                                <div className='flex flex-col  rounded-md justify-start  bg-white text-start md:w-64 md:mt-4 mb-1 text-slate-500 shadow-md '>
                                   <span className='text-md px-3 font-bold text-black'>
                                     Issues
                                   </span>
@@ -364,8 +398,8 @@ const Tutition = () => {
                             </div>
 
                             <div className='flex flex-col w-full '>
-                              <div className='flex flex-col gap-2  h-60  w-full text-start  mt-10  mb-1 text-slate-200'>
-                                <div className='flex flex-col  rounded-md justify-start  bg-white text-start w-64 mt-4 mb-1 text-slate-500 shadow-md '>
+                              <div className='flex flex-col gap-2  h-60  w-full text-start  md:mt-10  mb-1 text-slate-200'>
+                                <div className='flex flex-col  rounded-md justify-start  bg-white text-start md:w-64 md:mt-4 mb-1 text-slate-500 shadow-md '>
                                   <span className='text-md px-3 font-bold text-black'>
                                     Accomplishment
                                   </span>

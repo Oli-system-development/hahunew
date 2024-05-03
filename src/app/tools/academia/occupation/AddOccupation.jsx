@@ -1,11 +1,11 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import Loading from "../../../common/loading";
 
 const AddOccupation = ({ addOccupation }) => {
   const [general, setGeneral] = useState(true);
-  const [admin, setAdmin] = useState(false);
-  const [attachIndustries, setAttachIndustries] = useState(false);
   const [content, setContent] = useState(false);
   const [level, setLevel] = useState(false);
   const [levelContent, setLevelContent] = useState(false);
@@ -20,23 +20,7 @@ const AddOccupation = ({ addOccupation }) => {
     setGeneral(true);
   };
 
-  const administratorTab = () => {
-    setGeneral(false);
-    setAttachIndustries(false);
-    setLevelContent(false);
-    setContent(false);
-    setLevel(false);
-    setAdmin(true);
-  };
 
-  const attachIndustriesTab = () => {
-    setGeneral(false);
-    setAdmin(false);
-    setContent(false);
-    setLevelContent(false);
-    setLevel(false);
-    setAttachIndustries(true);
-  };
 
   const contentTab = () => {
     setGeneral(false);
@@ -55,14 +39,7 @@ const AddOccupation = ({ addOccupation }) => {
     setLevel(true);
     setLevelContent(false);
   };
-  const levelContentTab = () => {
-    setGeneral(false);
-    setAdmin(false);
-    setAttachIndustries(false);
-    setContent(false);
-    setLevel(false);
-    setLevelContent(true);
-  };
+
   const toggleModal = () => {
     setGeneral(false);
     setAdmin(false);
@@ -73,8 +50,31 @@ const AddOccupation = ({ addOccupation }) => {
     setModalVisible((prev) => !prev);
   };
 
+
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = async (data) => {
+    try {
+      console.warn("occupations:", data);
+      const formData = new FormData();
+      Object.keys(data).forEach((key) => {
+        if (key == `file` || key == `secondFile`) {
+          formData.append(key, data[key][0]);
+        } else formData.append(key, data[key]);
+      });
+
+      // await occupations(formData);
+      // occupationStatus(false);
+      message.success("occupation added  successfully!");
+    } catch (error) {
+      console.log("Error submitting occupation:", error);
+      //  setErrorMessage("Invalid data.");
+    }
+  };
   return (
     <>
+      {isLoading && <Loading />}
+
       <div className='flex w-full flex-col md:flex-row gap-2 md:shadow-xl rounded-xl  md:p-4 '>
         <div className=' w-full md:w-1/3 md:h-[calc(82vh-0rem)] md:mt-3 md:mb-11 md:mx-8 rounded-2xl md:shadow-2xl ring-1 ring-slate-200 bg-white '>
           <div className='flex flex-col mb-2 md:mb-9 '>
@@ -159,7 +159,6 @@ const AddOccupation = ({ addOccupation }) => {
                                   name=''
                                   // onChange={"onChange"}
                                   className='shadow h-20 md:h-40 appearance-none ring-1 ring-slate-400 border rounded-lg md:w-full py-2 text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                                  id='description'
                                   type='text'
                                   placeholder='enter the units in order '
                                 />
@@ -171,11 +170,10 @@ const AddOccupation = ({ addOccupation }) => {
                               </span>
                               <span className='flex md:pt-3 flex-row gap-2'>
                                 <input
-                                  name=''
-                                  // onChange={"onChange"}
+                                  name='file'
+                                  {...register("level")}
                                   className='shadow appearance-none ring-1 ring-slate-400 border rounded-lg py-2 px-3 w-full text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                                  id='description'
-                                  type='text'
+                                  type='file'
                                   placeholder='enter the units in order '
                                 />
                                 <i className='fa fa-plus mt-1 rounded-full bg-slate-400 p-2 text-xl'></i>
@@ -204,6 +202,8 @@ const AddOccupation = ({ addOccupation }) => {
 
         <div className='md:w-3/4  md:mx-8 md:mt-4 rounded-2xl mb-11 ring-1 flex-wrap ring-slate-200  '>
           <>
+            <form onSubmit={handleSubmit(onSubmit)}>
+            
             {general && (
               <div className='flex flex-col md:flex-row gap-2 md:gap-7'>
                 <div className='flex flex-wrap  flex-row  md:h-[calc(82vh-0rem)] p-2 md:p-10  mb-1 md:mb-9 bg-white rounded-lg'>
@@ -215,10 +215,9 @@ const AddOccupation = ({ addOccupation }) => {
                       <div className='flex flex-col pt-4 gap-4 justify-around'>
                         <label htmlFor=''>Occupation NAME</label>
                         <input
-                          name=''
-                          // onChange={"onChange"}
+                          name='occName'
+                          {...register("occName")}
                           className='shadow h-8  appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                          id='header text'
                           type='text'
                           placeholder='Enter dept name'
                         />{" "}
@@ -226,10 +225,9 @@ const AddOccupation = ({ addOccupation }) => {
                       <div className='flex flex-col gap-4'>
                         <label htmlFor=''>Occupation abbrevation</label>
                         <input
-                          name=''
-                          // onChange={"onChange"}
+                          name='occAbb'
+                          {...register("occAbb")}
                           className='shadow h-8  appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                          id='header text'
                           type='text'
                           placeholder=''
                         />{" "}
@@ -237,10 +235,9 @@ const AddOccupation = ({ addOccupation }) => {
                       <div className='flex flex-col gap-4'>
                         <label htmlFor=''>Occupation ID</label>
                         <input
-                          name=''
-                          // onChange={"onChange"}
+                          name='occId'
+                          {...register("occId")}
                           className='shadow h-8  appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                          id='header text'
                           type='text'
                           placeholder='suggest ATC90'
                         />{" "}
@@ -251,10 +248,9 @@ const AddOccupation = ({ addOccupation }) => {
                         <div className='flex flex-col gap-7'>
                           <label htmlFor=''>Current year applicant limit</label>
                           <input
-                            name=''
-                            // onChange={"onChange"}
+                            name='limit'
+                            {...register("limit")}
                             className='shadow h-8 w-16 appearance-none ring-1 ring-slate-400 border rounded-lg  py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                            id='header text'
                             type='number'
                             placeholder='1'
                           />{" "}
@@ -264,12 +260,11 @@ const AddOccupation = ({ addOccupation }) => {
                         <label htmlFor=''>teams</label>
                         <span className='flex flex-row gap-2'>
                           <input
-                            name=''
-                            // onChange={"onChange"}
+                            name='teams'
+                            {...register("teams")}
                             className='shadow   appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                            id='description'
                             type='text'
-                            placeholder='section description'
+                            placeholder='occupation description'
                           />
                           <i className='fa fa-plus mt-1 rounded-full bg-slate-400 p-2 text-xl'></i>
                         </span>
@@ -285,10 +280,9 @@ const AddOccupation = ({ addOccupation }) => {
                       </span>
                       <span className='flex flex-row gap-2'>
                         <input
-                          name=''
-                          // onChange={"onChange"}
+                          name='occHead'
+                          {...register("occHead")}
                           className='shadow   appearance-none ring-1 ring-slate-400 border rounded-lg md:w-72  py-2 md:px-20 ml-2 md:ml-9  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                          id='description'
                           type='text'
                           placeholder='assign Occupation head '
                         />
@@ -298,10 +292,9 @@ const AddOccupation = ({ addOccupation }) => {
                       <label htmlFor=''>Occupation assistant</label>
                       <span className='flex flex-row gap-2'>
                         <input
-                          name=''
-                          // onChange={"onChange"}
+                          name='occAssistant'
+                          {...register("occAssistant")}
                           className='shadow   appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                          id='description'
                           type='text'
                           placeholder='add Occupation assistant'
                         />
@@ -318,90 +311,7 @@ const AddOccupation = ({ addOccupation }) => {
                 </div>
               </div>
             )}
-            {admin && (
-              <div className='flex flex-wrap  flex-row     mb-9 '>
-                <div className='flex flex-col  mb-9  w-1/2 bg-white rounded-xl shadow-md'>
-                  <span className='text-xl p-7 font-bold '>Administrator</span>
-                  <div className='flex flex-col '>
-                    <div className='flex flex-wrap  flex-col   p-10 gap-40    mb-9 bg-white rounded-lg '>
-                      <div className='flex flex-col  mb-9 '>
-                        <span className='text-md   font-bold text-slate-500'>
-                          add Administrator
-                        </span>
-                        <span className='flex pt-3 flex-row gap-2'>
-                          <input
-                            name=''
-                            // onChange={"onChange"}
-                            className='shadow   appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                            id='description'
-                            type='text'
-                            placeholder='enter the units in order '
-                          />
-                          <i className='fa fa-plus mt-1 rounded-full bg-slate-400 p-2 text-xl'></i>
-                        </span>
-                      </div>
-                      <div className='flex flex-col  mb-9 '>
-                        <span className='text-md   font-bold text-slate-500'>
-                          add Administrator
-                        </span>
-                        <span className='flex pt-3 flex-row gap-2'>
-                          <input
-                            name=''
-                            // onChange={"onChange"}
-                            className='shadow   appearance-none ring-1 ring-slate-400 border rounded-lg  py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                            id='description'
-                            type='text'
-                            placeholder='enter the units in order '
-                          />
-                          <i className='fa fa-plus mt-1 rounded-full bg-slate-400 p-2 text-xl'></i>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <button
-                  className='flex justify-center ml-40 h-10 bg-blue-700 py-2 rounded-full w-40 text-white '
-                  onClick={() => addOccupation(false)}
-                >
-                  finish
-                </button>
-              </div>
-            )}
-            {attachIndustries && (
-              <div className='flex flex-wrap  flex-row     mb-9 '>
-                <div className='flex flex-col  mb-9  w-1/2 bg-white rounded-xl shadow-md'>
-                  <span className='text-xl p-7 font-bold '>
-                    attach Industries
-                  </span>
-                  <div className='flex flex-col '>
-                    <div className='flex flex-wrap  flex-col  h-[calc(68vh-0rem)]  p-10 gap-40    mb-9 bg-white rounded-lg '>
-                      <div className='flex flex-col  mb-9 '>
-                        <span className='text-md   font-bold text-slate-500'>
-                          add Industries
-                        </span>
-                        <span className='flex pt-3 flex-row gap-2'>
-                          <input
-                            name=''
-                            // onChange={"onChange"}
-                            className='shadow   appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                            id='description'
-                            type='text'
-                            placeholder='enter the units in order '
-                          />
-                          <i className='fa fa-plus mt-1 rounded-full bg-slate-400 p-2 text-xl'></i>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <button
-                  className='flex justify-center ml-40 bg-blue-700 py-2 h-9 rounded-full w-40 text-white '
-                  onClick={() => addOccupation(false)}
-                >
-                  finish
-                </button>
-              </div>
-            )}
+
             {content && (
               <div className='flex flex-wrap  flex-row     md:mb-9 '>
                 <div className='flex flex-col  md:mb-9  md:h-[calc(74vh-0rem)] md:w-2/3 bg-white rounded-xl shadow-md'>
@@ -419,7 +329,6 @@ const AddOccupation = ({ addOccupation }) => {
                             name=''
                             // onChange={"onChange"}
                             className='shadow  h-32 md:h-40  appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 md:px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                            id='description'
                             type='text'
                             placeholder='enter the units in order '
                           />
@@ -431,11 +340,10 @@ const AddOccupation = ({ addOccupation }) => {
                         </span>
                         <span className='flex pt-3 flex-row gap-2'>
                           <input
-                            name=''
-                            // onChange={"onChange"}
+                            name='contentFile'
+                            {...register("contentFile")}
                             className='shadow   appearance-none ring-1 ring-slate-400 border rounded-lg  py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline w-full'
-                            id='description'
-                            type='text'
+                            type='file'
                             placeholder='enter the units in order '
                           />
                           <i className='fa fa-plus mt-1 rounded-full bg-slate-400 p-2 text-xl'></i>
@@ -466,10 +374,9 @@ const AddOccupation = ({ addOccupation }) => {
                         <div className='flex flex-col gap-2 md:gap-14 justify-around'>
                           <label htmlFor=''>Level name</label>
                           <input
-                            name=''
-                            // onChange={"onChange"}
+                            name='levelName'
+                            {...register("leaveName")}
                             className='shadow h-8 bg-slate-100 appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                            id='header text'
                             type='text'
                             placeholder='enter department name'
                           />{" "}
@@ -477,10 +384,9 @@ const AddOccupation = ({ addOccupation }) => {
                         <div className='flex flex-col gap-3 md:gap-7'>
                           <label htmlFor=''>Level id</label>
                           <input
-                            name=''
-                            // onChange={"onChange"}
+                            name='levelId'
+                            {...register("levelId")}
                             className='shadow h-8 bg-slate-100 appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                            id='header text'
                             type='text'
                             placeholder='suggest TCL323'
                           />{" "}
@@ -491,10 +397,9 @@ const AddOccupation = ({ addOccupation }) => {
                           <div className='flex flex-col gap-7'>
                             <label htmlFor=''>UCS</label>
                             <input
-                              name=''
-                              // onChange={"onChange"}
+                              name='levelUcs'
+                              {...register("levelUcs")}
                               className='shadow h-8 bg-slate-100 appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                              id='header text'
                               type='text'
                               placeholder='search'
                             />{" "}
@@ -502,10 +407,9 @@ const AddOccupation = ({ addOccupation }) => {
                           <div className='flex flex-col gap-7'>
                             <label htmlFor=''>add instruction</label>
                             <input
-                              name=''
-                              // onChange={"onChange"}
+                              name='levelInstructor'
+                              {...register("levelInstructor")}
                               className='shadow h-8 bg-slate-100 appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                              id='header text'
                               type='text'
                               placeholder='search'
                             />{" "}
@@ -516,7 +420,8 @@ const AddOccupation = ({ addOccupation }) => {
                   </div>
                 </div>
               </div>
-            )}
+              )}
+              </form>
           </>
         </div>
       </div>

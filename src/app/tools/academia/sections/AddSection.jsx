@@ -5,28 +5,21 @@ import React, { useState } from "react";
 
 import Scheduler from "./Scheduler";
 import "./scheduler.css";
+import Loading from "../../../common/loading";
+import { useGetAllTraineeQuery } from "../../../../services/api/traineeApi";
+import Sections from "./page";
+import { useForm } from "react-hook-form";
+import { useAddSectionMutation } from "../../../../services/api/academia/academiaApi";
 const AddSection = ({ addSection, sectionStatus }) => {
   const [general, setGeneral] = useState(true);
-  // const [admin, setAdmin] = useState(false);
-  // const [attachIndustries, setAttachIndustries] = useState(false);
+
   const [student, setStudent] = useState(false);
   const [schedule, setSchedule] = useState(false);
   const [isModalVisible, setModalVisible] = useState(false);
-
-  //!modal
-  // const showModal = () => {
-  //   setIsModalOpen(true);
-  // };
-  // const handleOk = () => {
-  //   setIsModalOpen(false);
-  // };
-  // const handleCancel = () => {
-  //   setIsModalOpen(false);
-  // };
-
+  const [addSections, { isLoading }] = useAddSectionMutation();
+  const { data: students } = useGetAllTraineeQuery();
   const generalTab = () => {
     setStudent(false);
-    // setLevel(false);
     setGeneral(true);
     setSchedule(false);
   };
@@ -34,7 +27,6 @@ const AddSection = ({ addSection, sectionStatus }) => {
   const studentTab = () => {
     setGeneral(false);
 
-    // setLevel(false);
     setStudent(true);
     setSchedule(false);
   };
@@ -45,17 +37,11 @@ const AddSection = ({ addSection, sectionStatus }) => {
     setStudent(false);
     setSchedule(true);
   };
-  const levelstudentTab = () => {
-    setGeneral(false);
 
-    setStudent(false);
-    // setLevel(false);
-  };
   const toggleModal = () => {
     setGeneral(false);
 
     setStudent(false);
-    // setLevel(false);
     setModalVisible((prev) => !prev);
   };
   const onChange = (e) => {
@@ -66,14 +52,30 @@ const AddSection = ({ addSection, sectionStatus }) => {
   const onPanelChange = (value, mode) => {
     console.log(value.format("YYYY-MM-DD"), mode);
   };
-  const { token } = theme.useToken();
-  // const wrapperStyle = {
-  //   width: 280,
-  //   border: `1px solid   ${token.colorBorderSecondary}`,
-  //   borderRadius: token.borderRadiusLG,
-  // };
+
+  const { register, handleSubmit } = useForm();
+
+  const onSubmit = async (data) => {
+    try {
+      console.warn("sections:", data);
+      const formData = new FormData();
+      Object.keys(data).forEach((key) => {
+        if (key == `file` || key == `secondFile`) {
+          formData.append(key, data[key][0]);
+        } else formData.append(key, data[key]);
+      });
+
+      await addSections(formData);
+      sectionStatus(false);
+      message.success("section added  successfully!");
+    } catch (error) {
+      console.log("Error submitting section:", error);
+      //  setErrorMessage("Invalid data.");
+    }
+  };
   return (
     <>
+      {isLoading && <Loading />}
       <div className='flex w-full flex-col md:flex-row gap-2 md:shadow-xl rounded-xl  md:p-4 '>
         <div className=' w-full md:w-1/3 md:h-[calc(82vh-0rem)] md:mt-3 md:mb-11 md:mx-8 rounded-2xl md:shadow-2xl ring-1 ring-slate-200 bg-white '>
           <div className='flex flex-col mb-2 md:mb-9 '>
@@ -111,6 +113,8 @@ const AddSection = ({ addSection, sectionStatus }) => {
 
         <div className='md:w-3/4  md:mx-8 md:mt-4 rounded-2xl mb-11 ring-1 flex-wrap ring-slate-200  '>
           <>
+            <form onSubmit={handleSubmit(onSubmit)}>
+
             {general && (
               <div className='flex flex-wrap flex-row mb-9 bg-white rounded-lg'>
                 <div className='flex flex-col mb-9 '>
@@ -123,10 +127,9 @@ const AddSection = ({ addSection, sectionStatus }) => {
                         <div className='flex flex-col gap-3 md:gap-8 justify-around'>
                           <label htmlFor=''>Section</label>
                           <input
-                            name=''
-                            // onChange={"onChange"}
+                            name='name'
+                            {...register("name")}
                             className='shadow h-8 bg-slate-100 appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                            id='header text'
                             type='text'
                             placeholder='enter department name'
                           />{" "}
@@ -134,65 +137,59 @@ const AddSection = ({ addSection, sectionStatus }) => {
                         <div className='flex flex-col gap-2 md:gap-7'>
                           <label htmlFor=''>Department</label>
                           <input
-                            name=''
-                            // onChange={"onChange"}
+                            name='department'
+                            {...register("department")}
                             className='shadow h-8 bg-slate-100 appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                            id='header text'
                             type='text'
                             placeholder='suggest TCL323'
                           />{" "}
                         </div>
                       </div>
-                      <form action=''>
-                        <div className='flex px-2 md:px-9 gap-2 md:gap-5 justify-center flex-col '>
-                          <div className='flex flex-col gap-2 md:gap-7'>
-                            <label htmlFor=''>Occupation</label>
-                            <input
-                              name=''
-                              // onChange={"onChange"}
-                              className='shadow h-8 bg-slate-100 appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                              id='header text'
-                              type='text'
-                              placeholder='suggested TCL1026'
-                            />{" "}
-                          </div>
-                          <div className='flex flex-col gap-4'>
-                            <label htmlFor=''>Level</label>
-                            <input
-                              name=''
-                              // onChange={"onChange"}
-                              className='shadow h-8 bg-slate-100 appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                              id='header text'
-                              type='text'
-                              placeholder='select level'
-                            />{" "}
-                          </div>
+                      <div className='flex px-2 md:px-9 gap-2 md:gap-5 justify-center flex-col '>
+                        <div className='flex flex-col gap-2 md:gap-7'>
+                          <label htmlFor=''>Occupation</label>
+                          <input
+                            name='occupation'
+                            {...register("occupation")}
+                            className='shadow h-8 bg-slate-100 appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+                            type='text'
+                            placeholder='suggested TCL1026'
+                          />{" "}
                         </div>
-                        <div className='flex p-2 md:p-9 gap-2 md:gap-5 justify-center flex-row '>
-                          <div className='flex flex-col gap-2 md:gap-7'>
-                            <label htmlFor=''>Trainer</label>
-                            <input
-                              name=''
-                              // onChange={"onChange"}
-                              className='shadow h-8 bg-slate-100 appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                              id='header text'
-                              type='text'
-                              placeholder='select trainer'
-                            />{" "}
-                          </div>
-                          <div className='flex flex-col gap-2 md:gap-7'>
-                            <label htmlFor=''>supervisor</label>
-                            <input
-                              name=''
-                              // onChange={"onChange"}
-                              className='shadow h-8 bg-slate-100 appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                              id='header text'
-                              type='text'
-                              placeholder='select supervisor'
-                            />{" "}
-                          </div>
+                        <div className='flex flex-col gap-4'>
+                          <label htmlFor=''>Level</label>
+                          <input
+                            name='level'
+                            {...register("level")}
+                            className='shadow h-8 bg-slate-100 appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+                            id='header text'
+                            type='text'
+                            placeholder='select level'
+                          />{" "}
                         </div>
-                      </form>
+                      </div>
+                      <div className='flex p-2 md:p-9 gap-2 md:gap-5 justify-center flex-row '>
+                        <div className='flex flex-col gap-2 md:gap-7'>
+                          <label htmlFor=''>Trainer</label>
+                          <input
+                            name='trainer'
+                            {...register("trainer")}
+                            className='shadow h-8 bg-slate-100 appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+                            type='text'
+                            placeholder='select trainer'
+                          />{" "}
+                        </div>
+                        <div className='flex flex-col gap-2 md:gap-7'>
+                          <label htmlFor=''>supervisor</label>
+                          <input
+                            name='supervisor'
+                            {...register("supervisor")}
+                            className='shadow h-8 bg-slate-100 appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+                            type='text'
+                            placeholder='select supervisor'
+                          />{" "}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -224,9 +221,9 @@ const AddSection = ({ addSection, sectionStatus }) => {
                         <th>add/remove</th>
                       </tr>
                       <tr className='h-1 bg-slate-100 w-full' />
-                      {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
+                      {students?.map((item, index) => (
                         <tr
-                          key={item}
+                          key={index}
                           className={`text-sm text-gray-900 
                                     ${
                                       item === "selectedItem"
@@ -234,9 +231,8 @@ const AddSection = ({ addSection, sectionStatus }) => {
                                         : ""
                                     }
                                     `}
-                          // onClick={() => handleButtonClick(item)}
                         >
-                          <td>{item}</td>
+                          <td>{index + 1}</td>
                           <td className='w-32 px-1 sm:w-40 md:w-72 py-1 md:py-3'>
                             <span className='flex flex-row gap-0'>
                               <span className='w-10'>
@@ -248,10 +244,10 @@ const AddSection = ({ addSection, sectionStatus }) => {
                                   className='rounded-full rounded-image text-center'
                                 />
                               </span>
-                              <span className='flex flex-col'>
-                                <span>Melak ab </span>
+                              <span className='flex flex-col justify-start text-start'>
+                                <span>{item.user?.firstName} </span>
                                 <span className='text-slate-600 font-thin'>
-                                  TF010233{" "}
+                                 {item.userId}
                                 </span>
                               </span>
                             </span>
@@ -261,11 +257,7 @@ const AddSection = ({ addSection, sectionStatus }) => {
                           </td>
                           <td className='w-32 px-7 py-3'>electro C1</td>
                           <td className='w-32 px-7 py-3'>
-                            {item === 4 ||
-                            item === 3 ||
-                            item === 6 ||
-                            item === 11 ||
-                            item === 15 ? (
+                            {item.status=="withdrawn"? (
                               <button
                                 data-modal-hide='default-modal'
                                 type='button'
@@ -364,156 +356,7 @@ const AddSection = ({ addSection, sectionStatus }) => {
                           </div>
                         )
                       )}
-                      {/* <div className='flex   shadow-2xl fixed  top-20 mt-20 right-0 left-0 z-100 justify-center  items-center  md:inset-0 h-[calc(140%-1rem)] max-h-full'>
-                        <div className=' p-4 w-[24%] h-[80%]  max-h-full'>
-                          <div className=' bg-white rounded-lg shadow-2xl '>
-                            <div className=''>
-                              <div className=''>
-                                <div className='px-10 flex flex-col '>
-                                  <form onSubmit={""} className='gap-2'>
-                                    <div className='flex flex-col gap-2'>
-                                      <div className='flex justify-end mt-6'>
-                                        <input
-                                          name=''
-                                          // onChange={"onChange"}
-                                          className='shadow w-24 justify-end h-8 bg-slate-100 appearance-none ring-1 ring-slate-200 border rounded-sm  py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                                          id='header text'
-                                          type='week'
-                                          placeholder='12/12/2022'
-                                        />
-                                      </div>
-                                      <div className='flex flex-col  '>
-                                        <span className='text-md   font-bold text-slate-500'>
-                                          select UC{" "}
-                                        </span>
-                                        <span className='flex pt-3 flex-row gap-2'>
-                                          <input
-                                            name=''
-                                            // onChange={"onChange"}
-                                            className='shadow   appearance-none ring-1 ring-slate-400 border rounded-lg  py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                                            id='description'
-                                            type='text'
-                                            placeholder='assign department head '
-                                          />
-                                          <i className='fa fa-plus mt-1 rounded-full bg-slate-200 p-2 text-xl'></i>
-                                        </span>
-                                      </div>
-                                      <div className='flex flex-col   '>
-                                        <span className='text-md   font-bold text-slate-500'>
-                                          add a test or quiz
-                                        </span>
-                                        <span className='flex pt-3 flex-row gap-2'>
-                                          <input
-                                            name=''
-                                            // onChange={"onChange"}
-                                            className='shadow   appearance-none ring-1 ring-slate-400 border rounded-lg  py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                                            id='description'
-                                            type='text'
-                                            placeholder='type the detail of the test '
-                                          />
-                                          <i className='fa fa-plus mt-1 rounded-full bg-slate-200 p-2 text-xl'></i>
-                                        </span>
-                                      </div>
-                                      <div className='flex flex-col   '>
-                                        <span className='text-md   font-bold text-slate-500'>
-                                          time
-                                        </span>
-                                        <span className='flex pt-3 flex-row gap-2'>
-                                          <input
-                                            name=''
-                                            // onChange={"onChange"}
-                                            className='shadow  w-64  appearance-none ring-1 ring-slate-400 border rounded-lg  py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                                            id='description'
-                                            type='time'
-                                            placeholder=' '
-                                          />
-                                        </span>
-                                      </div>
-                                      <div className='flex flex-col   '>
-                                        <span className='text-md   font-bold text-slate-500'>
-                                          duration(min)
-                                        </span>
-                                        <span className='flex pt-3 flex-row gap-2'>
-                                          <input
-                                            name=''
-                                            // onChange={"onChange"}
-                                            className='shadow   appearance-none ring-1 ring-slate-400 border rounded-lg  py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                                            id='description'
-                                            type='text'
-                                            placeholder='enter the duration in min  '
-                                          />
-                                        </span>
-                                      </div>
-                                      <div className='flex flex-col   '>
-                                        <span className='text-md   font-bold text-slate-500'>
-                                          room number
-                                        </span>
-                                        <span className='flex pt-3 flex-row gap-2'>
-                                          <input
-                                            name=''
-                                            // onChange={"onChange"}
-                                            className='shadow w-64  appearance-none ring-1 ring-slate-400 border rounded-lg  py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
-                                            id='description'
-                                            type='text'
-                                            placeholder='optional '
-                                          />
-                                        </span>
-                                      </div>
 
-                                      <div className='flex flex-col   '>
-                                        <span className='text-md   font-bold text-slate-500'>
-                                          clone to
-                                        </span>
-                                        <span className='flex pt-3 flex-row gap-2 flex-wrap'>
-                                          <button className='text-sm font-thin ring-1 ring-slate-200 px-3 rounded-md'>
-                                            mon
-                                          </button>
-                                          <button className='text-sm font-thin ring-1 ring-slate-200 px-3 rounded-md bg-blue-500  text-white'>
-                                            thu
-                                          </button>
-                                          <button className='text-sm font-thin ring-1 ring-slate-200 px-3 rounded-md'>
-                                            wed
-                                          </button>
-                                          <button className='text-sm font-thin ring-1 ring-slate-200 px-3 rounded-md'>
-                                            thu
-                                          </button>
-                                          <button className='text-sm font-thin ring-1 ring-slate-200 px-3 rounded-md'>
-                                            fri
-                                          </button>
-                                          <button className='text-sm font-thin ring-1 ring-slate-200 px-3 rounded-md  bg-blue-500  text-white'>
-                                            sat
-                                          </button>
-                                          <button className='text-sm font-thin ring-1 ring-slate-200 px-3 rounded-md'>
-                                            sun
-                                          </button>
-                                        </span>
-                                      </div>
-                                    </div>
-                                  </form>
-                                </div>
-                                <div className="relative h-1/3 w-full md:h-full md:w-1/2 bg-[url('/bg.jpeg')]">
-                                  <Image
-                                    src='/loginimage.png'
-                                    alt=''
-                                    fill
-                                    className='object-cover'
-                                  />
-                                </div>
-                              </div>
-                            </div>
-                            <div className='flex items-center justify-end p-4  '>
-                              <button
-                                onClick={toggleModal}
-                                data-modal-hide='default-modal'
-                                type='button'
-                                className='text-white bg-blue-700 rounded-full hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium  text-sm px-5 py-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'
-                              >
-                                done
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div> */}
                       {isModalVisible && (
                         <div className='flex ring-1 z-50 shadow-2xl fixed bottom-0 right-0 left-0 z-100 justify-center items-center md:inset-0 h-[110%] md:h-auto'>
                           <div className='p-1 md:p-4 w-[80%] md:w-[60%] lg:w-[50%] xl:w-[40%]'>
@@ -686,12 +529,13 @@ const AddSection = ({ addSection, sectionStatus }) => {
             )}
             <div className='flex justify-end h-10'>
               <button
+                type='submit'
                 className='flex justify-center ml-40 bg-blue-700 py-2 rounded-full w-40 text-white '
-                onClick={() => sectionStatus(false)}
               >
                 finish
               </button>
             </div>
+            </form>
           </>
         </div>
       </div>

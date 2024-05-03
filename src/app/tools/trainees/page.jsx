@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Dashboard from "./Dashboard";
 
 import Report from "./report/page";
@@ -10,19 +10,11 @@ import Trainees from "./trainee/page";
 import Tutition from "./tuition/page";
 import Log from "./log/page";
 import Requests from "./requests/page";
+import { useGetTraineeQuery } from "../../../services/api/traineeApi";
 
 const SuperTrainees = () => {
-  const [iconClickStates, setIconClickStates] = useState(Array(8).fill(false));
   const [tab, setTab] = useState("fa fa-home");
   const router = useRouter();
-  const handleIconClick = (index) => {
-    const updatedClickStates = iconClickStates.map((state, i) =>
-      i === index ? !state : false
-    );
-    setIconClickStates(updatedClickStates);
-    // Remove the following line as it doesn't seem to be necessary
-    // ReactDOM.findDOMNode
-  };
 
   const changeTabs = (icon) => {
     setTab(icon);
@@ -71,11 +63,12 @@ const SuperTrainees = () => {
                     className={`${icon} p-3 ${
                       icon === "fa-solid fa-glasses" && "md:mt-10"
                     } text-xl ${
-                      iconClickStates[index]
+                    // iconClickStates[index]
+                      tab===icon
                         ? "bg-blue-500 text-blue-100  rounded-xl"
                         : ""
                     }`}
-                    onClick={() => handleIconClick(index)}
+                    // onClick={() => handleIconClick(index)}
                   ></i>
                 </span>
               </div>

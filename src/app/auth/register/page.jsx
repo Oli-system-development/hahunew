@@ -9,11 +9,8 @@ import "../../../styles/register.css";
 import { useEffect, useState } from "react";
 import { Steps, message } from "antd";
 import { useForm, FormProvider, useFormContext } from "react-hook-form";
-import {
-  useSignUpUserMutation,
-  useSignUserMutation,
-  useGetUserQuery,
-} from "../../../services/api/authApi";
+import { useGetUsersQuery, useSignUpUserMutation } from "../../../services/api/authApi";
+
 const { Step } = Steps;
 
 const RegisterPage = () => {
@@ -22,7 +19,7 @@ const RegisterPage = () => {
   const router = useRouter();
   const methods = useForm();
 
-  const { isError } = useGetUserQuery();
+  const { isError } = useGetUsersQuery();
   const [signUpUser, { data, isLoading }] = useSignUpUserMutation();
 
   useEffect(() => {
