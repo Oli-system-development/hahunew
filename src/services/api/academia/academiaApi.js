@@ -22,7 +22,7 @@ export const academiaApi = createApi({
         console.error("Error fetching departments:", error);
       },
     }),
-
+//
     addDepartment: builder.mutation({
       query: (data) => ({
         url: "/departments",
