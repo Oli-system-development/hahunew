@@ -3,14 +3,18 @@ import { Popover } from "@headlessui/react";
 import Image from "next/image";
 // import CourseDetails from "./CourseDetail";
 import AddOccupation from "./AddOccupation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useGetAllOccupationsQuery } from "../../../../services/api/academia/academiaApi";
 
 const Occupation = () => {
   const [selectedItem, setSelectedItem] = useState(null);
-  const [selectedCourse, setSelectedCourse] = useState(false);
   const [showBookDetails, setShowBookDetails] = useState(false);
   const [openAddDepartment, setOpenAddDepartment] = useState(false);
-
+  
+  const { data: occupations } = useGetAllOccupationsQuery();
+  const [selectedOccupation, setSelectedOccupation] = useState(
+    // occupations ?  occupations[0] : ""
+  );
   const handleItemClick = (item) => {
     setSelectedItem(item === selectedItem ? null : item);
   };
@@ -21,22 +25,51 @@ const Occupation = () => {
   const handleButtonClick = (btn) => {
     setSelectedButton(btn);
   };
+    useEffect(() => {
+      if (occupations && occupations.length > 0) {
+        setSelectedOccupation(occupations[0]);
+      }
+    }, [occupations]);
+const handleOccupationChange = (event) => {
+  const selectedIndex = event.target.selectedIndex;
+  setSelectedOccupation(occupations[selectedIndex]);
+};
 
-
+  console.warn('selectedOccupation',selectedOccupation);
   return (
     <>
       <div className='flex w-full  p-2 md:p-7 md:mx-32 flex-col gap-8 '>
-        <div className='flex text-slate-500 text-lg md:text-xl font-bold justify-between'>
+        <div className='flex text-slate-500 text-md md:text-xl font-bold justify-between'>
           <span>
-            <i className='fa-regular fa-envelope px-3 pt-1 text-xl'></i>{" "}
+            <i className='fa-regular fa-envelope px-1 md:px-3 pt-1 md:text-xl'></i>
             Occupation
           </span>
-          <button
-            className='bg-blue-600 text-blue-50 text-sm rounded-full px-6 p-2'
-            onClick={() => setOpenAddDepartment(!openAddDepartment)}
-          >
-            add occupation
-          </button>
+          <div className='flex flex-row gap-2 md:gap-9 justify-between'>
+            <button
+              className='bg-blue-600 text-blue-50 text-xs md:text-sm rounded-full px-2 md:px-6  md:p-2'
+              onClick={() => setOpenAddDepartment(!openAddDepartment)}
+            >
+              add occupation
+            </button>
+            <div>
+              <select
+                id='occupation'
+                value={selectedOccupation ? selectedOccupation.name : ""}
+                onChange={handleOccupationChange}
+                className='text-xs md:text-md p-0 md:p-2 ring-1  ring-slate-400 rounded-md'
+              >
+                {occupations?.map((occupation, index) => (
+                  <option
+                    key={index}
+                    value={occupation.name}
+                    onClick={() => selectedOccupation(occupation)}
+                  >
+                    {occupation.name}
+                  </option>
+                ))}
+              </select>
+            </div>{" "}
+          </div>
         </div>
         {openAddDepartment && (
           <div className='flex w-full flex-row gap-2 shadow-xl rounded-xl p-1 md:p-4 bg-slate-200'>
@@ -54,39 +87,37 @@ const Occupation = () => {
                 <div className='flex flex-col  gap-4 md:gap-10 p-3 md:p-8 w-full'>
                   <div className='book_items flex flex-col flex-wrap gap-4 md:gap-6 w-full  h-64 justify-around '>
                     {/* {[1, 2, 3, 4].map((item) => ( */}
-                      <div
-                        // key={item}
-                        className={`flex text-slate-500 flex-col gap-1 md:gap-6 w-full justify-around cursor-pointer `}
-                        onClick={handleBackToItems}
-                      >
-                        <span className='text-xl font-bold'>
-                          Information technology{" "}
-                        </span>
+                    <div
+                      // key={item}
+                      className={`flex text-slate-500 flex-col gap-1 md:gap-6 w-full justify-around cursor-pointer `}
+                      onClick={handleBackToItems}
+                    >
+                      <span className='text-xl font-bold'>
+                        {selectedOccupation?.name}
+                      </span>
 
-                        <div className='flex flex-col text-sm md:text-normal  text-slate-500'>
-                          <p>
-                            some details about the course like the quick brown
-                            fox jumped over the lazy dog . well that was not as
-                            long as i had hoped
-                          </p>
-                        </div>
-                        <div className='-mt-5'>
-                          <Image
-                            src='/book1.jpeg'
-                            alt=''
-                            width={290}
-                            height={150}
-                          />
-                        </div>
+                      <div className='flex flex-col text-sm md:text-normal  text-slate-500'>
+                        <p>{selectedOccupation?.description}</p>
+                        {/* {selectedOccupation?.occAbb} */}
                       </div>
+                      <div className='-mt-5'>
+                        <Image
+                          src='/book1.jpeg'
+                          alt=''
+                          width={290}
+                          height={150}
+                        />
+                      </div>
+                    </div>
                     {/* ))} */}
                   </div>
                 </div>
                 <div className='flex flex-col gap-1 md:gap-3  justify-center text-center bg-blue-600  w-40 md:w-64  text-sm md:text-normal text-slate-100'>
-                  <span>ID : ETS0392/12</span>
-                  <span>DATA : 12-12,2022</span>
-                  <span>CGPA : 3.5</span>
-                  <span>UNITS : 5</span>
+                  <span>Head : {selectedOccupation?.head?.firstName}</span>
+                  <span>Abbrev :{selectedOccupation?.occAbb}</span>
+                  <span>ID : {selectedOccupation?.streamId}</span>
+                  <span>Levels : 5</span>
+                  <span>Date : </span>
                 </div>
               </div>
             </div>
@@ -95,10 +126,10 @@ const Occupation = () => {
             <div className='flex flex-col md:flex-row gap-3 md:gap-8 '>
               <div className='flex flex-col rounded-md pt-4 pr-3 pl-10 mt-3  h-48 bg-white text-start w-64  mb-1 text-slate-500 shadow-md ring-2 ring-slate-200 '>
                 <span className='text-xl px-3 font-bold text-black'>
-                  streams
+                  Levels
                 </span>
-                <span>1.introduction</span>
-                <span>2.design of algorism</span>
+                <span>1.level |</span>
+                <span>2.level ||</span>
                 <span>3.system training </span>
                 <span>2.field study </span>
               </div>

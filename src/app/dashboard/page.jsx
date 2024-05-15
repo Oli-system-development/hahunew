@@ -28,7 +28,7 @@ const Dashboard = () => {
     error,
     isSuccess,
   } = useGetUsersQuery();
-  const { data: allAn } = useGetAnnouncementQuery();
+  const { data: allAn ,refetch} = useGetAnnouncementQuery();
   const [
     addAnnouncement,
     {
@@ -37,6 +37,7 @@ const Dashboard = () => {
       isLoading: isLoadingAnn,
       isError: isErrorAnn,
       error: errorAnn,
+
     },
   ] = useAddAnnouncementMutation();
   const userId = process.browser ? localStorage.getItem("userId") : null;
@@ -47,6 +48,7 @@ const Dashboard = () => {
       console.log("users", await users);
       console.log("all announcements", await allAn);
       setAnns(await allAn);
+      await refetch();
       console.log("fetched announcements are  :", await addedAnn);
 
       if (users) {
@@ -74,7 +76,7 @@ const Dashboard = () => {
     };
 
     updateAnnouncements();
-  }, [userId, users, allAn, isSuccessAnn, isErrorAnn, addedAnn, errorAnn]);
+  }, [userId, users, allAn, isSuccessAnn, isErrorAnn, addedAnn, errorAnn,refetch]);
 
   const toggleModal = () => {
     handleSubmit(onSubmit);
@@ -213,6 +215,16 @@ const Dashboard = () => {
                             </span>
                           </figcaption>
                         </figure>
+                        <div className='flex flex-row justify-around text-sm'>
+                          <span
+                          // onClick={}
+                          >
+                            <i className='fa fa-trash text-red-500 cursor-pointer'></i>
+                          </span>
+                          <span>
+                            <i className='fa fa-edit text-slate-400 cursor-pointer'></i>
+                          </span>
+                        </div>
                       </div>
                     ))}
                   </div>

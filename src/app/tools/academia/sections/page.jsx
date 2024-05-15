@@ -25,16 +25,7 @@ const Sections = () => {
   const [isModalVisible, setModalVisible] = useState(false);
   const { data: sections } = useGetAllSectionsQuery();
   console.log("sections", sections);
-  //!modal
-  // const showModal = () => {
-  //   setIsModalOpen(true);
-  // };
-  // const handleOk = () => {
-  //   setIsModalOpen(false);
-  // };
-  // const handleCancel = () => {
-  //   setIsModalOpen(false);
-  // };
+
   const toggleModal = () => {
     setModalVisible((prev) => !prev);
   };

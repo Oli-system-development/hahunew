@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import CourseDetails from "./CourseDetail";
+import DeptDetail from "./DeptDetail";
 import AddDepartment from "./AddDepartment";
 import React, { useState } from "react";
 import { useGetAllDepartmentsQuery } from "../../../../services/api/academia/academiaApi";
@@ -21,11 +21,10 @@ const Departments = () => {
   const [selectedCourse, setSelectedCourse] = useState(false);
   const [showBookDetails, setShowBookDetails] = useState(false);
   const [openAddDepartment, setOpenAddDepartment] = useState(false);
-  const { data: departments, isLoading } = useGetAllDepartmentsQuery();
+  const { data: departments, isLoading ,refetch} = useGetAllDepartmentsQuery();
   console.log("departments", departments);
   const handleItemClick = (item) => {
     setSelectedItem(item === selectedItem ? null : item);
-    
   };
   const handleBackToItems = () => {
     setShowBookDetails(!showBookDetails);
@@ -36,7 +35,7 @@ const Departments = () => {
   };
   if (selectedItem) {
     return (
-      <CourseDetails
+      <DeptDetail
         courseStatus={() => setSelectedCourse(false)}
         addDept={() => setOpenAddDepartment(false)}
         dept={selectedItem}
@@ -80,7 +79,7 @@ const Departments = () => {
                   <th>STREAMS</th>
                 </tr>
                 <tr className='h-1 bg-slate-100 w-full' />
-                {departments?.map((item,index) => (
+                {departments?.map((item, index) => (
                   <tr
                     key={index}
                     className={`text-sm text-gray-900 ${
@@ -90,7 +89,9 @@ const Departments = () => {
                   >
                     <td className='w-32 px-3 sm:w-40 md:w-72 py-1 md:py-3 cursor-pointer'>
                       <span className='flex  flex-col text-start'>
-                        <span>{index + 1}. { item.name}</span>
+                        <span>
+                          {index + 1}. {item.name}
+                        </span>
                         <span
                           className={`text-sm font-thin ${
                             item === selectedItem
@@ -103,13 +104,15 @@ const Departments = () => {
                       </span>
                     </td>
                     <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
-                     {item.head?.user?.firstName}
+                      {item.head?.user?.firstName}
                     </td>
                     <td className='w-32 px-7 md:px-1 sm:w-40 md:w-72 py-1 md:py-3'>
-                      2{" "}
-                    </td>{" "}
+                      2
+                    </td>
                   </tr>
                 ))}
+
+             
               </tbody>
             </table>
           </div>
@@ -119,9 +122,7 @@ const Departments = () => {
               <div className='flex flex-row justify-around w-full bg-white rounded-lg mb-3'>
                 <div className='flex flex-col  gap-4 md:gap-10 p-3 md:p-8 w-full'>
                   <div className='book_items flex flex-col flex-wrap gap-4 md:gap-6 w-full  h-64 justify-around '>
-                    {/* {[1, 2, 3, 4].map((item) => ( */}
                     <div
-                      // key={item}
                       className={`flex text-slate-500 flex-col gap-1 md:gap-6 w-full justify-around cursor-pointer `}
                       onClick={handleBackToItems}
                     >

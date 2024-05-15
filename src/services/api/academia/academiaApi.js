@@ -14,7 +14,7 @@ export const academiaApi = createApi({
   }),
   endpoints: (builder) => ({
     getDepartment: builder.query({
-      query: (userId) => `department?id=${userId}`,
+      query: (deptId) => `department?id=${deptId}`,
     }),
     getAllDepartments: builder.query({
       query: () => "/departments",
@@ -22,7 +22,13 @@ export const academiaApi = createApi({
         console.error("Error fetching departments:", error);
       },
     }),
-//
+    getAllIndustries: builder.query({
+      query: () => "/industries",
+      onError: (error) => {
+        console.error("Error fetching industries:", error);
+      },
+    }),
+    //
     addDepartment: builder.mutation({
       query: (data) => ({
         url: "/departments",
@@ -35,7 +41,7 @@ export const academiaApi = createApi({
     }),
     //!section api
     getSection: builder.query({
-      query: (userId) => `section?id=${userId}`,
+      query: (sectionId) => `section?id=${sectionId}`,
     }),
     getAllSections: builder.query({
       query: () => "/sections",
@@ -56,7 +62,7 @@ export const academiaApi = createApi({
     }),
     //!occupation api
     getOccupation: builder.query({
-      query: (userId) => `streams?id=${userId}`,
+      query: (occId) => `streams?id=${occId}`,
     }),
     getAllOccupations: builder.query({
       query: () => "/streams",
@@ -75,6 +81,27 @@ export const academiaApi = createApi({
         console.error("Error adding Occupations:", error);
       },
     }),
+    //!level api
+    getLevel: builder.query({
+      query: (classId) => `classes?id=${classId}`,
+    }),
+    getAllLevels: builder.query({
+      query: () => "/classes",
+      onError: (error) => {
+        console.error("Error fetching Levels:", error);
+      },
+    }),
+
+    addLevel: builder.mutation({
+      query: (data) => ({
+        url: "/classes",
+        method: "POST",
+        body: data,
+      }),
+      onError: (error) => {
+        console.error("Error adding Levels:", error);
+      },
+    }),
   }),
 });
 
@@ -90,4 +117,10 @@ export const {
   useGetAllOccupationsQuery,
   useGetOccupationQuery,
   useAddOccupationMutation,
+  //! level
+  useGetAllLevelsQuery,
+  useGetLevelQuery,
+  useAddLevelMutation,
+  //!industries 
+  useGetAllIndustriesQuery
 } = academiaApi;

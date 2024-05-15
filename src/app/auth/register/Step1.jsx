@@ -2,9 +2,9 @@
 import React from "react";
 import { useFormContext } from "react-hook-form";
 
-const Step1 = () => {
+const Step1 = ({role}) => {
   const { register } = useFormContext();
-
+console.log("selected role ",role)
   return (
     <div className='px-2 md:px-10 flex flex-col gap-4 w-full'>
       <span className='w-5 h-5 md:w-11 md:h-19 bg-teal-400 text-teal-400'>

@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormContext } from "react-hook-form";
 
 const Step3 = () => {
-  const { register } = useFormContext();
+  const { register, setValue, watch } = useFormContext();
+  const [additionalInputs, setAdditionalInputs] = useState([""]);
 
+  const handleAddInput = () => {
+    setAdditionalInputs([...additionalInputs, ""]);
+  };
+
+  // Watch for changes in the additional inputs to update the form values
+  const additionalRelations = watch("additionalRelations") || [];
+
+  const handleInputChange = (index, value) => {
+    const updatedInputs = [...additionalRelations];
+    updatedInputs[index] = value;
+    setValue("additionalRelations", updatedInputs);
+  };
   return (
     <div className='px-2 md:px-10 flex flex-col gap-4 w-full'>
       <span className='w-5 h-5 md:w-11 md:h-19 bg-teal-400 text-teal-400'>
@@ -163,14 +176,32 @@ const Step3 = () => {
               </div>{" "}
               <div className='flex flex-col gap-1'>
                 <label htmlFor=''>relation</label>
-                <input
+                {/* <input
                   {...register("emergencyRelation")}
                   name='emergencyRelation'
                   className='shadow appearance-none border rounded w-full py-2 md:py-4 px-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
                   id=''
                   type='text'
                   placeholder='specify relation'
-                />
+                /> */}
+                {additionalInputs.map((input, index) => (
+                  <div key={index} className='flex flex-row'>
+                    <input
+                      onChange={(e) => handleInputChange(index, e.target.value)}
+                      name={`relation-${index}`}
+                      {...register(`relation-${index}`)}
+                      className='shadow appearance-none border rounded w-full py-2 md:py-4 px-5 text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+                      type='text'
+                      placeholder={`relation ${index + 1}`}
+                    />
+                  </div>
+                ))}
+                <span>
+                  <i
+                    className='fa fa-plus mt-1 rounded-full bg-slate-400 p-2 text-xl'
+                    onClick={handleAddInput}
+                  ></i>
+                </span>
               </div>
             </div>
           </div>

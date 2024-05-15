@@ -1,7 +1,7 @@
 import { Sparkline } from "@mantine/charts";
 import Image from "next/image";
 import React, { useState } from "react";
-const CourseDetail = ({ courseStatus, addDept,dept }) => {
+const DeptDetail = ({ courseStatus, addDept, dept }) => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [selectedCourse, setSelectedCourse] = useState(false);
   const [showBookDetails, setShowBookDetails] = useState(false);
@@ -20,8 +20,8 @@ const CourseDetail = ({ courseStatus, addDept,dept }) => {
   // }
   return (
     <>
-      <div className='flex w-full  p-7 mx-32 flex-col gap-8 '>
-        <div className='flex text-slate-500 text-xl font-bold justify-between'>
+      <div className='flex w-full  p-2 md:p-7 md:mx-32 flex-col gap-8 '>
+        <div className='flex text-slate-500 text-lg md:text-xl font-bold justify-between'>
           <span>
             <i className='fa fa-box px-3 pt-1 text-xl'></i> Departments
           </span>
@@ -33,21 +33,23 @@ const CourseDetail = ({ courseStatus, addDept,dept }) => {
           </button> */}
         </div>
 
-        <div className='flex w-full flex-row gap-7 shadow-xl rounded-xl p-4 bg-slate-200'>
+        <div className='flex w-full flex-col md:flex-row gap-4 md:gap-7 shadow-xl rounded-xl p-4 bg-slate-200'>
           <div className='flex  rounded-sm w-full'>
             <div className='flex flex-col w-full'>
-              <div className='flex flex-row justify-around w-full bg-white'>
-                <div className='flex flex-col  gap-10 p-8 w-full'>
-                  <div className='book_items flex flex-col flex-wrap gap-6 w-full  h-64 justify-around '>
+              <div className='flex flex-row justify-around w-full bg-white rounded-lg mb-3'>
+                <div className='flex flex-col  gap-4 md:gap-10 p-3 md:p-8 w-full'>
+                  <div className='book_items flex flex-col flex-wrap gap-4 md:gap-6 w-full  h-64 justify-around '>
                     {/* {[1, 2, 3, 4].map((item) => ( */}
                     <div
                       // key={item}
-                      className={`flex text-slate-500 flex-col gap-6 w-full justify-around cursor-pointer `}
-                      // onClick={handleBackToItems}
+                      className={`flex text-slate-500 flex-col gap-1 md:gap-6 w-full justify-around cursor-pointer `}
+                      onClick={handleBackToItems}
                     >
-                      <span className='text-xl font-bold'>{dept.name}</span>
+                      <span className='text-xl font-bold'>
+                        Information technology{" "}
+                      </span>
 
-                      <div className='flex flex-col  text-slate-500'>
+                      <div className='flex flex-col text-sm md:text-normal  text-slate-500'>
                         <p>
                           some details about the course like the quick brown fox
                           jumped over the lazy dog . well that was not as long
@@ -66,20 +68,20 @@ const CourseDetail = ({ courseStatus, addDept,dept }) => {
                     {/* ))} */}
                   </div>
                 </div>
-                <div className='flex flex-col gap-3  justify-center text-center bg-blue-600  w-64  text-slate-100'>
-                  <span>HEAD : {dept.head.user.firstName}</span>
-                  <span>ABRIV : {dept.depAbb}</span>
-                  <span>ID : { dept.depId}</span>
-                  <span>Date : 12-12,2022</span>
+                <div className='flex flex-col gap-1 md:gap-3  justify-center text-center bg-blue-600  w-40 md:w-64  text-sm md:text-normal text-slate-100'>
+                  <span>ID : ETS0392/12</span>
+                  <span>DATA : 12-12,2022</span>
+                  <span>CGPA : 3.5</span>
+                  <span>UNITS : 5</span>
                 </div>
               </div>
               <span className='font-bold text-xl'> Stats</span>
-              <div className='flex flex-row  gap-1 w-full'>
+              <div className='flex flex-col md:flex-row  gap-1 w-full'>
                 <div className='flex flex-col w-full '>
-                  <div className='flex flex-col w-full gap-5 p-6  flex-wrap '>
+                  <div className='flex flex-col w-full gap-2 md:gap-5 p-3 md:p-6  flex-wrap '>
                     {[1, 2, 3, 4].map((appointment) => (
                       <div key={appointment} className='flex flex-row w-full'>
-                        <span className='flex text-slate-100 font-thin flex-col  bg-indigo-400 rounded-lg px-1 w-20 -mr-2 opacity-75 z-10'>
+                        <span className='flex text-slate-100 font-thin flex-col  bg-indigo-400 rounded-lg px-1 md:w-20 -mr-2 opacity-75 z-10'>
                           <span className='text-lg font-medium  text-black'>
                             242
                           </span>
@@ -114,7 +116,7 @@ const CourseDetail = ({ courseStatus, addDept,dept }) => {
                   </div>
                 </div>
                 <div className='flex flex-col '>
-                  <div className='flex flex-col rounded-md pt-4 pr-3 pl-10  h-48 bg-white text-start w-64  mb-1 text-slate-500 shadow-md '>
+                  <div className='flex flex-col rounded-md pt-4 pr-3 pl-10  h-48 bg-white text-start md:w-64  mb-1 text-slate-500 shadow-md '>
                     <span className='text-xl px-3 font-bold text-black'>
                       streams
                     </span>
@@ -123,7 +125,7 @@ const CourseDetail = ({ courseStatus, addDept,dept }) => {
                     <span>3.system training </span>
                     <span>2.field study </span>
                   </div>
-                  <div className='flex flex-col rounded-md pt-4 pr-3 pl-10  h-48 bg-white text-start w-64 mt-3 mb-1 text-slate-500 shadow-md '>
+                  <div className='flex flex-col rounded-md pt-4 pr-3 pl-10  h-48 bg-white text-start md:w-64 mt-3 mb-1 text-slate-500 shadow-md '>
                     <span className='text-xl px-3 font-bold text-black'>
                       teams
                     </span>
@@ -139,7 +141,7 @@ const CourseDetail = ({ courseStatus, addDept,dept }) => {
           </div>
           <div className='flex rounded-sm  w-full'>
             <div className='flex flex-wrap  flex-col  w-full'>
-              <div className='flex flex-row w-full gap-4'>
+              <div className='flex flex-col md:flex-row w-full gap-4'>
                 <div className='flex flex-col '>
                   <div className='flex flex-col justify-start  rounded-md  pr-3 pl-10   flex-wrap bg-white text-start w-72 mb-1 text-slate-500 shadow-md '>
                     <span>associate industries </span>
@@ -200,10 +202,10 @@ const CourseDetail = ({ courseStatus, addDept,dept }) => {
                   </div>
                 </div>
               </div>
-              <div className='flex flex-row -mt-7 gap-7'>
+              <div className='flex flex-col md:flex-row md:-mt-7 gap-2 md:gap-7'>
                 <div className='flex flex-col w-full '>
                   <div className='flex flex-col gap-2  h-60  w-full text-start  mt-10  mb-1 text-slate-200'>
-                    <div className='flex flex-col  rounded-md justify-start  bg-white text-start w-64 mt-4 mb-1 text-slate-500 shadow-md '>
+                    <div className='flex flex-col  rounded-md justify-start  bg-white text-start md:w-64 mt-4 mb-1 text-slate-500 shadow-md '>
                       <span className='text-md px-3 font-bold text-black'>
                         Issues
                       </span>
@@ -252,11 +254,11 @@ const CourseDetail = ({ courseStatus, addDept,dept }) => {
                 </div>
 
                 <div className='flex flex-col w-full '>
-                  <div className='flex flex-col gap-2  h-60  w-full text-start  mt-10  mb-1 text-slate-200'>
+                  <div className='flex flex-col gap-2  md:h-60  w-full text-start  md:mt-10  mb-1 text-slate-200'>
                     <div className='flex flex-col  rounded-md justify-start   text-start  mt-4 mb-1 text-slate-500 shadow-md '>
-                      <div className='flex w-full justify-center gap-11 p-0'>
+                      <div className='flex w-full flex-col md:flex-row justify-center gap-3 md:gap-11 p-0'>
                         <span
-                          className={`p-1 px-3 w-52 text-center text-lg h-52 rounded-xl bg-blue-400
+                          className={`p-1 px-3 md:w-52 text-center text-lg md:h-52 rounded-xl bg-blue-400
               text-blue-200`}
                         >
                           performance
@@ -280,7 +282,7 @@ const CourseDetail = ({ courseStatus, addDept,dept }) => {
                           />
                         </span>
                         <span
-                          className={`p-1 px-3 w-52 text-center text-lg h-52 rounded-xl bg-fuchsia-500 text-blue-200`}
+                          className={`p-1 px-3 md:w-52 text-center text-lg md:h-52 rounded-xl bg-fuchsia-500 text-blue-200`}
                         >
                           time management
                           <Sparkline
@@ -315,4 +317,4 @@ const CourseDetail = ({ courseStatus, addDept,dept }) => {
   );
 };
 
-export default CourseDetail;
+export default DeptDetail;

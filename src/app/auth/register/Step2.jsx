@@ -1,10 +1,21 @@
-"use client"
+"use client";
 import React from "react";
 import { useFormContext } from "react-hook-form";
+import {
+  useGetAllLevelsQuery,
+  useGetAllOccupationsQuery,
+  useGetAllSectionsQuery,
+} from "../../../services/api/academia/academiaApi";
 
-const Step2 = () => {
+const Step2 = ({ role }) => {
   const { register } = useFormContext();
+  console.log("role", role);
+  const { data: departments } = useGetAllLevelsQuery();
+  const { data: occupations } = useGetAllOccupationsQuery();
+  const { data: levels } = useGetAllLevelsQuery();
+  const { data: sections } = useGetAllSectionsQuery();
 
+  
   return (
     <div className='px-2 md:px-10 flex flex-col gap-4 w-full'>
       <span className='w-5 h-5 md:w-11 md:h-19 bg-teal-400 text-teal-400'>
@@ -168,8 +179,15 @@ const Step2 = () => {
                   form='form'
                   className='ring-1 px-3 p-1 rounded-sm text-slate-500 bg-white'
                 >
-                  <option value='volvo'>select</option>
-                  <option value='saab'>3</option>
+                  {departments?.map((dept) => (
+                    <option
+                      className='w-20 md:w-full text-xs md:text-lg'
+                      key={dept.name}
+                      value={`${dept.name}`}
+                    >
+                      {dept.name}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div className='flex flex-row md:flex-col gap-5 md:gap-3'>
@@ -183,8 +201,15 @@ const Step2 = () => {
                   form='form'
                   className='ring-1 px-3 p-1 rounded-sm text-slate-500 bg-white'
                 >
-                  <option value='volvo'>select</option>
-                  <option value='saab'>3</option>
+                  {occupations?.map((occ) => (
+                    <option
+                      className='w-20 md:w-full text-xs md:text-lg'
+                      key={occ.name}
+                      value={`${occ.name}`}
+                    >
+                      {occ.name}
+                    </option>
+                  ))}
                 </select>
               </div>{" "}
               <div className='flex flex-row md:flex-col gap-5 md:gap-3'>
@@ -198,8 +223,15 @@ const Step2 = () => {
                   form='form'
                   className='ring-1 px-3 p-1 rounded-sm text-slate-500 bg-white'
                 >
-                  <option value='volvo'>select</option>
-                  <option value='saab'>3</option>
+                  {levels?.map((level) => (
+                    <option
+                      className='w-20 md:w-full text-xs md:text-lg'
+                      key={level.name}
+                      value={`${level.name}`}
+                    >
+                      {level.name}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div className='flex flex-row md:flex-col gap-5 md:gap-3'>
@@ -213,8 +245,15 @@ const Step2 = () => {
                   form='form'
                   className='ring-1 px-3 p-1 rounded-sm text-slate-500 bg-white'
                 >
-                  <option value='volvo'>select</option>
-                  <option value='saab'>3</option>
+                  {levels?.map((level) => (
+                    <option
+                      className='w-20 md:w-full text-xs md:text-lg'
+                      key={level.name}
+                      value={`${level.name}`}
+                    >
+                      {level.name}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div className='flex flex-row md:flex-col gap-5 md:gap-3'>
@@ -228,8 +267,15 @@ const Step2 = () => {
                   form='form'
                   className='ring-1 px-3 p-1 rounded-sm text-slate-500 bg-white'
                 >
-                  <option value='volvo'>select</option>
-                  <option value='3'>3</option>
+                  {sections?.map((section) => (
+                    <option
+                      className='w-20 md:w-full text-xs md:text-lg'
+                      key={section.name}
+                      value={`${section.name}`}
+                    >
+                      {section.name}
+                    </option>
+                  ))}
                 </select>
               </div>
               <div className='flex flex-row md:flex-col gap-5 md:gap-3'>
@@ -243,8 +289,15 @@ const Step2 = () => {
                   form='form'
                   className='ring-1 px-3 p-1 rounded-sm text-slate-500 bg-white'
                 >
-                  <option value='volvo'>select</option>
-                  <option value='3'>3</option>
+                  {levels?.map((level) => (
+                    <option
+                      className='w-20 md:w-full text-xs md:text-lg'
+                      key={level.name}
+                      value={`${level.name}`}
+                    >
+                      {level.name}
+                    </option>
+                  ))}
                 </select>
               </div>
             </div>

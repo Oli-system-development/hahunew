@@ -9,18 +9,22 @@ import "../../../styles/register.css";
 import { useEffect, useState } from "react";
 import { Steps, message } from "antd";
 import { useForm, FormProvider, useFormContext } from "react-hook-form";
-import { useGetUsersQuery, useSignUpUserMutation } from "../../../services/api/authApi";
+import {
+  useGetUsersQuery,
+  useSignUpUserMutation,
+} from "../../../services/api/authApi";
 
 const { Step } = Steps;
 
 const RegisterPage = () => {
   const [currentStep, setCurrentStep] = useState(0);
+  const [selectedRole, setSelectedRole] = useState("");
 
   const router = useRouter();
   const methods = useForm();
 
   const { isError } = useGetUsersQuery();
-  const [signUpUser, { data, isLoading }] = useSignUpUserMutation();
+  const [signUpUser, { data, isLoading ,isSuccess}] = useSignUpUserMutation();
 
   useEffect(() => {
     if (data) {
@@ -44,9 +48,18 @@ const RegisterPage = () => {
 
       const formData = new FormData();
       Object.keys(data).forEach((key) => {
+        if (key === "additionalRelations") {
+          data[key].forEach((value, index) => {
+            formData.append(`additionalRelations[${index}]`, value);
+          });
+        } else {
+          formData.append(key, data[key]);
+        }
+      });
+      Object.keys(data).forEach((key) => {
         formData.append(key, data[key]);
       });
-          formData.append("birthDate", "2001-02-02T08:00:00");
+      formData.append("birthDate", "2001-02-02T08:00:00");
 
       signUpUser(formData);
     }
@@ -65,6 +78,11 @@ const RegisterPage = () => {
   if (isError) {
     return <div>something wrong </div>;
   }
+
+  const handleRoleChange = (e) => {
+    setSelectedRole(e.target.value);
+  };
+
   return (
     <div className='parent w-full'>
       <span
@@ -91,12 +109,18 @@ const RegisterPage = () => {
             </div>
           </div>
           <div className='form_pages w-full'>
+          <select value={selectedRole} onChange={handleRoleChange} className="bg-slate-600 text-slate-300 p-1 rounded-md m-2">
+            <option value=''>Select Role</option>
+            <option value='student'>Student</option>
+            <option value='employee'>Employee</option>
+            <option value='admin'>Admin</option>
+          </select>
             <FormProvider {...methods}>
               <form onSubmit={handleSubmit(onSubmit)}>
-                {currentStep === 0 && <Step1 />}
-                {currentStep === 1 && <Step2 />}
-                {currentStep === 2 && <Step3 />}
-                {currentStep === 3 && <Step4 />}
+                {currentStep === 0 && <Step1 role={selectedRole} />}
+                {currentStep === 1 && <Step2 role={selectedRole} />}
+                {currentStep === 2 && <Step3 role={selectedRole} />}
+                {currentStep === 3 && <Step4 role={selectedRole} />}
               </form>
             </FormProvider>
           </div>
