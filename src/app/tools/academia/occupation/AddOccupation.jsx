@@ -8,18 +8,22 @@ import {
   useAddOccupationMutation,
 } from "../../../../services/api/academia/academiaApi";
 import { Select } from "@mantine/core";
+import { message } from "antd";
+import { useGetUsersByRoleQuery } from "../../../../services/api/authApi";
 
-const AddOccupation = ({ addOccupation }) => {
+const AddOccupation = ({ refetch, addOccupation }) => {
   const [general, setGeneral] = useState(true);
   const [content, setContent] = useState(false);
   const [level, setLevel] = useState(false);
   const [levelContent, setLevelContent] = useState(false);
   const [isModalVisible, setModalVisible] = useState(false);
-  const [addOccupations, { isLoading }] = useAddOccupationMutation();
+  const [addOccupations, { isLoading, isSuccess }] = useAddOccupationMutation();
   const [addLevels] = useAddLevelMutation();
+  const { data: heads, refetch: refetchHead } = useGetUsersByRoleQuery("head");
+
   const [instructor, setInstructor] = useState("");
-  const [selectedAssistant, setSelectedAssistant] = useState("");
-  const [selectedHead, setSelectedHead] = useState("");
+  const [selectedAssistant, setSelectedAssistant] = useState();
+  const [selectedHead, setSelectedHead] = useState();
   const [additionalInputs, setAdditionalInputs] = useState(["ucs 1"]);
   const [additionalInputs1, setAdditionalInputs1] = useState(["instructor 1"]);
 
@@ -92,21 +96,23 @@ const AddOccupation = ({ addOccupation }) => {
     // });
 
     const occupationData = new FormData();
-    occupationData.append("name", data.name);
-    occupationData.append("assistant", selectedAssistant);
+    occupationData.append("occAbb", data.occAbb);
     occupationData.append("head", selectedHead);
-    occupationData.append("contentName", data.contentName);
-    occupationData.append("contentDescription", data.contentDescription);
-    // if (data.contentFiles[0]) {
-    //   occupationData.append("contentFiles", data.contentFiles[0]);
-    // }
-
-    try {
-      await addLevels(levelData);
-      console.log("Level data submitted successfully");
-    } catch (error) {
-      console.error("There was an error submitting the level data!", error);
+    occupationData.append("assistant", selectedAssistant);
+    occupationData.append("name", data.name);
+    occupationData.append("description", data.description);
+    console.log(data.file);
+    if (data.contentFile[0]) {
+      occupationData.append("file", data.contentFile[0]);
     }
+    occupationData.append("departmentId", 18);
+
+    // try {
+    //   await addLevels(levelData);
+    //   console.log("Level data submitted successfully");
+    // } catch (error) {
+    //   console.error("There was an error submitting the level data!", error);
+    // }
 
     try {
       await addOccupations(occupationData);
@@ -118,6 +124,17 @@ const AddOccupation = ({ addOccupation }) => {
       );
     }
   };
+  if (isSuccess) {
+    message.success("Department added successfully!");
+    refetch();
+    addOccupation(false);
+  }
+
+  const headOptions =
+    heads?.map((head) => ({
+      value: head.userId,
+      label: head?.user?.firstName,
+    })) || [];
   return (
     <>
       {isLoading && <Loading />}
@@ -265,8 +282,8 @@ const AddOccupation = ({ addOccupation }) => {
                         <div className='flex flex-col pt-4 gap-4 justify-around'>
                           <label htmlFor=''>Occupation NAME</label>
                           <input
-                            name='occName'
-                            {...register("occName")}
+                            name='name'
+                            {...register("name")}
                             className='shadow h-8  appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                             type='text'
                             placeholder='Enter dept name'
@@ -316,7 +333,7 @@ const AddOccupation = ({ addOccupation }) => {
                               {...register("teams")}
                               className='shadow   appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3  text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                               type='text'
-                              placeholder='occupation description'
+                              placeholder=''
                             />
                             <i className='fa fa-plus mt-1 rounded-full bg-slate-400 p-2 text-xl'></i>
                           </span>
@@ -325,20 +342,15 @@ const AddOccupation = ({ addOccupation }) => {
                     </div>
                   </div>
                   <div className='flex flex-col '>
-                    <div className='flex flex-wrap  flex-col  h-64 md:h-96 p-2 md:p-10   mb-2 md:mb-9 bg-white rounded-lg '>
-                      <div className='flex flex-col  mb-3 md:mb-9 '>
-                        <span className='md:text-xl p-2 md:p-7 font-bold text-black'>
-                          Occupation head
+                    <div className='flex flex-wrap flex-col h-64 md:h-96 p-2 md:p-10 mb-2 md:mb-9 bg-white rounded-lg'>
+                      <div className='flex flex-col mb-3 md:mb-9'>
+                        <span className='md:text-xl py-2 md:py-7 font-bold text-black'>
+                          occupation Head
                         </span>
-                        <span className=' p-2 font-bold text-black'>
+                        <span className='p-2 font-bold text-black'>
                           <Select
-                            placeholder='assign department   head '
-                            data={[
-                              "ETS023",
-                              "kebede kasa ",
-                              "asma",
-                              "megersa chala",
-                            ]}
+                            placeholder='Pick a head'
+                            data={headOptions}
                             value={selectedHead}
                             onChange={(value) => setSelectedHead(value)}
                             searchable
@@ -347,16 +359,11 @@ const AddOccupation = ({ addOccupation }) => {
                         </span>
                       </div>
                       <div className='flex flex-col gap-2 md:gap-7 pt-2 md:pt-4 px-2 md:px-9'>
-                        <label htmlFor=''>Occupation assistant</label>
-                        <span className=' p-2 font-bold text-black'>
+                        <label htmlFor=''>occupation Assistant</label>
+                        <span className='p-2 font-bold text-black'>
                           <Select
-                            placeholder='add department assistant '
-                            data={[
-                              "ETS023",
-                              "kebede kasa ",
-                              "asma",
-                              "megersa chala",
-                            ]}
+                            placeholder='Pick assistant'
+                            data={headOptions}
                             value={selectedAssistant}
                             onChange={(value) => setSelectedAssistant(value)}
                             searchable

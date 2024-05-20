@@ -10,11 +10,10 @@ const Occupation = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [showBookDetails, setShowBookDetails] = useState(false);
   const [openAddDepartment, setOpenAddDepartment] = useState(false);
-  
-  const { data: occupations } = useGetAllOccupationsQuery();
-  const [selectedOccupation, setSelectedOccupation] = useState(
-    // occupations ?  occupations[0] : ""
-  );
+
+  const { data: occupations, refetch } = useGetAllOccupationsQuery();
+  const [selectedOccupation, setSelectedOccupation] = useState();
+  // occupations ?  occupations[0] : ""
   const handleItemClick = (item) => {
     setSelectedItem(item === selectedItem ? null : item);
   };
@@ -25,17 +24,17 @@ const Occupation = () => {
   const handleButtonClick = (btn) => {
     setSelectedButton(btn);
   };
-    useEffect(() => {
-      if (occupations && occupations.length > 0) {
-        setSelectedOccupation(occupations[0]);
-      }
-    }, [occupations]);
-const handleOccupationChange = (event) => {
-  const selectedIndex = event.target.selectedIndex;
-  setSelectedOccupation(occupations[selectedIndex]);
-};
+  useEffect(() => {
+    if (occupations && occupations.length > 0) {
+      setSelectedOccupation(occupations[0]);
+    }
+  }, [occupations]);
+  const handleOccupationChange = (event) => {
+    const selectedIndex = event.target.selectedIndex;
+    setSelectedOccupation(occupations[selectedIndex]);
+  };
 
-  console.warn('selectedOccupation',selectedOccupation);
+  console.warn("selectedOccupation", selectedOccupation);
   return (
     <>
       <div className='flex w-full  p-2 md:p-7 md:mx-32 flex-col gap-8 '>
@@ -60,6 +59,7 @@ const handleOccupationChange = (event) => {
               >
                 {occupations?.map((occupation, index) => (
                   <option
+                    className='text-slate-200 bg-slate-600 font-bold rounded-md'
                     key={index}
                     value={occupation.name}
                     onClick={() => selectedOccupation(occupation)}
@@ -73,7 +73,10 @@ const handleOccupationChange = (event) => {
         </div>
         {openAddDepartment && (
           <div className='flex w-full flex-row gap-2 shadow-xl rounded-xl p-1 md:p-4 bg-slate-200'>
-            <AddOccupation addOccupation={() => setOpenAddDepartment(false)} />
+            <AddOccupation
+              refetch={refetch}
+              addOccupation={() => setOpenAddDepartment(false)}
+            />
           </div>
         )}
         <div

@@ -80,7 +80,7 @@ const AddDepartment = ({ deptStatus, refetch }) => {
       formData.append("assistant", selectedAssistant);
       formData.append("industries", selectedIndustries.join(","));
       console.log(selectedHead, selectedAssistant);
-      // await addDepartment(formData);
+      await addDepartment(formData);
     } catch (error) {
       console.error("Error submitting Ann:", error);
       setErrorMessage("Invalid data.");
