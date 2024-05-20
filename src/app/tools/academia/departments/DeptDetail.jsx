@@ -39,40 +39,37 @@ const DeptDetail = ({ courseStatus, addDept, dept }) => {
               <div className='flex flex-row justify-around w-full bg-white rounded-lg mb-3'>
                 <div className='flex flex-col  gap-4 md:gap-10 p-3 md:p-8 w-full'>
                   <div className='book_items flex flex-col flex-wrap gap-4 md:gap-6 w-full  h-64 justify-around '>
-                    {/* {[1, 2, 3, 4].map((item) => ( */}
                     <div
-                      // key={item}
                       className={`flex text-slate-500 flex-col gap-1 md:gap-6 w-full justify-around cursor-pointer `}
                       onClick={handleBackToItems}
                     >
-                      <span className='text-xl font-bold'>
-                        Information technology{" "}
-                      </span>
+                      <span className='text-xl font-bold'>{dept.name}</span>
 
                       <div className='flex flex-col text-sm md:text-normal  text-slate-500'>
-                        <p>
-                          some details about the course like the quick brown fox
-                          jumped over the lazy dog . well that was not as long
-                          as i had hoped
-                        </p>
+                        <p>{dept.description}</p>
                       </div>
-                      <div className='-mt-5'>
-                        <Image
-                          src='/book1.jpeg'
-                          alt=''
-                          width={290}
-                          height={150}
-                        />
+
+                      <div className='rounded-md w-full h-32 md:h-44 overflow-hidden relative'>
+                        {dept?.file && (
+                          <Image
+                            src={`http://${dept.file}` || ""}
+                            alt='image here'
+                            layout='fill'
+                            objectFit='cover'
+                            className='w-full h-full'
+                          />
+                        )}
                       </div>
                     </div>
-                    {/* ))} */}
                   </div>
                 </div>
                 <div className='flex flex-col gap-1 md:gap-3  justify-center text-center bg-blue-600  w-40 md:w-64  text-sm md:text-normal text-slate-100'>
-                  <span>ID : ETS0392/12</span>
-                  <span>DATA : 12-12,2022</span>
-                  <span>CGPA : 3.5</span>
-                  <span>UNITS : 5</span>
+                  <span>Head : {dept.head?.user?.firstName}</span>
+                  <span>Abbrv : {dept.depAbb}</span>
+                  <span>Id :{dept.depId}</span>
+                  <span>Register office : </span>
+                  <span>Occupation : </span>
+                  <span>Date : </span>
                 </div>
               </div>
               <span className='font-bold text-xl'> Stats</span>
@@ -120,10 +117,12 @@ const DeptDetail = ({ courseStatus, addDept, dept }) => {
                     <span className='text-xl px-3 font-bold text-black'>
                       streams
                     </span>
-                    <span>1.introduction</span>
-                    <span>2.design of algorism</span>
-                    <span>3.system training </span>
-                    <span>2.field study </span>
+                    {dept.streams?.map((stream, index) => (
+                      <span key={index} span>
+                        {" "}
+                        {index + 1} . {stream?.name}{" "}
+                      </span>
+                    ))}
                   </div>
                   <div className='flex flex-col rounded-md pt-4 pr-3 pl-10  h-48 bg-white text-start md:w-64 mt-3 mb-1 text-slate-500 shadow-md '>
                     <span className='text-xl px-3 font-bold text-black'>
@@ -183,13 +182,13 @@ const DeptDetail = ({ courseStatus, addDept, dept }) => {
                 <div className='flex flex-col justify-start  rounded-md  pr-3 pl-10   flex-wrap bg-white text-start w-full mb-1 text-slate-500 shadow-md '>
                   <span>occupation </span>
                   <div className='flex justify-start text-start flex-col w-full py-2 flex-wrap text-sm gap-4 text-slate-600 '>
-                    {[1, 2, 3, 4, 5].map((course) => (
-                      <span key={course}>
+                    {dept.streams?.map((stream, index) => (
+                      <span key={index}>
                         <span className='flex flex-row justify-between w-full rounded-md text-start bg-gray-500 text-white'>
                           <button className=' text-sm p-4 text-white w-full text-start  rounded-md'>
-                            {course}. databse
+                            {index + 1}. {stream.name}
                           </button>
-                          <span className='mt-2'>name out</span>
+                          <span className='mt-2'>{stream.head?.firstName}</span>
                           <i className='mt-2 fa fa-edit text-lg p-3'></i>
                         </span>
                       </span>

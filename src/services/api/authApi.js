@@ -16,20 +16,13 @@ export const authApi = createApi({
   endpoints: (builder) => ({
     getUsers: builder.query({
       query: () => "auth/users",
-
-      // {
-
-      // return {
-      //   url: "/user/getUser",
-      //   method: "get",
-      //   body,
-      // };
-      // },
     }),
     getMe: builder.query({
       query: (userId) => `users?id=${userId}`,
     }),
-
+    getUsersByRole: builder.query({
+      query: (role) => `users?type=${role}`,
+    }),
     loginUser: builder.mutation({
       query: (body) => {
         return {
@@ -38,10 +31,6 @@ export const authApi = createApi({
           body,
         };
       },
-      // onSuccess: (userData, { dispatch }) => {
-      //   console.warn("from redux apiiii", userData);
-      //   dispatch(setUser(userData));
-      // },
     }),
     loginAdmin: builder.mutation({
       query: (body) => {
@@ -71,14 +60,26 @@ export const authApi = createApi({
         };
       },
     }),
+    //!role api
+    getUsersByType: builder.mutation({
+      query: (type) => {
+        console.log("hhhhhhhhhhhhhhhhhhhhhhhhhh");
+        console.log(`users?type=${type}`);
+        return {
+          url: `users?type=${type}`,
+        };
+      },
+    }),
   }),
 });
-
 
 export const {
   useSignUpUserMutation,
   useLoginUserMutation,
   useLoginAdminMutation,
   useGetUsersQuery,
-  useSighUpAdminMutation,useGetMeQuery
+  useSighUpAdminMutation,
+  useGetMeQuery,
+  //!role api
+  useGetUsersByRoleQuery,
 } = authApi;

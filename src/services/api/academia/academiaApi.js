@@ -28,7 +28,16 @@ export const academiaApi = createApi({
         console.error("Error fetching industries:", error);
       },
     }),
-    //
+    addIndustry: builder.mutation({
+      query: (data) => ({
+        url: "/industries",
+        method: "POST",
+        body: data,
+      }),
+      onError: (error) => {
+        console.error("Error adding industries:", error);
+      },
+    }),
     addDepartment: builder.mutation({
       query: (data) => ({
         url: "/departments",
@@ -121,6 +130,7 @@ export const {
   useGetAllLevelsQuery,
   useGetLevelQuery,
   useAddLevelMutation,
-  //!industries 
-  useGetAllIndustriesQuery
+  //!industries
+  useGetAllIndustriesQuery,
+  useAddIndustryMutation,
 } = academiaApi;

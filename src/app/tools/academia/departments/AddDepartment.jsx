@@ -1,23 +1,43 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import {
   useAddDepartmentMutation,
+  useAddIndustryMutation,
   useGetAllIndustriesQuery,
 } from "../../../../services/api/academia/academiaApi";
 import Loading from "../../../common/loading";
 import { message } from "antd";
-import { Select } from "@mantine/core";
+import { MultiSelect, Select } from "@mantine/core";
+import {
+  useGetMeeQuery,
+  useGetUsersByRoleQuery,
+  useGetUsersByTypeMutation,
+} from "../../../../services/api/authApi";
 
-const AddDepartment = ({ deptStatus }) => {
+const AddDepartment = ({ deptStatus, refetch }) => {
   const [general, setGeneral] = useState(true);
   const [content, setContent] = useState(false);
-  const [additionalInputs, setAdditionalInputs] = useState([]);
-  const [selectedHead, setSelectedHead] = useState("");
-  const [selectedAssistant, setSelectedAssistant] = useState("");
-  const { data: industries } = useGetAllIndustriesQuery();
-  console.log("industry", industries);
+  const [additionalInputs, setAdditionalInputs] = useState();
+  const [selectedHead, setSelectedHead] = useState();
+  const [selectedAssistant, setSelectedAssistant] = useState();
+  const [selectedIndustries, setSelectedIndustries] = useState([]);
+  const { data: industriesData, refetch: refetchIndustries } =
+    useGetAllIndustriesQuery();
+  const { data: heads, refetch: refetchHead } = useGetUsersByRoleQuery("head");
+  const [addIndustry, { isLoading: loading, isSuccess: success }] =
+    useAddIndustryMutation();
   const [addDepartment, { isLoading, isSuccess }] = useAddDepartmentMutation();
+  useEffect(() => {
+    if (isSuccess) {
+      refetch();
+    }
+
+    if (success) {
+      refetchIndustries();
+      refetchHead();
+    }
+  }, [isSuccess, success, refetch, refetchIndustries, refetchHead]);
 
   const generalTab = () => {
     setContent(false);
@@ -29,14 +49,20 @@ const AddDepartment = ({ deptStatus }) => {
     setContent(true);
   };
 
-  const handleAddInput = () => {
-    setAdditionalInputs([...additionalInputs, ""]);
-  };
+  const addNewIndustry = async () => {
+    if (additionalInputs) {
+      const newIndustry = {
+        name: additionalInputs,
+      };
 
-  const handleInputChange = (index, value) => {
-    const newInputs = [...additionalInputs];
-    newInputs[index] = value;
-    setAdditionalInputs(newInputs);
+      try {
+        await addIndustry(newIndustry);
+        message.success("Industry added successfully!");
+        setAdditionalInputs();
+      } catch (error) {
+        message.error("Failed to add industry.");
+      }
+    }
   };
 
   const { register, handleSubmit } = useForm();
@@ -52,9 +78,9 @@ const AddDepartment = ({ deptStatus }) => {
       });
       formData.append("head", selectedHead);
       formData.append("assistant", selectedAssistant);
-      formData.append("industries", JSON.stringify(additionalInputs));
-      console.log(selectedHead);
-      await addDepartment(formData);
+      formData.append("industries", selectedIndustries.join(","));
+      console.log(selectedHead, selectedAssistant);
+      // await addDepartment(formData);
     } catch (error) {
       console.error("Error submitting Ann:", error);
       setErrorMessage("Invalid data.");
@@ -66,6 +92,17 @@ const AddDepartment = ({ deptStatus }) => {
     deptStatus(false);
   }
 
+  const industriesOptions =
+    industriesData?.data.map((industry) => ({
+      value: industry.id,
+      label: industry.name,
+    })) || [];
+  const headOptions =
+    heads?.map((head) => ({
+      value: head.userId,
+      label: head?.user?.firstName,
+    })) || [];
+
   return (
     <>
       {isLoading && <Loading />}
@@ -75,6 +112,7 @@ const AddDepartment = ({ deptStatus }) => {
             <span className='md:text-xl px-2 md:p-7 text-blue-600 font-bold'>
               Add Department
             </span>
+
             <div className='flex p-2 md:p-9 gap-0 ring-1 ring-slate-200 md:ring-0 rounded-xl md:rounded-none justify-center flex-row md:flex-col '>
               <span
                 onClick={generalTab}
@@ -158,24 +196,38 @@ const AddDepartment = ({ deptStatus }) => {
                     <div className='flex flex-col gap-4 md:gap-7 pt-2 md:pt-4 px-2 md:px-9'>
                       <label htmlFor=''>Associate Industries</label>
                       <div className='flex flex-col gap-2 mb-3 md:mb-9'>
-                        {additionalInputs.map((input, index) => (
-                          <div key={index} className='flex flex-row'>
+                        <MultiSelect
+                          placeholder='Pick industries'
+                          data={industriesOptions}
+                          value={selectedIndustries}
+                          onChange={(value) => setSelectedIndustries(value)}
+                          searchable
+                          clearable
+                        />
+                        {additionalInputs && (
+                          <div className='flex flex-row gap-2'>
                             <input
-                              value={input}
-                              onChange={(e) =>
-                                handleInputChange(index, e.target.value)
-                              }
-                              className='shadow h-8 bg-slate-100 appearance-none ring-1 ring-slate-400 border rounded-lg w-full py-2 px-3 text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
+                              name={`industry`}
+                              className='shadow h-8 bg-slate-50 appearance-none ring-1 ring-slate-100 border rounded-sm w-full py-2 px-3 text-slate-700 leading-tight focus:outline-none focus:shadow-outline'
                               type='text'
-                              placeholder={`industry ${index + 1}`}
+                              placeholder={`industry`}
+                              onChange={(e) =>
+                                setAdditionalInputs(e.target.value)
+                              }
                             />
-                            
+                            <span>
+                              <i
+                                onClick={addNewIndustry}
+                                className='fa fa-check bg-green-500 text-green-200 rounded-full text-md font-bold mt-2 p-1 mx-1'
+                              ></i>
+                            </span>
                           </div>
-                        ))}
+                        )}
+
                         <span>
                           <i
                             className='fa fa-plus mt-1 rounded-full bg-slate-400 p-2 text-xl'
-                            onClick={handleAddInput}
+                            onClick={() => setAdditionalInputs(true)}
                           ></i>
                         </span>
                       </div>
@@ -191,12 +243,7 @@ const AddDepartment = ({ deptStatus }) => {
                       <span className='p-2 font-bold text-black'>
                         <Select
                           placeholder='Pick a head'
-                          data={[
-                            "ETS023",
-                            "kebede kasa ",
-                            "asma",
-                            "megersa chala",
-                          ]}
+                          data={headOptions}
                           value={selectedHead}
                           onChange={(value) => setSelectedHead(value)}
                           searchable
@@ -209,12 +256,7 @@ const AddDepartment = ({ deptStatus }) => {
                       <span className='p-2 font-bold text-black'>
                         <Select
                           placeholder='Pick assistant'
-                          data={[
-                            "ETS023",
-                            "kebede kasa ",
-                            "asma",
-                            "megersa chala",
-                          ]}
+                          data={headOptions}
                           value={selectedAssistant}
                           onChange={(value) => setSelectedAssistant(value)}
                           searchable
