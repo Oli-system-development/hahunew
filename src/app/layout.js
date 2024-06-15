@@ -26,11 +26,12 @@ export default function RootLayout({ children }) {
       </head>
 
       <body>
-        <StoreProvider>
+        {/* <StoreProvider>
           <CallTheState>
             <MantineProvider>{children}</MantineProvider>
           </CallTheState>
-        </StoreProvider>
+        </StoreProvider> */}
+        hello hahu
       </body>
     </html>
   );
